@@ -1,0 +1,2724 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.4.25.    minstret和minstreth · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="7.4.26.html" />
+    
+    
+    <link rel="prev" href="7.4.24.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../chapter1/1.html">
+            
+                <a href="../../chapter1/1.html">
+            
+                    
+                    1.    Bumblebee内核指令集与CSR介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../chapter1/1.1.html">
+            
+                <a href="../../chapter1/1.1.html">
+            
+                    
+                    1.1.    RISC-V指令集介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../chapter1/1.2.html">
+            
+                <a href="../../chapter1/1.2.html">
+            
+                    
+                    1.2.    Bumblebee内核支持指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../chapter1/1.3.html">
+            
+                <a href="../../chapter1/1.3.html">
+            
+                    
+                    1.3.    CSR寄存器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../chapter2/2.1.html">
+            
+                <a href="../../chapter2/2.1.html">
+            
+                    
+                    2.    Bumblebee内核特权架构介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../chapter2/2.1.html">
+            
+                <a href="../../chapter2/2.1.html">
+            
+                    
+                    2.1.    总体介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../chapter2/2.2/2.2.html">
+            
+                <a href="../../chapter2/2.2/2.2.html">
+            
+                    
+                    2.2.    特权模式（Privilege Modes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../chapter2/2.2/2.2.1.html">
+            
+                <a href="../../chapter2/2.2/2.2.1.html">
+            
+                    
+                    2.2.1.    机器模式（Machine Mode）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../chapter2/2.2/2.2.2.html">
+            
+                <a href="../../chapter2/2.2/2.2.2.html">
+            
+                    
+                    2.2.2.    用户模式（User Mode）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../../chapter2/2.2/2.2.3.html">
+            
+                <a href="../../chapter2/2.2/2.2.3.html">
+            
+                    
+                    2.2.3.    机器子模式（Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../../chapter2/2.2/2.2.4.html">
+            
+                <a href="../../chapter2/2.2/2.2.4.html">
+            
+                    
+                    2.2.4.    模式（Mode）的查看
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../../chapter2/2.2/2.2.5.html">
+            
+                <a href="../../chapter2/2.2/2.2.5.html">
+            
+                    
+                    2.2.5.    Machine Mode到User Mode的切换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../../chapter2/2.2/2.2.6.html">
+            
+                <a href="../../chapter2/2.2/2.2.6.html">
+            
+                    
+                    2.2.6.    User Mode到Machine Mode的切换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../../chapter2/2.2/2.2.7.html">
+            
+                <a href="../../chapter2/2.2/2.2.7.html">
+            
+                    
+                    2.2.7.    中断、异常、NMI的嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../../chapter2/2.3.html">
+            
+                <a href="../../chapter2/2.3.html">
+            
+                    
+                    2.3.    物理存储器保护（PMP)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../chapter3/3.1.html">
+            
+                <a href="../../chapter3/3.1.html">
+            
+                    
+                    3.    Bumblebee内核异常机制介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../chapter3/3.1.html">
+            
+                <a href="../../chapter3/3.1.html">
+            
+                    
+                    3.1.    异常概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../chapter3/3.2.html">
+            
+                <a href="../../chapter3/3.2.html">
+            
+                    
+                    3.2.    异常屏蔽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../chapter3/3.3.html">
+            
+                <a href="../../chapter3/3.3.html">
+            
+                    
+                    3.3.    异常的优先级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../chapter3/3.4/3.4.html">
+            
+                <a href="../../chapter3/3.4/3.4.html">
+            
+                    
+                    3.4.    进入异常处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" data-path="../../chapter3/3.4/3.4.1.html">
+            
+                <a href="../../chapter3/3.4/3.4.1.html">
+            
+                    
+                    3.4.1.    从mtvec定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" data-path="../../chapter3/3.4/3.4.2.html">
+            
+                <a href="../../chapter3/3.4/3.4.2.html">
+            
+                    
+                    3.4.2.    更新CSR寄存器mcause
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.3" data-path="../../chapter3/3.4/3.4.3.html">
+            
+                <a href="../../chapter3/3.4/3.4.3.html">
+            
+                    
+                    3.4.3.    更新CSR寄存器mepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../../chapter3/3.4/3.4.4.html">
+            
+                <a href="../../chapter3/3.4/3.4.4.html">
+            
+                    
+                    3.4.4.    更新CSR寄存器mtval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.5" data-path="../../chapter3/3.4/3.4.5.html">
+            
+                <a href="../../chapter3/3.4/3.4.5.html">
+            
+                    
+                    3.4.5.    更新CSR寄存器mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.6" data-path="../../chapter3/3.4/3.4.6.html">
+            
+                <a href="../../chapter3/3.4/3.4.6.html">
+            
+                    
+                    3.4.6.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.7" data-path="../../chapter3/3.4/3.4.7.html">
+            
+                <a href="../../chapter3/3.4/3.4.7.html">
+            
+                    
+                    3.4.7.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../chapter3/3.5/3.5.html">
+            
+                <a href="../../chapter3/3.5/3.5.html">
+            
+                    
+                    3.5.    退出异常处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="../../chapter3/3.5/3.5.1.html">
+            
+                <a href="../../chapter3/3.5/3.5.1.html">
+            
+                    
+                    3.5.1.    从mepc定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.2" data-path="../../chapter3/3.5/3.5.2.html">
+            
+                <a href="../../chapter3/3.5/3.5.2.html">
+            
+                    
+                    3.5.2.    更新CSR寄存器mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.3" data-path="../../chapter3/3.5/3.5.3.html">
+            
+                <a href="../../chapter3/3.5/3.5.3.html">
+            
+                    
+                    3.5.3.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.4" data-path="../../chapter3/3.5/3.5.4.html">
+            
+                <a href="../../chapter3/3.5/3.5.4.html">
+            
+                    
+                    3.5.4.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../../chapter3/3.6.html">
+            
+                <a href="../../chapter3/3.6.html">
+            
+                    
+                    3.6.    异常服务程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../../chapter3/3.7.html">
+            
+                <a href="../../chapter3/3.7.html">
+            
+                    
+                    3.7.    异常嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../chapter4/4.1.html">
+            
+                <a href="../../chapter4/4.1.html">
+            
+                    
+                    4.    Bumblebee内核NMI机制介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../chapter4/4.1.html">
+            
+                <a href="../../chapter4/4.1.html">
+            
+                    
+                    4.1.    NMI概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../chapter4/4.2.html">
+            
+                <a href="../../chapter4/4.2.html">
+            
+                    
+                    4.2.    NMI屏蔽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../chapter4/4.3/4.3.html">
+            
+                <a href="../../chapter4/4.3/4.3.html">
+            
+                    
+                    4.3.    进入NMI处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../../chapter4/4.3/4.3.1.html">
+            
+                <a href="../../chapter4/4.3/4.3.1.html">
+            
+                    
+                    4.3.1.    从mnvec定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" data-path="../../chapter4/4.3/4.3.2.html">
+            
+                <a href="../../chapter4/4.3/4.3.2.html">
+            
+                    
+                    4.3.2.    更新CSR寄存器mepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.3" data-path="../../chapter4/4.3/4.3.3.html">
+            
+                <a href="../../chapter4/4.3/4.3.3.html">
+            
+                    
+                    4.3.3.    更新CSR寄存器mcause
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.4" data-path="../../chapter4/4.3/4.3.4.html">
+            
+                <a href="../../chapter4/4.3/4.3.4.html">
+            
+                    
+                    4.3.4.    更新CSR寄存器mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.5" data-path="../../chapter4/4.3/4.3.5.html">
+            
+                <a href="../../chapter4/4.3/4.3.5.html">
+            
+                    
+                    4.3.5.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.6" data-path="../../chapter4/4.3/4.3.6.html">
+            
+                <a href="../../chapter4/4.3/4.3.6.html">
+            
+                    
+                    4.3.6.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../chapter4/4.4/4.4.html">
+            
+                <a href="../../chapter4/4.4/4.4.html">
+            
+                    
+                    4.4.    退出NMI处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="../../chapter4/4.4/4.4.1.html">
+            
+                <a href="../../chapter4/4.4/4.4.1.html">
+            
+                    
+                    4.4.1.    从mepc定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="../../chapter4/4.4/4.4.2.html">
+            
+                <a href="../../chapter4/4.4/4.4.2.html">
+            
+                    
+                    4.4.2.    更新CSR寄存器mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.3" data-path="../../chapter4/4.4/4.4.3.html">
+            
+                <a href="../../chapter4/4.4/4.4.3.html">
+            
+                    
+                    4.4.3.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.4" data-path="../../chapter4/4.4/4.4.4.html">
+            
+                <a href="../../chapter4/4.4/4.4.4.html">
+            
+                    
+                    4.4.4.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../../chapter4/4.5.html">
+            
+                <a href="../../chapter4/4.5.html">
+            
+                    
+                    4.5.    NMI服务程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../../chapter4/4.6/4.6.html">
+            
+                <a href="../../chapter4/4.6/4.6.html">
+            
+                    
+                    4.6.    NMI/异常嵌套
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.6.1" data-path="../../chapter4/4.6/4.6.1.html">
+            
+                <a href="../../chapter4/4.6/4.6.1.html">
+            
+                    
+                    4.6.1.    进入NMI/异常嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.2" data-path="../../chapter4/4.6/4.6.2.html">
+            
+                <a href="../../chapter4/4.6/4.6.2.html">
+            
+                    
+                    4.6.2.    退出NMI/异常嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../chapter5/5.1.html">
+            
+                <a href="../../chapter5/5.1.html">
+            
+                    
+                    5.    Bumblebee内核中断机制介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../chapter5/5.1.html">
+            
+                <a href="../../chapter5/5.1.html">
+            
+                    
+                    5.1.    中断概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../chapter5/5.2.html">
+            
+                <a href="../../chapter5/5.2.html">
+            
+                    
+                    5.2.    中断控制器ECLIC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../../chapter5/5.3/5.3.html">
+            
+                <a href="../../chapter5/5.3/5.3.html">
+            
+                    
+                    5.3.    中断类型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1" data-path="../../chapter5/5.3/5.3.1.html">
+            
+                <a href="../../chapter5/5.3/5.3.1.html">
+            
+                    
+                    5.3.1.    外部中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2" data-path="../../chapter5/5.3/5.3.2/5.3.2.html">
+            
+                <a href="../../chapter5/5.3/5.3.2/5.3.2.html">
+            
+                    
+                    5.3.2.    内部中断
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.2.1" data-path="../../chapter5/5.3/5.3.2/5.3.2.1.html">
+            
+                <a href="../../chapter5/5.3/5.3.2/5.3.2.1.html">
+            
+                    
+                    5.3.2.1    软件中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2.2" data-path="../../chapter5/5.3/5.3.2/5.3.2.2.html">
+            
+                <a href="../../chapter5/5.3/5.3.2/5.3.2.2.html">
+            
+                    
+                    5.3.2.2    计时器中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2.3" data-path="../../chapter5/5.3/5.3.2/5.3.2.3.html">
+            
+                <a href="../../chapter5/5.3/5.3.2/5.3.2.3.html">
+            
+                    
+                    5.3.2.3    存储器访问错误中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../../chapter5/5.4/5.4.1.html">
+            
+                <a href="../../chapter5/5.4/5.4.1.html">
+            
+                    
+                    5.4.    中断屏蔽
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1" data-path="../../chapter5/5.4/5.4.1.html">
+            
+                <a href="../../chapter5/5.4/5.4.1.html">
+            
+                    
+                    5.4.1.    中断全局屏蔽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2" data-path="../../chapter5/5.4/5.4.2.html">
+            
+                <a href="../../chapter5/5.4/5.4.2.html">
+            
+                    
+                    5.4.2.    中断源单独屏蔽
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../../chapter5/5.5.html">
+            
+                <a href="../../chapter5/5.5.html">
+            
+                    
+                    5.5.    中断级别、优先级与仲裁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../../chapter5/5.6/5.6.html">
+            
+                <a href="../../chapter5/5.6/5.6.html">
+            
+                    
+                    5.6.    进入中断处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.6.1" data-path="../../chapter5/5.6/5.6.1.html">
+            
+                <a href="../../chapter5/5.6/5.6.1.html">
+            
+                    
+                    5.6.1.    从新的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.2" data-path="../../chapter5/5.6/5.6.2.html">
+            
+                <a href="../../chapter5/5.6/5.6.2.html">
+            
+                    
+                    5.6.2.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.3" data-path="../../chapter5/5.6/5.6.3.html">
+            
+                <a href="../../chapter5/5.6/5.6.3.html">
+            
+                    
+                    5.6.3.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.4" data-path="../../chapter5/5.6/5.6.4.html">
+            
+                <a href="../../chapter5/5.6/5.6.4.html">
+            
+                    
+                    5.6.4.    更新CSR寄存器mepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.5" data-path="../../chapter5/5.6/5.6.5.html">
+            
+                <a href="../../chapter5/5.6/5.6.5.html">
+            
+                    
+                    5.6.5.    更新CSR寄存器mcause和mstatus    
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../../chapter5/5.7/5.7.html">
+            
+                <a href="../../chapter5/5.7/5.7.html">
+            
+                    
+                    5.7.    退出中断处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.7.1" data-path="../../chapter5/5.7/5.7.1.html">
+            
+                <a href="../../chapter5/5.7/5.7.1.html">
+            
+                    
+                    5.7.1.    从mepc定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7.2" data-path="../../chapter5/5.7/5.7.2.html">
+            
+                <a href="../../chapter5/5.7/5.7.2.html">
+            
+                    
+                    5.7.2.    更新CSR寄存器mcause和mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7.3" data-path="../../chapter5/5.7/5.7.3.html">
+            
+                <a href="../../chapter5/5.7/5.7.3.html">
+            
+                    
+                    5.7.3.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7.4" data-path="../../chapter5/5.7/5.7.4.html">
+            
+                <a href="../../chapter5/5.7/5.7.4.html">
+            
+                    
+                    5.7.4.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="../../chapter5/5.8.html">
+            
+                <a href="../../chapter5/5.8.html">
+            
+                    
+                    5.8.    中断向量表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="../../chapter5/5.9.html">
+            
+                <a href="../../chapter5/5.9.html">
+            
+                    
+                    5.9.    进出中断的上下文保存和恢复
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="../../chapter5/5.10.html">
+            
+                <a href="../../chapter5/5.10.html">
+            
+                    
+                    5.10.    中断响应延迟
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="../../chapter5/5.11.html">
+            
+                <a href="../../chapter5/5.11.html">
+            
+                    
+                    5.11.    中断嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="../../chapter5/5.12.html">
+            
+                <a href="../../chapter5/5.12.html">
+            
+                    
+                    5.12.    中断咬尾
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="../../chapter5/5.13/5.13.html">
+            
+                <a href="../../chapter5/5.13/5.13.html">
+            
+                    
+                    5.13.    中断的向量处理模式和非向量处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.13.1" data-path="../../chapter5/5.13/5.13.1/5.13.1.1.html">
+            
+                <a href="../../chapter5/5.13/5.13.1/5.13.1.1.html">
+            
+                    
+                    5.13.1.    非向量处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.13.1.1" data-path="../../chapter5/5.13/5.13.1/5.13.1.1.html">
+            
+                <a href="../../chapter5/5.13/5.13.1/5.13.1.1.html">
+            
+                    
+                    5.13.1.1 非向量处理模式的特点和延迟
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.1.2" data-path="../../chapter5/5.13/5.13.1/5.13.1.2.html">
+            
+                <a href="../../chapter5/5.13/5.13.1/5.13.1.2.html">
+            
+                    
+                    5.13.1.2 非向量处理模式的中断嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.1.3" data-path="../../chapter5/5.13/5.13.1/5.13.1.3.html">
+            
+                <a href="../../chapter5/5.13/5.13.1/5.13.1.3.html">
+            
+                    
+                    5.13.1.3 非向量处理模式的中断咬尾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.2" data-path="../../chapter5/5.13/5.13.2/5.13.2.1.html">
+            
+                <a href="../../chapter5/5.13/5.13.2/5.13.2.1.html">
+            
+                    
+                    5.13.2.    向量处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.13.2.1" data-path="../../chapter5/5.13/5.13.2/5.13.2.1.html">
+            
+                <a href="../../chapter5/5.13/5.13.2/5.13.2.1.html">
+            
+                    
+                    5.13.2.1 向量处理模式的特点和延迟
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.2.2" data-path="../../chapter5/5.13/5.13.2/5.13.2.2.html">
+            
+                <a href="../../chapter5/5.13/5.13.2/5.13.2.2.html">
+            
+                    
+                    5.13.2.2 向量处理模式的中断嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.2.3" data-path="../../chapter5/5.13/5.13.2/5.13.2.3.html">
+            
+                <a href="../../chapter5/5.13/5.13.2/5.13.2.3.html">
+            
+                    
+                    5.13.2.3 向量处理模式的中断咬尾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../chapter6/6.1/6.1.1.html">
+            
+                <a href="../../chapter6/6.1/6.1.1.html">
+            
+                    
+                    6.    Bumblebee内核TIMER和ECLIC介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../chapter6/6.1/6.1.1.html">
+            
+                <a href="../../chapter6/6.1/6.1.1.html">
+            
+                    
+                    6.1.    TIMER介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1.1" data-path="../../chapter6/6.1/6.1.1.html">
+            
+                <a href="../../chapter6/6.1/6.1.1.html">
+            
+                    
+                    6.1.1.    TIMER简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.2" data-path="../../chapter6/6.1/6.1.2.html">
+            
+                <a href="../../chapter6/6.1/6.1.2.html">
+            
+                    
+                    6.1.2.    TIMER寄存器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.3" data-path="../../chapter6/6.1/6.1.3.html">
+            
+                <a href="../../chapter6/6.1/6.1.3.html">
+            
+                    
+                    6.1.3.    通过mtime寄存器进行计时
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.4" data-path="../../chapter6/6.1/6.1.4.html">
+            
+                <a href="../../chapter6/6.1/6.1.4.html">
+            
+                    
+                    6.1.4.    通过mstop寄存器暂停计时器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.5" data-path="../../chapter6/6.1/6.1.5.html">
+            
+                <a href="../../chapter6/6.1/6.1.5.html">
+            
+                    
+                    6.1.5.    通过mtime和mtimecmp寄存器生成计时器中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.6" data-path="../../chapter6/6.1/6.1.6.html">
+            
+                <a href="../../chapter6/6.1/6.1.6.html">
+            
+                    
+                    6.1.6.    通过msip寄存器生成软件中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../../chapter6/6.2/6.2.html">
+            
+                <a href="../../chapter6/6.2/6.2.html">
+            
+                    
+                    6.2.    ECLIC介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="../../chapter6/6.2/6.2.1.html">
+            
+                <a href="../../chapter6/6.2/6.2.1.html">
+            
+                    
+                    6.2.1.    ECLIC简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.2" data-path="../../chapter6/6.2/6.2.2.html">
+            
+                <a href="../../chapter6/6.2/6.2.2.html">
+            
+                    
+                    6.2.2.    ECLIC中断目标
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.3" data-path="../../chapter6/6.2/6.2.3.html">
+            
+                <a href="../../chapter6/6.2/6.2.3.html">
+            
+                    
+                    6.2.3.    ECLIC中断源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.4" data-path="../../chapter6/6.2/6.2.4.html">
+            
+                <a href="../../chapter6/6.2/6.2.4.html">
+            
+                    
+                    6.2.4.    ECLIC中断源的编号（ID）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5" data-path="../../chapter6/6.2/6.2.5/6.2.5.html">
+            
+                <a href="../../chapter6/6.2/6.2.5/6.2.5.html">
+            
+                    
+                    6.2.5.    ECLIC的寄存器
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.5.1" data-path="../../chapter6/6.2/6.2.5/6.2.5.1.html">
+            
+                <a href="../../chapter6/6.2/6.2.5/6.2.5.1.html">
+            
+                    
+                    6.2.5.1    寄存器cliccfg
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.2" data-path="../../chapter6/6.2/6.2.5/6.2.5.2.html">
+            
+                <a href="../../chapter6/6.2/6.2.5/6.2.5.2.html">
+            
+                    
+                    6.2.5.2    寄存器clicinfo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.3" data-path="../../chapter6/6.2/6.2.5/6.2.5.3.html">
+            
+                <a href="../../chapter6/6.2/6.2.5/6.2.5.3.html">
+            
+                    
+                    6.2.5.3    寄存器mth
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.4" data-path="../../chapter6/6.2/6.2.5/6.2.5.4.html">
+            
+                <a href="../../chapter6/6.2/6.2.5/6.2.5.4.html">
+            
+                    
+                    6.2.5.4    寄存器clicintip[i]
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.5" data-path="../../chapter6/6.2/6.2.5/6.2.5.5.html">
+            
+                <a href="../../chapter6/6.2/6.2.5/6.2.5.5.html">
+            
+                    
+                    6.2.5.5    寄存器clicintie[i]
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.6" data-path="../../chapter6/6.2/6.2.5/6.2.5.6.html">
+            
+                <a href="../../chapter6/6.2/6.2.5/6.2.5.6.html">
+            
+                    
+                    6.2.5.6    寄存器clicintattr[i]
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.7" data-path="../../chapter6/6.2/6.2.5/6.2.5.7.html">
+            
+                <a href="../../chapter6/6.2/6.2.5/6.2.5.7.html">
+            
+                    
+                    6.2.5.7    寄存器clicintctl[i]
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.6" data-path="../../chapter6/6.2/6.2.6.html">
+            
+                <a href="../../chapter6/6.2/6.2.6.html">
+            
+                    
+                    6.2.6.    ECLIC中断源的使能位（IE）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.7" data-path="../../chapter6/6.2/6.2.7.html">
+            
+                <a href="../../chapter6/6.2/6.2.7.html">
+            
+                    
+                    6.2.7.    ECLIC中断源的等待标志位（IP）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.8" data-path="../../chapter6/6.2/6.2.8.html">
+            
+                <a href="../../chapter6/6.2/6.2.8.html">
+            
+                    
+                    6.2.8.    ECLIC中断源的电平或边沿属性（Level or Edge-Triggered）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.9" data-path="../../chapter6/6.2/6.2.9.html">
+            
+                <a href="../../chapter6/6.2/6.2.9.html">
+            
+                    
+                    6.2.9.    ECLIC中断源的级别和优先级（Level and Priority）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.10" data-path="../../chapter6/6.2/6.2.10.html">
+            
+                <a href="../../chapter6/6.2/6.2.10.html">
+            
+                    
+                    6.2.10.    ECLIC中断源的向量或非向量处理（Vector or Non-Vector Mode）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.11" data-path="../../chapter6/6.2/6.2.11.html">
+            
+                <a href="../../chapter6/6.2/6.2.11.html">
+            
+                    
+                    6.2.11.    ECLIC中断目标的阈值级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.12" data-path="../../chapter6/6.2/6.2.12.html">
+            
+                <a href="../../chapter6/6.2/6.2.12.html">
+            
+                    
+                    6.2.12.    ECLIC中断的仲裁机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.13" data-path="../../chapter6/6.2/6.2.13.html">
+            
+                <a href="../../chapter6/6.2/6.2.13.html">
+            
+                    
+                    6.2.13.    ECLIC中断的响应、嵌套、咬尾机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../7.1.html">
+            
+                <a href="../7.1.html">
+            
+                    
+                    7.    Bumblebee内核CSR寄存器介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../7.1.html">
+            
+                <a href="../7.1.html">
+            
+                    
+                    7.1.    Bumblebee内核CSR寄存器概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../7.2.html">
+            
+                <a href="../7.2.html">
+            
+                    
+                    7.2.    Bumblebee内核的CSR寄存器列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../7.3.html">
+            
+                <a href="../7.3.html">
+            
+                    
+                    7.3.    Bumblebee内核的CSR寄存器的访问权限
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="7.4.html">
+            
+                <a href="7.4.html">
+            
+                    
+                    7.4.    Bumblebee内核支持的RISC-V标准CSR
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.4.1" data-path="7.4.1.html">
+            
+                <a href="7.4.1.html">
+            
+                    
+                    7.4.1.    misa
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.2" data-path="7.4.2.html">
+            
+                <a href="7.4.2.html">
+            
+                    
+                    7.4.2.    mie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.3" data-path="7.4.3.html">
+            
+                <a href="7.4.3.html">
+            
+                    
+                    7.4.3.    mvendorid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.4" data-path="7.4.4.html">
+            
+                <a href="7.4.4.html">
+            
+                    
+                    7.4.4.    marchid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.5" data-path="7.4.5.html">
+            
+                <a href="7.4.5.html">
+            
+                    
+                    7.4.5.    mimpid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.6" data-path="7.4.6.html">
+            
+                <a href="7.4.6.html">
+            
+                    
+                    7.4.6.    mhartid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.7" data-path="7.4.7.html">
+            
+                <a href="7.4.7.html">
+            
+                    
+                    7.4.7.    mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.8" data-path="7.4.8.html">
+            
+                <a href="7.4.8.html">
+            
+                    
+                    7.4.8.    mstatus的MIE域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.9" data-path="7.4.9.html">
+            
+                <a href="7.4.9.html">
+            
+                    
+                    7.4.9.    mstatus的MPIE和MPP域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.10" data-path="7.4.10.html">
+            
+                <a href="7.4.10.html">
+            
+                    
+                    7.4.10.    mstatus的FS域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.11" data-path="7.4.11.html">
+            
+                <a href="7.4.11.html">
+            
+                    
+                    7.4.11.    mstatus的XS域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.12" data-path="7.4.12.html">
+            
+                <a href="7.4.12.html">
+            
+                    
+                    7.4.12.    mstatus的SD域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.13" data-path="7.4.13.html">
+            
+                <a href="7.4.13.html">
+            
+                    
+                    7.4.13.    mtvec
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.14" data-path="7.4.14.html">
+            
+                <a href="7.4.14.html">
+            
+                    
+                    7.4.14.    mtvt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.15" data-path="7.4.15.html">
+            
+                <a href="7.4.15.html">
+            
+                    
+                    7.4.15.    mscratch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.16" data-path="7.4.16.html">
+            
+                <a href="7.4.16.html">
+            
+                    
+                    7.4.16.    mepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.17" data-path="7.4.17.html">
+            
+                <a href="7.4.17.html">
+            
+                    
+                    7.4.17.    mcause
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.18" data-path="7.4.18.html">
+            
+                <a href="7.4.18.html">
+            
+                    
+                    7.4.18.    mtval（mbadaddr）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.19" data-path="7.4.19.html">
+            
+                <a href="7.4.19.html">
+            
+                    
+                    7.4.19.    mip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.20" data-path="7.4.20.html">
+            
+                <a href="7.4.20.html">
+            
+                    
+                    7.4.20.    mnxti
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.21" data-path="7.4.21.html">
+            
+                <a href="7.4.21.html">
+            
+                    
+                    7.4.21.    mintstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.22" data-path="7.4.22.html">
+            
+                <a href="7.4.22.html">
+            
+                    
+                    7.4.22.    mscratchcsw
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.23" data-path="7.4.23.html">
+            
+                <a href="7.4.23.html">
+            
+                    
+                    7.4.23.    mscratchcswl
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.24" data-path="7.4.24.html">
+            
+                <a href="7.4.24.html">
+            
+                    
+                    7.4.24.    mcycle和mcycleh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.4.25" data-path="7.4.25.html">
+            
+                <a href="7.4.25.html">
+            
+                    
+                    7.4.25.    minstret和minstreth
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.26" data-path="7.4.26.html">
+            
+                <a href="7.4.26.html">
+            
+                    
+                    7.4.26.    cycle和cycleh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.27" data-path="7.4.27.html">
+            
+                <a href="7.4.27.html">
+            
+                    
+                    7.4.27.    instret和instreth
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.28" data-path="7.4.28.html">
+            
+                <a href="7.4.28.html">
+            
+                    
+                    7.4.28.    time和 timeh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.29" data-path="7.4.29.html">
+            
+                <a href="7.4.29.html">
+            
+                    
+                    7.4.29.    mcounteren
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../7.5/7.5.1.html">
+            
+                <a href="../7.5/7.5.1.html">
+            
+                    
+                    7.5.    Bumblebee内核自定义的CSR
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.5.1" data-path="../7.5/7.5.1.html">
+            
+                <a href="../7.5/7.5.1.html">
+            
+                    
+                    7.5.1.    mcountinhibit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.2" data-path="../7.5/7.5.2.html">
+            
+                <a href="../7.5/7.5.2.html">
+            
+                    
+                    7.5.2.    mnvec
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.3" data-path="../7.5/7.5.3.html">
+            
+                <a href="../7.5/7.5.3.html">
+            
+                    
+                    7.5.3.    msubm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.4" data-path="../7.5/7.5.4.html">
+            
+                <a href="../7.5/7.5.4.html">
+            
+                    
+                    7.5.4.    mmisc_ctl
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.5" data-path="../7.5/7.5.5.html">
+            
+                <a href="../7.5/7.5.5.html">
+            
+                    
+                    7.5.5.    msavestatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.6" data-path="../7.5/7.5.6.html">
+            
+                <a href="../7.5/7.5.6.html">
+            
+                    
+                    7.5.6.    msaveepc1和msaveepc2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.7" data-path="../7.5/7.5.7.html">
+            
+                <a href="../7.5/7.5.7.html">
+            
+                    
+                    7.5.7.    msavecause1和msavecause2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.8" data-path="../7.5/7.5.8.html">
+            
+                <a href="../7.5/7.5.8.html">
+            
+                    
+                    7.5.8.    pushmsubm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.9" data-path="../7.5/7.5.9.html">
+            
+                <a href="../7.5/7.5.9.html">
+            
+                    
+                    7.5.9.    mtvt2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.10" data-path="../7.5/7.5.10.html">
+            
+                <a href="../7.5/7.5.10.html">
+            
+                    
+                    7.5.10.    jalmnxti
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.11" data-path="../7.5/7.5.11.html">
+            
+                <a href="../7.5/7.5.11.html">
+            
+                    
+                    7.5.11.    pushmcause
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.12" data-path="../7.5/7.5.12.html">
+            
+                <a href="../7.5/7.5.12.html">
+            
+                    
+                    7.5.12.    pushmepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.13" data-path="../7.5/7.5.13.html">
+            
+                <a href="../7.5/7.5.13.html">
+            
+                    
+                    7.5.13.    sleepvalue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.14" data-path="../7.5/7.5.14.html">
+            
+                <a href="../7.5/7.5.14.html">
+            
+                    
+                    7.5.14.    txevt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.15" data-path="../7.5/7.5.15.html">
+            
+                <a href="../7.5/7.5.15.html">
+            
+                    
+                    7.5.15.    wfe
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../chapter8/8.1.html">
+            
+                <a href="../../chapter8/8.1.html">
+            
+                    
+                    8.    Bumblebee内核低功耗机制介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../../chapter8/8.1.html">
+            
+                <a href="../../chapter8/8.1.html">
+            
+                    
+                    8.1.    进入休眠状态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../../chapter8/8.2/8.2.html">
+            
+                <a href="../../chapter8/8.2/8.2.html">
+            
+                    
+                    8.2.    退出休眠状态
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.2.1" data-path="../../chapter8/8.2/8.2.1.html">
+            
+                <a href="../../chapter8/8.2/8.2.1.html">
+            
+                    
+                    8.2.1.    NMI唤醒
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2.2" data-path="../../chapter8/8.2/8.2.2.html">
+            
+                <a href="../../chapter8/8.2/8.2.2.html">
+            
+                    
+                    8.2.2.    中断唤醒
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2.3" data-path="../../chapter8/8.2/8.2.3.html">
+            
+                <a href="../../chapter8/8.2/8.2.3.html">
+            
+                    
+                    8.2.3.    Event唤醒
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2.4" data-path="../../chapter8/8.2/8.2.4.html">
+            
+                <a href="../../chapter8/8.2/8.2.4.html">
+            
+                    
+                    8.2.4.    Debug唤醒
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../../chapter8/8.3.html">
+            
+                <a href="../../chapter8/8.3.html">
+            
+                    
+                    8.3.    Wait for Interrupt机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../../chapter8/8.4.html">
+            
+                <a href="../../chapter8/8.4.html">
+            
+                    
+                    8.4.    Wait for Event机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >7.4.25.    minstret和minstreth</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="7425-minstret&#x548C;minstreth"><strong>7.4.25. minstret&#x548C;minstreth</strong></h3>
+<p>RISC-V&#x67B6;&#x6784;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;64&#x4F4D;&#x5BBD;&#x7684;&#x6307;&#x4EE4;&#x5B8C;&#x6210;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x6620;&#x5904;&#x7406;&#x5668;&#x6210;&#x529F;&#x6267;&#x884C;&#x4E86;&#x591A;&#x5C11;&#x6761;&#x6307;&#x4EE4;&#x3002;&#x53EA;&#x8981;&#x5904;&#x7406;&#x5668;&#x6BCF;&#x6210;&#x529F;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#xFF0C;&#x6B64;&#x8BA1;&#x6570;&#x5668;&#x4FBF;&#x4F1A;&#x81EA;&#x589E;&#x8BA1;&#x6570;&#x3002;</p>
+<p>minstret&#x5BC4;&#x5B58;&#x5668;&#x53CD;&#x6620;&#x4E86;&#x8BE5;&#x8BA1;&#x6570;&#x5668;&#x4F4E;32&#x4F4D;&#x7684;&#x503C;&#xFF0C;minstreth&#x5BC4;&#x5B58;&#x5668;&#x53CD;&#x6620;&#x4E86;&#x8BE5;&#x8BA1;&#x6570;&#x5668;&#x9AD8;32&#x4F4D;&#x7684;&#x503C;&#x3002;</p>
+<p>minstret&#x548C;minstreth&#x5BC4;&#x5B58;&#x5668;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x8861;&#x91CF;&#x5904;&#x7406;&#x5668;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x4E14;&#x5177;&#x5907;&#x53EF;&#x8BFB;&#x53EF;&#x5199;&#x5C5E;&#x6027;&#xFF0C;&#x56E0;&#x6B64;&#x8F6F;&#x4EF6;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;CSR&#x6307;&#x4EE4;&#x6539;&#x5199;minstret&#x548C;minstreth&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x7684;&#x503C;&#x3002;</p>
+<p>&#x7531;&#x4E8E;&#x8003;&#x8651;&#x5230;&#x6B64;&#x8BA1;&#x6570;&#x5668;&#x8BA1;&#x6570;&#x4F1A;&#x6D88;&#x8017;&#x67D0;&#x4E9B;&#x52A8;&#x6001;&#x529F;&#x8017;&#xFF0C;&#x56E0;&#x6B64;&#x5728;Bumblebee&#x5185;&#x6838;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x5728;&#x81EA;&#x5B9A;&#x4E49;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;mcountinhibit&#x4E2D;&#x989D;&#x5916;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x4F4D;&#x63A7;&#x5236;&#x57DF;&#xFF0C;&#x8F6F;&#x4EF6;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x6B64;&#x63A7;&#x5236;&#x57DF;&#x5C06;minstret&#x548C;minstreth&#x5BF9;&#x5E94;&#x7684;&#x8BA1;&#x6570;&#x5668;&#x505C;&#x6B62;&#x8BA1;&#x6570;&#xFF0C;&#x4ECE;&#x800C;&#x5728;&#x4E0D;&#x9700;&#x8981;&#x8861;&#x91CF;&#x6027;&#x80FD;&#x4E4B;&#x65F6;&#x505C;&#x6B62;&#x8BA1;&#x6570;&#x5668;&#x4EE5;&#x8FBE;&#x5230;&#x7701;&#x7535;&#x7684;&#x4F5C;&#x7528;&#x3002;&#x8BF7;&#x53C2;&#x89C1;7.5.1&#x8282;&#x4E86;&#x89E3;&#x66F4;&#x591A;mcountinhibit&#x5BC4;&#x5B58;&#x5668;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x5728;&#x8C03;&#x8BD5;&#x6A21;&#x5F0F;&#x4E0B;&#x65F6;&#xFF0C;&#x6B64;&#x8BA1;&#x6570;&#x5668;&#x5E76;&#x4E0D;&#x4F1A;&#x8BA1;&#x6570;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x6B63;&#x5E38;&#x529F;&#x80FD;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x8BA1;&#x6570;&#x5668;&#x624D;&#x4F1A;&#x8FDB;&#x884C;&#x8BA1;&#x6570;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="7.4.24.html" class="navigation navigation-prev " aria-label="Previous page: 7.4.24.    mcycle和mcycleh">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="7.4.26.html" class="navigation navigation-next " aria-label="Next page: 7.4.26.    cycle和cycleh">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.4.25.    minstret和minstreth","level":"1.8.4.25","depth":3,"next":{"title":"7.4.26.    cycle和cycleh","level":"1.8.4.26","depth":3,"path":"chapter7/7.4/7.4.26.md","ref":"chapter7/7.4/7.4.26.md","articles":[]},"previous":{"title":"7.4.24.    mcycle和mcycleh","level":"1.8.4.24","depth":3,"path":"chapter7/7.4/7.4.24.md","ref":"chapter7/7.4/7.4.24.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter7/7.4/7.4.25.md","mtime":"2019-08-20T02:34:24.986Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-21T02:57:54.822Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
