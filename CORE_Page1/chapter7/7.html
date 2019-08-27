@@ -1,0 +1,3929 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.    Bumblebee内核CSR寄存器介绍 · gitbook tutorial</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="7.html" />
+    
+    
+    <link rel="prev" href="../chapter6/6.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter1/1.html">
+            
+                <a href="../chapter1/1.html#1">
+            
+                    
+                    1.    Bumblebee内核指令集与CSR介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../chapter1/1.html">
+            
+                <a href="../chapter1/1.html#1-1">
+            
+                    
+                    1.1.    RISC-V指令集介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../chapter1/1.html">
+            
+                <a href="../chapter1/1.html#1-2">
+            
+                    
+                    1.2.    Bumblebee内核支持指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../chapter1/1.html">
+            
+                <a href="../chapter1/1.html#1-3">
+            
+                    
+                    1.3.    CSR寄存器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2">
+            
+                    
+                    2.    Bumblebee内核特权架构介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-1">
+            
+                    
+                    2.1.    总体介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-2">
+            
+                    
+                    2.2.    特权模式（Privilege Modes
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-2-1">
+            
+                    
+                    2.2.1.    机器模式（Machine Mode）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-2-2">
+            
+                    
+                    2.2.2.    用户模式（User Mode）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.3" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-2-3">
+            
+                    
+                    2.2.3.    机器子模式（Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.4" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-2-4">
+            
+                    
+                    2.2.4.    模式（Mode）的查看
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.5" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-2-5">
+            
+                    
+                    2.2.5.    Machine Mode到User Mode的切换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.6" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-2-6">
+            
+                    
+                    2.2.6.    User Mode到Machine Mode的切换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.7" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-2-7">
+            
+                    
+                    2.2.7.    中断、异常、NMI的嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../chapter2/2.html">
+            
+                <a href="../chapter2/2.html#2-3">
+            
+                    
+                    2.3.    物理存储器保护（PMP)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3">
+            
+                    
+                    3.    Bumblebee内核异常机制介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-1">
+            
+                    
+                    3.1.    异常概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-2">
+            
+                    
+                    3.2.    异常屏蔽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-3">
+            
+                    
+                    3.3.    异常的优先级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-4">
+            
+                    
+                    3.4.    进入异常处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-4-1">
+            
+                    
+                    3.4.1.    从mtvec定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-4-2">
+            
+                    
+                    3.4.2.    更新CSR寄存器mcause
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.3" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-4-3">
+            
+                    
+                    3.4.3.    更新CSR寄存器mepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-4-4">
+            
+                    
+                    3.4.4.    更新CSR寄存器mtval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.5" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-4-5">
+            
+                    
+                    3.4.5.    更新CSR寄存器mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.6" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-4-6">
+            
+                    
+                    3.4.6.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.7" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-4-7">
+            
+                    
+                    3.4.7.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-5">
+            
+                    
+                    3.5.    退出异常处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-5-1">
+            
+                    
+                    3.5.1.    从mepc定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.2" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-5-2">
+            
+                    
+                    3.5.2.    更新CSR寄存器mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.3" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-5-3">
+            
+                    
+                    3.5.3.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.4" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-5-4">
+            
+                    
+                    3.5.4.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-6">
+            
+                    
+                    3.6.    异常服务程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../chapter3/3.html">
+            
+                <a href="../chapter3/3.html#3-7">
+            
+                    
+                    3.7.    异常嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4">
+            
+                    
+                    4.    Bumblebee内核NMI机制介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-1">
+            
+                    
+                    4.1.    NMI概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-2">
+            
+                    
+                    4.2.    NMI屏蔽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-3">
+            
+                    
+                    4.3.    进入NMI处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-3-1">
+            
+                    
+                    4.3.1.    从mnvec定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-3-2">
+            
+                    
+                    4.3.2.    更新CSR寄存器mepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.3" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-3-3">
+            
+                    
+                    4.3.3.    更新CSR寄存器mcause
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.4" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-3-4">
+            
+                    
+                    4.3.4.    更新CSR寄存器mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.5" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-3-5">
+            
+                    
+                    4.3.5.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.6" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-3-6">
+            
+                    
+                    4.3.6.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-4">
+            
+                    
+                    4.4.    退出NMI处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-4-1">
+            
+                    
+                    4.4.1.    从mepc定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-4-2">
+            
+                    
+                    4.4.2.    更新CSR寄存器mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.3" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-4-3">
+            
+                    
+                    4.4.3.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.4" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-4-4">
+            
+                    
+                    4.4.4.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-5">
+            
+                    
+                    4.5.    NMI服务程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-6">
+            
+                    
+                    4.6.    NMI/异常嵌套
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.6.1" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-6-1">
+            
+                    
+                    4.6.1.    进入NMI/异常嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.2" data-path="../chapter4/4.html">
+            
+                <a href="../chapter4/4.html#4-6-2">
+            
+                    
+                    4.6.2.    退出NMI/异常嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5">
+            
+                    
+                    5.    Bumblebee内核中断机制介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-1">
+            
+                    
+                    5.1.    中断概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-2">
+            
+                    
+                    5.2.    中断控制器ECLIC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-3">
+            
+                    
+                    5.3.    中断类型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-3-1">
+            
+                    
+                    5.3.1.    外部中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-3-2">
+            
+                    
+                    5.3.2.    内部中断
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.2.1" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-3-2-1">
+            
+                    
+                    5.3.2.1    软件中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2.2" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-3-2-2">
+            
+                    
+                    5.3.2.2    计时器中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2.3" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-3-2-3">
+            
+                    
+                    5.3.2.3    存储器访问错误中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-4">
+            
+                    
+                    5.4.    中断屏蔽
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-4-1">
+            
+                    
+                    5.4.1.    中断全局屏蔽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-4-2">
+            
+                    
+                    5.4.2.    中断源单独屏蔽
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-5">
+            
+                    
+                    5.5.    中断级别、优先级与仲裁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-6">
+            
+                    
+                    5.6.    进入中断处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.6.1" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-6-1">
+            
+                    
+                    5.6.1.    从新的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.2" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-6-2">
+            
+                    
+                    5.6.2.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.3" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-6-3">
+            
+                    
+                    5.6.3.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.4" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-6-4">
+            
+                    
+                    5.6.4.    更新CSR寄存器mepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.5" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-6-5">
+            
+                    
+                    5.6.5.    更新CSR寄存器mcause和mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-7">
+            
+                    
+                    5.7.    退出中断处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.7.1" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-7-1">
+            
+                    
+                    5.7.1.    从mepc定义的PC地址开始执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7.2" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-7-2">
+            
+                    
+                    5.7.2.    更新CSR寄存器mcause和mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7.3" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-7-3">
+            
+                    
+                    5.7.3.    更新Privilege Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7.4" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-7-4">
+            
+                    
+                    5.7.4.    更新Machine Sub-Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-8">
+            
+                    
+                    5.8.    中断向量表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-9">
+            
+                    
+                    5.9.    进出中断的上下文保存和恢复
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-10">
+            
+                    
+                    5.10.    中断响应延迟
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-11">
+            
+                    
+                    5.11.    中断嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-12">
+            
+                    
+                    5.12.    中断咬尾
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-13">
+            
+                    
+                    5.13.    中断的向量处理模式和非向量处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.13.1" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-13-1">
+            
+                    
+                    5.13.1.    非向量处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.13.1.1" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-13-1-1">
+            
+                    
+                    5.13.1.1 非向量处理模式的特点和延迟
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.1.2" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-13-1-2">
+            
+                    
+                    5.13.1.2 非向量处理模式的中断嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.1.3" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-13-1-3">
+            
+                    
+                    5.13.1.3 非向量处理模式的中断咬尾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.2" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-13-2">
+            
+                    
+                    5.13.2.    向量处理模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.13.2.1" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-13-2-1">
+            
+                    
+                    5.13.2.1 向量处理模式的特点和延迟
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.2.2" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-13-2-2">
+            
+                    
+                    5.13.2.2 向量处理模式的中断嵌套
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13.2.3" data-path="../chapter5/5.html">
+            
+                <a href="../chapter5/5.html#5-13-2-3">
+            
+                    
+                    5.13.2.3 向量处理模式的中断咬尾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6">
+            
+                    
+                    6.    Bumblebee内核TIMER和ECLIC介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-1">
+            
+                    
+                    6.1.    TIMER介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1.1" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-1-1">
+            
+                    
+                    6.1.1.    TIMER简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.2" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-1-2">
+            
+                    
+                    6.1.2.    TIMER寄存器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.3" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-1-3">
+            
+                    
+                    6.1.3.    通过mtime寄存器进行计时
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.4" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-1-4">
+            
+                    
+                    6.1.4.    通过mstop寄存器暂停计时器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.5" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-1-5">
+            
+                    
+                    6.1.5.    通过mtime和mtimecmp寄存器生成计时器中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.1.6" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-1-6">
+            
+                    
+                    6.1.6.    通过msip寄存器生成软件中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2">
+            
+                    
+                    6.2.    ECLIC介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-1">
+            
+                    
+                    6.2.1.    ECLIC简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.2" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-2">
+            
+                    
+                    6.2.2.    ECLIC中断目标
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.3" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-3">
+            
+                    
+                    6.2.3.    ECLIC中断源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.4" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-4">
+            
+                    
+                    6.2.4.    ECLIC中断源的编号（ID）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-5">
+            
+                    
+                    6.2.5.    ECLIC的寄存器
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.5.1" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-5-1">
+            
+                    
+                    6.2.5.1    寄存器cliccfg
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.2" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-5-2">
+            
+                    
+                    6.2.5.2    寄存器clicinfo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.3" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-5-3">
+            
+                    
+                    6.2.5.3    寄存器mth
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.4" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-5-4">
+            
+                    
+                    6.2.5.4    寄存器clicintip[i]
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.5" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-5-5">
+            
+                    
+                    6.2.5.5    寄存器clicintie[i]
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.6" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-5-6">
+            
+                    
+                    6.2.5.6    寄存器clicintattr[i]
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5.7" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-5-7">
+            
+                    
+                    6.2.5.7    寄存器clicintctl[i]
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.6" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-6">
+            
+                    
+                    6.2.6.    ECLIC中断源的使能位（IE）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.7" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-7">
+            
+                    
+                    6.2.7.    ECLIC中断源的等待标志位（IP）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.8" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-8">
+            
+                    
+                    6.2.8.    ECLIC中断源的电平或边沿属性（Level or Edge-Triggered）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.9" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-9">
+            
+                    
+                    6.2.9.    ECLIC中断源的级别和优先级（Level and Priority）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.10" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-10">
+            
+                    
+                    6.2.10.    ECLIC中断源的向量或非向量处理（Vector or Non-Vector Mode）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.11" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-11">
+            
+                    
+                    6.2.11.    ECLIC中断目标的阈值级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.12" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-12">
+            
+                    
+                    6.2.12.    ECLIC中断的仲裁机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.13" data-path="../chapter6/6.html">
+            
+                <a href="../chapter6/6.html#6-2-13">
+            
+                    
+                    6.2.13.    ECLIC中断的响应、嵌套、咬尾机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="7.html">
+            
+                <a href="7.html#7">
+            
+                    
+                    7.    Bumblebee内核CSR寄存器介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="7.html">
+            
+                <a href="7.html#7-1">
+            
+                    
+                    7.1.    Bumblebee内核CSR寄存器概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="7.html">
+            
+                <a href="7.html#7-2">
+            
+                    
+                    7.2.    Bumblebee内核的CSR寄存器列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="7.html">
+            
+                <a href="7.html#7-3">
+            
+                    
+                    7.3.    Bumblebee内核的CSR寄存器的访问权限
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="7.html">
+            
+                <a href="7.html#7-4">
+            
+                    
+                    7.4.    Bumblebee内核支持的RISC-V标准CSR
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.4.1" data-path="7.html">
+            
+                <a href="7.html#7-4-1">
+            
+                    
+                    7.4.1.    misa
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.2" data-path="7.html">
+            
+                <a href="7.html#7-4-2">
+            
+                    
+                    7.4.2.    mie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.3" data-path="7.html">
+            
+                <a href="7.html#7-4-3">
+            
+                    
+                    7.4.3.    mvendorid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.4" data-path="7.html">
+            
+                <a href="7.html#7-4-4">
+            
+                    
+                    7.4.4.    marchid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.5" data-path="7.html">
+            
+                <a href="7.html#7-4-5">
+            
+                    
+                    7.4.5.    mimpid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.6" data-path="7.html">
+            
+                <a href="7.html#7-4-6">
+            
+                    
+                    7.4.6.    mhartid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.7" data-path="7.html">
+            
+                <a href="7.html#7-4-7">
+            
+                    
+                    7.4.7.    mstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.8" data-path="7.html">
+            
+                <a href="7.html#7-4-8">
+            
+                    
+                    7.4.8.    mstatus的MIE域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.9" data-path="7.html">
+            
+                <a href="7.html#7-4-9">
+            
+                    
+                    7.4.9.    mstatus的MPIE和MPP域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.10" data-path="7.html">
+            
+                <a href="7.html#7-4-10">
+            
+                    
+                    7.4.10.    mstatus的FS域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.11" data-path="7.html">
+            
+                <a href="7.html#7-4-11">
+            
+                    
+                    7.4.11.    mstatus的XS域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.12" data-path="7.html">
+            
+                <a href="7.html#7-4-12">
+            
+                    
+                    7.4.12.    mstatus的SD域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.13" data-path="7.html">
+            
+                <a href="7.html#7-4-13">
+            
+                    
+                    7.4.13.    mtvec
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.14" data-path="7.html">
+            
+                <a href="7.html#7-4-14">
+            
+                    
+                    7.4.14.    mtvt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.15" data-path="7.html">
+            
+                <a href="7.html#7-4-15">
+            
+                    
+                    7.4.15.    mscratch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.16" data-path="7.html">
+            
+                <a href="7.html#7-4-16">
+            
+                    
+                    7.4.16.    mepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.17" data-path="7.html">
+            
+                <a href="7.html#7-4-17">
+            
+                    
+                    7.4.17.    mcause
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.18" data-path="7.html">
+            
+                <a href="7.html#7-4-18">
+            
+                    
+                    7.4.18.    mtval（mbadaddr）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.19" data-path="7.html">
+            
+                <a href="7.html#7-4-19">
+            
+                    
+                    7.4.19.    mip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.20" data-path="7.html">
+            
+                <a href="7.html#7-4-20">
+            
+                    
+                    7.4.20.    mnxti
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.21" data-path="7.html">
+            
+                <a href="7.html#7-4-21">
+            
+                    
+                    7.4.21.    mintstatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.22" data-path="7.html">
+            
+                <a href="7.html#7-4-22">
+            
+                    
+                    7.4.22.    mscratchcsw
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.23" data-path="7.html">
+            
+                <a href="7.html#7-4-23">
+            
+                    
+                    7.4.23.    mscratchcswl
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.24" data-path="7.html">
+            
+                <a href="7.html#7-4-24">
+            
+                    
+                    7.4.24.    mcycle和mcycleh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.25" data-path="7.html">
+            
+                <a href="7.html#7-4-25">
+            
+                    
+                    7.4.25.    minstret和minstreth
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.26" data-path="7.html">
+            
+                <a href="7.html#7-4-26">
+            
+                    
+                    7.4.26.    cycle和cycleh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.27" data-path="7.html">
+            
+                <a href="7.html#7-4-27">
+            
+                    
+                    7.4.27.    instret和instreth
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.28" data-path="7.html">
+            
+                <a href="7.html#7-4-28">
+            
+                    
+                    7.4.28.    time和 timeh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.29" data-path="7.html">
+            
+                <a href="7.html#7-4-29">
+            
+                    
+                    7.4.29.    mcounteren
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="7.html">
+            
+                <a href="7.html#7-5">
+            
+                    
+                    7.5.    Bumblebee内核自定义的CSR
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.5.1" data-path="7.html">
+            
+                <a href="7.html#7-5-1">
+            
+                    
+                    7.5.1.    mcountinhibit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.2" data-path="7.html">
+            
+                <a href="7.html#7-5-2">
+            
+                    
+                    7.5.2.    mnvec
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.3" data-path="7.html">
+            
+                <a href="7.html#7-5-3">
+            
+                    
+                    7.5.3.    msubm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.4" data-path="7.html">
+            
+                <a href="7.html#7-5-4">
+            
+                    
+                    7.5.4.    mmisc_ctl
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.5" data-path="7.html">
+            
+                <a href="7.html#7-5-5">
+            
+                    
+                    7.5.5.    msavestatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.6" data-path="7.html">
+            
+                <a href="7.html#7-5-6">
+            
+                    
+                    7.5.6.    msaveepc1和msaveepc2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.7" data-path="7.html">
+            
+                <a href="7.html#7-5-7">
+            
+                    
+                    7.5.7.    msavecause1和msavecause2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.8" data-path="7.html">
+            
+                <a href="7.html#7-5-8">
+            
+                    
+                    7.5.8.    pushmsubm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.9" data-path="7.html">
+            
+                <a href="7.html#7-5-9">
+            
+                    
+                    7.5.9.    mtvt2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.10" data-path="7.html">
+            
+                <a href="7.html#7-5-10">
+            
+                    
+                    7.5.10.    jalmnxti
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.11" data-path="7.html">
+            
+                <a href="7.html#7-5-11">
+            
+                    
+                    7.5.11.    pushmcause
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.12" data-path="7.html">
+            
+                <a href="7.html#7-5-12">
+            
+                    
+                    7.5.12.    pushmepc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.13" data-path="7.html">
+            
+                <a href="7.html#7-5-13">
+            
+                    
+                    7.5.13.    sleepvalue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.14" data-path="7.html">
+            
+                <a href="7.html#7-5-14">
+            
+                    
+                    7.5.14.    txevt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.15" data-path="7.html">
+            
+                <a href="7.html#7-5-15">
+            
+                    
+                    7.5.15.    wfe
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter8/8.html">
+            
+                <a href="../chapter8/8.html#8">
+            
+                    
+                    8.    Bumblebee内核低功耗机制介绍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../chapter8/8.html">
+            
+                <a href="../chapter8/8.html#8-1">
+            
+                    
+                    8.1.    进入休眠状态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../chapter8/8.html">
+            
+                <a href="../chapter8/8.html#8-2">
+            
+                    
+                    8.2.    退出休眠状态
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.2.1" data-path="../chapter8/8.html">
+            
+                <a href="../chapter8/8.html#8-2-1">
+            
+                    
+                    8.2.1.    NMI唤醒
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2.2" data-path="../chapter8/8.html">
+            
+                <a href="../chapter8/8.html#8-2-2">
+            
+                    
+                    8.2.2.    中断唤醒
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2.3" data-path="../chapter8/8.html">
+            
+                <a href="../chapter8/8.html#8-2-3">
+            
+                    
+                    8.2.3.    Event唤醒
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2.4" data-path="../chapter8/8.html">
+            
+                <a href="../chapter8/8.html#8-2-4">
+            
+                    
+                    8.2.4.    Debug唤醒
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../chapter8/8.html">
+            
+                <a href="../chapter8/8.html#8-3">
+            
+                    
+                    8.3.    Wait for Interrupt机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../chapter8/8.html">
+            
+                <a href="../chapter8/8.html#8-4">
+            
+                    
+                    8.4.    Wait for Event机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >7.    Bumblebee内核CSR寄存器介绍</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="7-bumblebee&#x5185;&#x6838;csr&#x5BC4;&#x5B58;&#x5668;&#x4ECB;&#x7ECD;"><strong>7. Bumblebee&#x5185;&#x6838;CSR&#x5BC4;&#x5B58;&#x5668;&#x4ECB;&#x7ECD;</strong><div id="7"></div></h1>
+<h2 id="71-bumblebee&#x5185;&#x6838;csr&#x5BC4;&#x5B58;&#x5668;&#x6982;&#x8FF0;"><strong>7.1. Bumblebee&#x5185;&#x6838;CSR&#x5BC4;&#x5B58;&#x5668;&#x6982;&#x8FF0;</strong><div id="7-1"></div></h2>
+<p>RISC-V&#x7684;&#x67B6;&#x6784;&#x4E2D;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E9B;&#x63A7;&#x5236;&#x548C;&#x72B6;&#x6001;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Control and Status Register&#xFF0C; CSR&#xFF09;&#xFF0C; &#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x6216;&#x8005;&#x8BB0;&#x5F55;&#x4E00;&#x4E9B;&#x8FD0;&#x884C;&#x7684;&#x72B6;&#x6001;&#x3002;CSR&#x5BC4;&#x5B58;&#x5668;&#x662F;&#x5904;&#x7406;&#x5668;&#x6838;&#x5185;&#x90E8;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x4F7F;&#x7528;&#x5176;&#x4E13;&#x6709;&#x7684;12&#x4F4D;&#x5730;&#x5740;&#x7F16;&#x7801;&#x7A7A;&#x95F4;&#x3002;</p>
+<h2 id="72-bumblebee&#x5185;&#x6838;&#x7684;csr&#x5BC4;&#x5B58;&#x5668;&#x5217;&#x8868;"><strong>7.2. Bumblebee&#x5185;&#x6838;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x5217;&#x8868;</strong><div id="7-2"></div></h2>
+<p>Bumblebee&#x5185;&#x6838;&#x652F;&#x6301;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x5217;&#x8868;&#x5982;&#x8868; 71&#x6240;&#x793A;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x62EC;RISC-V&#x6807;&#x51C6;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#xFF08;RV32IMAC&#x67B6;&#x6784;&#x652F;&#x6301;Machine Mode&#x548C;User Mode&#x76F8;&#x5173;&#xFF09;&#x548C;Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;&#x6269;&#x5C55;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x3002;</p>
+<p>&#x200B;                                            <strong><center>&#x8868; 7-1 Bumblebee&#x5185;&#x6838;&#x652F;&#x6301;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x5217;&#x8868;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th>&#x7C7B;&#x578B;</th>
+<th>CSR&#x5730;&#x5740;</th>
+<th>&#x8BFB;&#x5199;&#x5C5E;&#x6027;</th>
+<th>&#x540D;&#x79F0;</th>
+<th>&#x5168;&#x79F0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RISC-V&#x6807;&#x51C6;CSR&#xFF08;Machine Mode&#xFF09;</td>
+<td>0xF11</td>
+<td>MRO</td>
+<td>mvendorid</td>
+<td>&#x5546;&#x4E1A;&#x4F9B;&#x5E94;&#x5546;&#x7F16;&#x53F7;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine Vendor ID Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xF12</td>
+<td>MRO</td>
+<td>marchid</td>
+<td>&#x67B6;&#x6784;&#x7F16;&#x53F7;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine Architecture ID Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xF13</td>
+<td>MRO</td>
+<td>mimpid</td>
+<td>&#x786C;&#x4EF6;&#x5B9E;&#x73B0;&#x7F16;&#x53F7;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine Implementation ID Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xF14</td>
+<td>MRO</td>
+<td>mhartid</td>
+<td>Hart&#x7F16;&#x53F7;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Hart ID Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x300</td>
+<td>MRW</td>
+<td>mstatus</td>
+<td>&#x5F02;&#x5E38;&#x5904;&#x7406;&#x72B6;&#x6001;&#x5BC4;&#x5B58;&#x5668;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x301</td>
+<td>MRO</td>
+<td>misa</td>
+<td>&#x6307;&#x4EE4;&#x96C6;&#x67B6;&#x6784;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine ISA Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x304</td>
+<td>MRW</td>
+<td>mie</td>
+<td>&#x5C40;&#x90E8;&#x4E2D;&#x65AD;&#x5C4F;&#x853D;&#x63A7;&#x5236;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine Interrupt Enable Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x305</td>
+<td>MRW</td>
+<td>mtvec</td>
+<td>&#x5F02;&#x5E38;&#x5165;&#x53E3;&#x57FA;&#x5730;&#x5740;&#x5BC4;&#x5B58;&#x5668;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x307</td>
+<td>MRW</td>
+<td>mtvt</td>
+<td>ECLIC&#x4E2D;&#x65AD;&#x5411;&#x91CF;&#x8868;&#x7684;&#x57FA;&#x5730;&#x5740;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x340</td>
+<td>MRW</td>
+<td>mscratch</td>
+<td>&#x6682;&#x5B58;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine Scratch Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x341</td>
+<td>MRW</td>
+<td>mepc</td>
+<td>&#x5F02;&#x5E38;PC&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine Exception Program Counter&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x342</td>
+<td>MRW</td>
+<td>mcause</td>
+<td>&#x5F02;&#x5E38;&#x539F;&#x56E0;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine Cause Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x343</td>
+<td>MRW</td>
+<td>mtval</td>
+<td>&#x5F02;&#x5E38;&#x503C;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine Trap Value Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x344</td>
+<td>MRW</td>
+<td>mip</td>
+<td>&#x4E2D;&#x65AD;&#x7B49;&#x5F85;&#x5BC4;&#x5B58;&#x5668;&#xFF08;Machine Interrupt Pending Register&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x345</td>
+<td>MRW</td>
+<td>mnxti</td>
+<td>&#x6807;&#x51C6;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4F7F;&#x80FD;&#x4E2D;&#x65AD;&#xFF0C;&#x5904;&#x7406;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x5E76;&#x8FD4;&#x56DE;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x7684;handler&#x5165;&#x53E3;&#x5730;&#x5740;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x346</td>
+<td>MRO</td>
+<td>mintstatus</td>
+<td>&#x6807;&#x51C6;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x5F53;&#x524D;&#x4E2D;&#x65AD;Level</td>
+</tr>
+<tr>
+<td></td>
+<td>0x348</td>
+<td>MRW</td>
+<td>mscratchcsw</td>
+<td>&#x6807;&#x51C6;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x5728;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x53D8;&#x5316;&#x65F6;&#x4EA4;&#x6362;mscratch&#x4E0E;&#x76EE;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x349</td>
+<td>MRW</td>
+<td>mscratchcswl</td>
+<td>&#x6807;&#x51C6;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x5728;&#x4E2D;&#x65AD;Level&#x53D8;&#x5316;&#x65F6;&#x4EA4;&#x6362;mscratch&#x4E0E;&#x76EE;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xB00</td>
+<td>MRW</td>
+<td>mcycle</td>
+<td>&#x5468;&#x671F;&#x8BA1;&#x6570;&#x5668;&#x7684;&#x4F4E;32&#x4F4D;&#xFF08;Lower 32 bits of Cycle counter&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xB80</td>
+<td>MRW</td>
+<td>mcycleh</td>
+<td>&#x5468;&#x671F;&#x8BA1;&#x6570;&#x5668;&#x7684;&#x9AD8;32&#x4F4D;&#xFF08;Upper 32 bits of Cycle counter&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xB02</td>
+<td>MRW</td>
+<td>minstret</td>
+<td>&#x5B8C;&#x6210;&#x6307;&#x4EE4;&#x8BA1;&#x6570;&#x5668;&#x7684;&#x4F4E;32&#x4F4D;&#xFF08;Lower 32 bits of Instructions-retired counter&#xFF09;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xB82</td>
+<td>MRW</td>
+<td>minstrech</td>
+<td>&#x5B8C;&#x6210;&#x6307;&#x4EE4;&#x8BA1;&#x6570;&#x5668;&#x7684;&#x9AD8;32&#x4F4D;&#xFF08;Upper 32 bits of Instructions-retired counter&#xFF09;</td>
+</tr>
+<tr>
+<td>RISC-V&#x6807;&#x51C6;CSR(User Mode)</td>
+<td>0xC00</td>
+<td>URO</td>
+<td>cycle</td>
+<td>mcycle&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x53EA;&#x8BFB;&#x526F;&#x672C;&#x3002;&#x6CE8;&#x610F;&#xFF1A;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#x7531;CSR&#x5BC4;&#x5B58;&#x5668;mcounteren&#x7684;CY&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;7.4.29&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xC01</td>
+<td>URO</td>
+<td>time</td>
+<td>mtime&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x53EA;&#x8BFB;&#x526F;&#x672C;&#x3002;&#x6CE8;&#x610F;&#xFF1A;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#x7531;CSR&#x5BC4;&#x5B58;&#x5668;mcounteren&#x7684;TM&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;7.4.29&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xC02</td>
+<td>URO</td>
+<td>instret</td>
+<td>minstret&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x53EA;&#x8BFB;&#x526F;&#x672C;&#x3002;&#x6CE8;&#x610F;&#xFF1A;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#x7531;CSR&#x5BC4;&#x5B58;&#x5668;mcounteren&#x7684;IR&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;7.4.29&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xC80</td>
+<td>URO</td>
+<td>cycleh</td>
+<td>mcycleh&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x53EA;&#x8BFB;&#x526F;&#x672C;&#x3002;&#x6CE8;&#x610F;&#xFF1A;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#x7531;CSR&#x5BC4;&#x5B58;&#x5668;mcounteren&#x7684;CY&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;7.4.29&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xC81</td>
+<td>URO</td>
+<td>timeh</td>
+<td>mtimeh&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x53EA;&#x8BFB;&#x526F;&#x672C;&#x3002;&#x6CE8;&#x610F;&#xFF1A;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#x7531;CSR&#x5BC4;&#x5B58;&#x5668;mcounteren&#x7684;TM&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;7.4.29&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</td>
+</tr>
+<tr>
+<td></td>
+<td>0xC82</td>
+<td>URO</td>
+<td>instreth</td>
+<td>minstreth&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x53EA;&#x8BFB;&#x526F;&#x672C;&#x3002;&#x6CE8;&#x610F;&#xFF1A;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#x7531;CSR&#x5BC4;&#x5B58;&#x5668;mcounteren&#x7684;IR&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;7.4.29&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</td>
+</tr>
+<tr>
+<td>Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;CSR</td>
+<td>0x320</td>
+<td>MRW</td>
+<td>mcountinhibit</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x63A7;&#x5236;&#x8BA1;&#x6570;&#x5668;&#x7684;&#x5F00;&#x542F;&#x548C;&#x5173;&#x95ED;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7c3</td>
+<td>MRO</td>
+<td>mnvec</td>
+<td>NMI&#x5904;&#x7406;&#x5165;&#x53E3;&#x57FA;&#x5730;&#x5740;&#x5BC4;&#x5B58;&#x5668;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7c4</td>
+<td>MRW</td>
+<td>msubm</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;Core&#x5F53;&#x524D;&#x7684;Trap&#x7C7B;&#x578B;&#xFF0C;&#x4EE5;&#x53CA;&#x8FDB;&#x5165;Trap&#x524D;&#x7684;Trap&#x7C7B;&#x578B;&#x3002;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7d0</td>
+<td>MRW</td>
+<td>mmisc_ctl</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x63A7;&#x5236;NMI&#x7684;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;&#x5730;&#x5740;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7d6</td>
+<td>MRW</td>
+<td>msavestatus</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;mstatus&#x503C;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7d7</td>
+<td>MRW</td>
+<td>msaveepc1</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x7B2C;&#x4E00;&#x7EA7;&#x5D4C;&#x5957;NMI&#x6216;&#x5F02;&#x5E38;&#x7684;mepc</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7d8</td>
+<td>MRW</td>
+<td>msavecause1</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x7B2C;&#x4E00;&#x7EA7;&#x5D4C;&#x5957; NMI&#x6216;&#x5F02;&#x5E38;&#x7684;mcause</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7d9</td>
+<td>MRW</td>
+<td>msaveepc2</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x7B2C;&#x4E8C;&#x7EA7;&#x5D4C;&#x5957; NMI&#x6216;&#x5F02;&#x5E38;&#x7684;mepc</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7da</td>
+<td>MRW</td>
+<td>msavecause2</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x7B2C;&#x4E8C;&#x7EA7;&#x5D4C;&#x5957; NMI&#x6216;&#x5F02;&#x5E38;&#x7684;mcause</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7eb</td>
+<td>MRW</td>
+<td>pushmsubm</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x5C06;msubm&#x7684;&#x503C;&#x5B58;&#x5165;&#x5806;&#x6808;&#x5730;&#x5740;&#x7A7A;&#x95F4;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7ec</td>
+<td>MRW</td>
+<td>mtvt2</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x8BBE;&#x5B9A;&#x975E;&#x5411;&#x91CF;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x7684;&#x4E2D;&#x65AD;&#x5165;&#x53E3;&#x5730;&#x5740;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7ed</td>
+<td>MRW</td>
+<td>jalmnxti</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4F7F;&#x80FD;ECLIC&#x4E2D;&#x65AD;&#xFF0C;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x8BFB;&#x64CD;&#x4F5C;&#x80FD;&#x5904;&#x7406;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x540C;&#x65F6;&#x8FD4;&#x56DE;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;handler&#x7684;&#x5165;&#x53E3;&#x5730;&#x5740;&#xFF0C;&#x5E76;&#x8DF3;&#x8F6C;&#x81F3;&#x6B64;&#x5730;&#x5740;&#x3002;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7ee</td>
+<td>MRW</td>
+<td>pushmcause</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x5C06;mcause&#x7684;&#x503C;&#x5B58;&#x5165;&#x5806;&#x6808;&#x5730;&#x5740;&#x7A7A;&#x95F4;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x7ef</td>
+<td>MRW</td>
+<td>pushmepc</td>
+<td>&#x81EA;&#x5B9A;&#x4E49;&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x5C06;mepc&#x7684;&#x503C;&#x5B58;&#x5165;&#x5806;&#x6808;&#x5730;&#x5740;&#x7A7A;&#x95F4;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x811</td>
+<td>MRW</td>
+<td>sleepvalue</td>
+<td>WFI&#x7684;&#x4F11;&#x7720;&#x6A21;&#x5F0F;&#x5BC4;&#x5B58;&#x5668;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x812</td>
+<td>MRW</td>
+<td>txevt</td>
+<td>&#x53D1;&#x9001;Event&#x5BC4;&#x5B58;&#x5668;</td>
+</tr>
+<tr>
+<td></td>
+<td>0x810</td>
+<td>MRW</td>
+<td>wfe</td>
+<td>Wait for Event&#x63A7;&#x5236;&#x5BC4;&#x5B58;&#x5668;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<ul>
+<li>MRW&#x8868;&#x793A;Machine Mode Readable/Writeable </li>
+<li>MRO&#x8868;&#x793A;Machine Mode Read-Only</li>
+<li>URW&#x8868;&#x793A;User Mode Readable/Writeable</li>
+<li>URO&#x8868;&#x793A;User Mode Read-Only</li>
+</ul>
+<h2 id="73-bumblebee&#x5185;&#x6838;&#x7684;csr&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;"><strong>7.3. Bumblebee&#x5185;&#x6838;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;</strong><div id="7-3"></div></h2>
+<p>Bumblebee&#x5185;&#x6838;&#x5BF9;&#x4E8E;CSR&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x89C4;&#x5B9A;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>&#x65E0;&#x8BBA;&#x662F;&#x5728;Machine Mode&#x8FD8;&#x662F;User Mode&#x4E0B;&#xFF1A;<ul>
+<li>&#x5982;&#x679C;&#x5411;&#x4E0D;&#x5B58;&#x5728;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x5730;&#x5740;&#x533A;&#x95F4;&#x8FDB;&#x884C;&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#xFF0C;&#x5219;&#x4F1A;&#x4EA7;&#x751F;Illegal Instruction Exception&#x3002;</li>
+</ul>
+</li>
+<li>&#x5728;Machine Mode&#x4E0B;&#xFF1A;<ul>
+<li>&#x5BF9;MRW&#x6216;&#x8005;URW&#x5C5E;&#x6027;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x8FDB;&#x884C;&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#x5219;&#x4E00;&#x5207;&#x6B63;&#x5E38;&#x3002;</li>
+<li>&#x5BF9;MRO&#x6216;&#x8005;URO&#x5C5E;&#x6027;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x8FDB;&#x884C;&#x8BFB;&#x64CD;&#x4F5C;&#x5219;&#x4E00;&#x5207;&#x6B63;&#x5E38;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x5411;MRO&#x6216;&#x8005;URO&#x5C5E;&#x6027;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x8FDB;&#x884C;&#x5199;&#x64CD;&#x4F5C;&#xFF0C;&#x5219;&#x4F1A;&#x4EA7;&#x751F;Illegal Instruction Exception&#x3002;</li>
+</ul>
+</li>
+<li>&#x5728;User Mode&#x4E0B;&#xFF1A;<ul>
+<li>&#x5BF9;URW&#x5C5E;&#x6027;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x8FDB;&#x884C;&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#x5747;&#x4E00;&#x5207;&#x6B63;&#x5E38;&#x3002;</li>
+<li>&#x5BF9;URO&#x5C5E;&#x6027;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x8FDB;&#x884C;&#x8BFB;&#x64CD;&#x4F5C;&#x5219;&#x4E00;&#x5207;&#x6B63;&#x5E38;&#x3002;<ul>
+<li>&#x6CE8;&#x610F;&#xFF1A;&#x5BF9;&#x4E8E;URO&#x5C5E;&#x6027;&#x7684;cycle&#x3001;cycleh&#x3001;time&#x3001;timeh&#x3001;instret&#x3001;instreth&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x5176;&#x80FD;&#x5426;&#x53EF;&#x8BFB;&#x8FD8;&#x53D7;mcounteren&#x7684;&#x76F8;&#x5173;&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;7.4.29&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</li>
+</ul>
+</li>
+<li>&#x5982;&#x679C;&#x5411;URO&#x5C5E;&#x6027;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x8FDB;&#x884C;&#x5199;&#x64CD;&#x4F5C;&#xFF0C;&#x5219;&#x4F1A;&#x4EA7;&#x751F;Illegal Instruction Exception&#x3002;</li>
+<li>&#x5982;&#x679C;&#x5411;MRW&#x6216;&#x8005;MRO&#x5C5E;&#x6027;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x8FDB;&#x884C;&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#xFF0C;&#x5219;&#x4F1A;&#x4EA7;&#x751F;Illegal Instruction Exception&#x3002;</li>
+</ul>
+</li>
+</ul>
+<h2 id="74-bumblebee&#x5185;&#x6838;&#x652F;&#x6301;&#x7684;risc-v&#x6807;&#x51C6;csr"><strong>7.4. Bumblebee&#x5185;&#x6838;&#x652F;&#x6301;&#x7684;RISC-V&#x6807;&#x51C6;CSR</strong><div id="7-4"></div></h2>
+<p>&#x672C;&#x8282;&#x4ECB;&#x7ECD;Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#xFF08;RV32IMAC&#x67B6;&#x6784;&#x652F;&#x6301;Machine Mode&#x548C;User Mode&#x76F8;&#x5173;&#xFF09;&#x3002;</p>
+<h3 id="741-misa"><strong>7.4.1. misa</strong><div id="7-4-1"></div></h3>
+<p>misa&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x6307;&#x793A;&#x5F53;&#x524D;&#x5904;&#x7406;&#x5668;&#x6240;&#x652F;&#x6301;&#x7684;&#x67B6;&#x6784;&#x7279;&#x6027;&#x3002;</p>
+<p>misa&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x6700;&#x9AD8;&#x4E24;&#x4F4D;&#x7528;&#x4E8E;&#x6307;&#x793A;&#x5F53;&#x524D;&#x5904;&#x7406;&#x5668;&#x6240;&#x652F;&#x6301;&#x7684;&#x67B6;&#x6784;&#x4F4D;&#x6570;&#xFF1A;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x6700;&#x9AD8;&#x4E24;&#x4F4D;&#x503C;&#x4E3A;1&#xFF0C;&#x5219;&#x8868;&#x793A;&#x5F53;&#x524D;&#x4E3A;32&#x4F4D;&#x67B6;&#x6784;&#xFF08;RV32&#xFF09;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x6700;&#x9AD8;&#x4E24;&#x4F4D;&#x503C;&#x4E3A;2&#xFF0C;&#x5219;&#x8868;&#x793A;&#x5F53;&#x524D;&#x4E3A;64&#x4F4D;&#x67B6;&#x6784;&#xFF08;RV64&#xFF09;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x6700;&#x9AD8;&#x4E24;&#x4F4D;&#x503C;&#x4E3A;3&#xFF0C;&#x5219;&#x8868;&#x793A;&#x5F53;&#x524D;&#x4E3A;128&#x4F4D;&#x67B6;&#x6784;&#xFF08;RV128&#xFF09;&#x3002;</li>
+</ul>
+<p>misa&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x4F4E;26&#x4F4D;&#x7528;&#x4E8E;&#x6307;&#x793A;&#x5F53;&#x524D;&#x5904;&#x7406;&#x5668;&#x6240;&#x652F;&#x6301;&#x7684;RISC-V ISA&#x4E2D;&#x4E0D;&#x540C;&#x6A21;&#x5757;&#x5316;&#x6307;&#x4EE4;&#x5B50;&#x96C6;&#xFF0C;&#x6BCF;&#x4E00;&#x4F4D;&#x8868;&#x793A;&#x7684;&#x6A21;&#x5757;&#x5316;&#x6307;&#x4EE4;&#x5B50;&#x96C6;&#x5982;&#x56FE; 7-1&#x4E2D;&#x6240;&#x793A;&#x3002;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5176;&#x4ED6;&#x672A;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x6BD4;&#x7279;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0&#x3002;</p>
+<p><img src="7.4/7.4.1.assets/27.png" alt=""></p>
+<p>&#x200B;                                       <strong><center>&#x56FE; 7-1 misa &#x5BC4;&#x5B58;&#x5668;&#x4F4E;26&#x4F4D;&#x5404;&#x57DF;&#x8868;&#x793A;&#x7684;&#x6A21;&#x5757;&#x5316;&#x6307;&#x4EE4;&#x5B50;&#x96C6;</center></strong></p>
+<p>&#x6CE8;&#x610F;&#xFF1A;misa&#x5BC4;&#x5B58;&#x5668;&#x5728;RISC-V&#x67B6;&#x6784;&#x6587;&#x6863;&#x4E2D;&#x88AB;&#x5B9A;&#x4E49;&#x4E3A;&#x53EF;&#x8BFB;&#x53EF;&#x5199;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x4ECE;&#x800C;&#x5141;&#x8BB8;&#x67D0;&#x4E9B;&#x5904;&#x7406;&#x5668;&#x7684;&#x8BBE;&#x8BA1;&#x80FD;&#x591F;&#x52A8;&#x6001;&#x5730;&#x914D;&#x7F6E;&#x67D0;&#x4E9B;&#x7279;&#x6027;&#x3002;&#x4F46;&#x662F;&#x5728;Bumblebee&#x5185;&#x6838;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;misa&#x5BC4;&#x5B58;&#x5668;&#x4E3A;&#x53EA;&#x8BFB;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x6052;&#x5B9A;&#x5730;&#x53CD;&#x6620;&#x4E0D;&#x540C;&#x578B;&#x53F7;&#x5904;&#x7406;&#x5668;&#x6838;&#x6240;&#x652F;&#x6301;&#x7684;ISA&#x6A21;&#x5757;&#x5316;&#x5B50;&#x96C6;&#x3002;</p>
+<h3 id="742-mie"><strong>7.4.2. mie</strong><div id="7-4-2"></div></h3>
+<p>ECLIC&#x4E2D;&#x65AD;&#x6A21;&#x5F0F;&#x4E0B;mie&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x63A7;&#x5236;&#x4F4D;&#x4E0D;&#x8D77;&#x4F5C;&#x7528;&#xFF0C;&#x8BFB;mie&#x8FD4;&#x56DE;&#x5168;0&#x3002;</p>
+<h3 id="743-mvendorid"><strong>7.4.3. mvendorid</strong><div id="7-4-3"></div></h3>
+<p>&#x200B;        &#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x662F;&#x53EA;&#x8BFB;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x6620;&#x8BE5;&#x5904;&#x7406;&#x5668;&#x6838;&#x7684;&#x5546;&#x4E1A;&#x4F9B;&#x5E94;&#x5546;&#x7F16;&#x53F7;&#xFF08;Vendor ID&#xFF09;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x4E3A;0&#xFF0C;&#x5219;&#x8868;&#x793A;&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x672A;&#x5B9E;&#x73B0;&#x3002;</p>
+<h3 id="744-marchid"><strong>7.4.4. marchid</strong><div id="7-4-4"></div></h3>
+<p>&#x200B;        &#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x662F;&#x53EA;&#x8BFB;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x6620;&#x8BE5;&#x5904;&#x7406;&#x5668;&#x6838;&#x7684;&#x786C;&#x4EF6;&#x5B9E;&#x73B0;&#x5FAE;&#x67B6;&#x6784;&#x7F16;&#x53F7;&#xFF08;Microarchitecture ID&#xFF09;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x4E3A;0&#xFF0C;&#x5219;&#x8868;&#x793A;&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x672A;&#x5B9E;&#x73B0;&#x3002;</p>
+<h3 id="745-mimpid"><strong>7.4.5. mimpid</strong><div id="7-4-5"></div></h3>
+<p>&#x200B;        &#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x662F;&#x53EA;&#x8BFB;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x6620;&#x8BE5;&#x5904;&#x7406;&#x5668;&#x6838;&#x7684;&#x786C;&#x4EF6;&#x5B9E;&#x73B0;&#x7F16;&#x53F7;&#xFF08;Implementation ID&#xFF09;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x4E3A;0&#xFF0C;&#x5219;&#x8868;&#x793A;&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x672A;&#x5B9E;&#x73B0;&#x3002;</p>
+<h3 id="746-mhartid"><strong>7.4.6. mhartid</strong><div id="7-4-6"></div></h3>
+<p>&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#x662F;&#x53EA;&#x8BFB;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x6620;&#x5F53;&#x524D;Hart&#x7684;&#x7F16;&#x53F7;&#xFF08;Hart ID&#xFF09;&#x3002;</p>
+<p>Hart&#xFF08;&#x53D6;&#x201C;Hardware Thread&#x201D;&#x4E4B;&#x610F;&#xFF09;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x786C;&#x4EF6;&#x7EBF;&#x7A0B;&#xFF0C;&#x5355;&#x4E2A;&#x5904;&#x7406;&#x5668;&#x6838;&#x4E2D;&#x53EF;&#x80FD;&#x5B9E;&#x73B0;&#x591A;&#x4EFD;&#x786C;&#x4EF6;&#x7EBF;&#x7A0B;&#xFF0C;&#x8B6C;&#x5982;&#x786C;&#x4EF6;&#x8D85;&#x7EBF;&#x7A0B;&#xFF08;Hyper-threading&#xFF09;&#x6280;&#x672F;&#xFF0C;&#x6BCF;&#x5957;&#x7EBF;&#x7A0B;&#x6709;&#x81EA;&#x5DF1;&#x72EC;&#x7ACB;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x7EC4;&#x7B49;&#x4E0A;&#x4E0B;&#x6587;&#x8D44;&#x6E90;&#xFF0C;&#x4F46;&#x5927;&#x591A;&#x6570;&#x7684;&#x8FD0;&#x7B97;&#x8D44;&#x6E90;&#x5747;&#x88AB;&#x6240;&#x6709;&#x786C;&#x4EF6;&#x7EBF;&#x7A0B;&#x590D;&#x7528;&#xFF0C;&#x56E0;&#x6B64;&#x9762;&#x79EF;&#x6548;&#x7387;&#x5F88;&#x9AD8;&#x3002;&#x5728;&#x8FD9;&#x6837;&#x7684;&#x786C;&#x4EF6;&#x8D85;&#x7EBF;&#x7A0B;&#x5904;&#x7406;&#x5668;&#x4E2D;&#xFF0C;&#x4E00;&#x4E2A;&#x6838;&#x5185;&#x4FBF;&#x5B58;&#x5728;&#x7740;&#x591A;&#x4E2A;&#x786C;&#x4EF6;&#x7EBF;&#x7A0B;&#xFF08;Hart&#xFF09;&#x3002;</p>
+<p>Bumblebee&#x5185;&#x6838;&#x4E2D;Hart&#x7F16;&#x53F7;&#x503C;&#x53D7;&#x8F93;&#x5165;&#x4FE1;&#x53F7;core_mhartid&#x63A7;&#x5236;&#x3002;&#x6CE8;&#x610F;&#xFF1A;RISC-V&#x67B6;&#x6784;&#x89C4;&#x5B9A;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x5355;Hart&#x6216;&#x8005;&#x591A;Hart&#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x8D77;&#x7801;&#x8981;&#x6709;&#x4E00;&#x4E2A;Hart&#x7684;&#x7F16;&#x53F7;&#x5FC5;&#x987B;&#x662F;0&#x3002;</p>
+<h3 id="747-mstatus"><strong>7.4.7. mstatus</strong><div id="7-4-7"></div></h3>
+<p>mstatus&#x5BC4;&#x5B58;&#x5668;&#x662F;&#x673A;&#x5668;&#x6A21;&#x5F0F;&#xFF08;Machine Mode&#xFF09;&#x4E0B;&#x7684;&#x72B6;&#x6001;&#x5BC4;&#x5B58;&#x5668;&#x3002;mstatus&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-2&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                       <strong><center>&#x8868; 7-2 mstatus&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x590D;&#x4F4D;&#x503C;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>2:0</td>
+<td>N/A</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>MIE</strong></td>
+<td>3</td>
+<td>0</td>
+<td>&#x53C2;&#x89C1;&#x7B2C;7.4.8&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>6:4</td>
+<td>N/A</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>MPIE</strong></td>
+<td>7</td>
+<td>0</td>
+<td>&#x53C2;&#x89C1;&#x7B2C;7.4.9&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>10:8</td>
+<td>N/A</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>MPP</strong></td>
+<td>12:11</td>
+<td>0</td>
+<td>&#x53C2;&#x89C1;&#x7B2C;7.4.9&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;</td>
+</tr>
+<tr>
+<td><strong>FS</strong></td>
+<td>14:13</td>
+<td>0</td>
+<td>&#x53C2;&#x89C1;&#x7B2C;7.4.10&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;</td>
+</tr>
+<tr>
+<td><strong>XS</strong></td>
+<td>16:15</td>
+<td>0</td>
+<td>&#x53C2;&#x89C1;&#x7B2C;7.4.11&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>17</td>
+<td>N/A</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#xFF0C;&#x503C;&#x662F;&#x65E0;&#x5173;&#x7684;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>30:18</td>
+<td>N/A</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>SD</strong></td>
+<td>31</td>
+<td>0</td>
+<td>&#x53C2;&#x89C1;&#x7B2C;7.4.12&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="748-mstatus&#x7684;mie&#x57DF;"><strong>7.4.8. mstatus&#x7684;MIE&#x57DF;</strong><div id="7-4-8"></div></h3>
+<p>mstatus&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x7684;MIE&#x57DF;&#x8868;&#x793A;&#x5168;&#x5C40;&#x4E2D;&#x65AD;&#x4F7F;&#x80FD;&#xFF1A;</p>
+<p>&#x5F53;MIE&#x57DF;&#x7684;&#x503C;&#x4E3A;1&#x65F6;&#xFF0C;&#x8868;&#x793A;&#x4E2D;&#x65AD;&#x7684;&#x5168;&#x5C40;&#x5F00;&#x5173;&#x6253;&#x5F00;&#xFF0C;&#x4E2D;&#x65AD;&#x80FD;&#x591F;&#x88AB;&#x6B63;&#x5E38;&#x54CD;&#x5E94;&#xFF1B;</p>
+<p>&#x5F53;MIE&#x57DF;&#x7684;&#x503C;&#x4E3A;0&#x65F6;&#xFF0C;&#x8868;&#x793A;&#x5168;&#x5C40;&#x5173;&#x95ED;&#x4E2D;&#x65AD;&#xFF0C;&#x4E2D;&#x65AD;&#x88AB;&#x5C4F;&#x853D;&#xFF0C;&#x65E0;&#x6CD5;&#x88AB;&#x54CD;&#x5E94;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;Bumblebee&#x5185;&#x6838;&#x5728;&#x8FDB;&#x5165;&#x5F02;&#x5E38;&#x3001;&#x4E2D;&#x65AD;&#x6216;&#x8005;NMI&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x65F6;&#xFF0C;MIE&#x7684;&#x503C;&#x4F1A;&#x88AB;&#x66F4;&#x65B0;&#x6210;&#x4E3A;0&#xFF08;&#x610F;&#x5473;&#x7740;&#x8FDB;&#x5165;&#x5F02;&#x5E38;&#x3001;&#x4E2D;&#x65AD;&#x6216;&#x8005;NMI&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x540E;&#x4E2D;&#x65AD;&#x88AB;&#x5C4F;&#x853D;&#xFF09;&#x3002;</p>
+<h3 id="749-mstatus&#x7684;mpie&#x548C;mpp&#x57DF;"><strong>7.4.9. mstatus&#x7684;MPIE&#x548C;MPP&#x57DF;</strong><div id="7-4-9"></div></h3>
+<p>mstatus&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x7684;MPIE&#x548C;MPP&#x57DF;&#x5206;&#x522B;&#x7528;&#x4E8E;&#x81EA;&#x52A8;&#x4FDD;&#x5B58;&#x8FDB;&#x5165;&#x5F02;&#x5E38;&#xFF0C;NMI&#x548C;&#x4E2D;&#x65AD;&#x4E4B;&#x524D;mstatus.MIE&#x3001;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#xFF08;Privilege Mode&#xFF09;&#x65F6;&#x8FDB;&#x884C;&#x81EA;&#x52A8;&#x6062;&#x590D;&#x3002;</p>
+<p>Bumblebee&#x5185;&#x6838;&#x8FDB;&#x5165;&#x5F02;&#x5E38;&#x65F6;&#x66F4;&#x65B0;mstatus&#x5BC4;&#x5B58;&#x5668;MPIE&#x548C;MPP&#x57DF;&#x7684;&#x786C;&#x4EF6;&#x884C;&#x4E3A;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;3.4.5&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</p>
+<p>Bumblebee&#x5185;&#x6838;&#x9000;&#x51FA;&#x5F02;&#x5E38;&#x65F6;&#xFF08;&#x5728;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x4E0B;&#x6267;&#x884C;mret&#x6307;&#x4EE4;&#xFF09;&#x66F4;&#x65B0;mstatus&#x5BC4;&#x5B58;&#x5668;MPIE&#x548C;MPP&#x57DF;&#x7684;&#x786C;&#x4EF6;&#x884C;&#x4E3A;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;3.5.2&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</p>
+<p>Bumblebee&#x5185;&#x6838;&#x8FDB;&#x5165;NMI&#x65F6;&#x66F4;&#x65B0;mstatus&#x5BC4;&#x5B58;&#x5668;MPIE&#x548C;MPP&#x57DF;&#x7684;&#x786C;&#x4EF6;&#x884C;&#x4E3A;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;4.3.4&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</p>
+<p>Bumblebee&#x5185;&#x6838;&#x9000;&#x51FA;NMI&#x65F6;&#xFF08;&#x5728;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x4E0B;&#x6267;&#x884C;mret&#x6307;&#x4EE4;&#xFF09;&#x66F4;&#x65B0;mstatus&#x5BC4;&#x5B58;&#x5668;MPIE&#x548C;MPP&#x57DF;&#x7684;&#x786C;&#x4EF6;&#x884C;&#x4E3A;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;4.4.2&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</p>
+<p>Bumblebee&#x5185;&#x6838;&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x65F6;&#x66F4;&#x65B0;mstatus&#x5BC4;&#x5B58;&#x5668;MPIE&#x548C;MPP&#x57DF;&#x7684;&#x786C;&#x4EF6;&#x884C;&#x4E3A;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;5.6.5&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</p>
+<p>Bumblebee&#x5185;&#x6838;&#x9000;&#x51FA;&#x4E2D;&#x65AD;&#x65F6;&#xFF08;&#x5728;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x4E0B;&#x6267;&#x884C;mret&#x6307;&#x4EE4;&#xFF09;&#x66F4;&#x65B0;mstatus&#x5BC4;&#x5B58;&#x5668;MPIE&#x548C;MPP&#x57DF;&#x7684;&#x786C;&#x4EF6;&#x884C;&#x4E3A;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;5.7.2&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A; mstatus.MPIE&#x57DF;&#x548C;mstatus.MPP&#x57DF;&#x7684;&#x503C;&#x4E0E;mcause.MPIE&#x57DF;&#x548C;mcause.MPP&#x57DF;&#x7684;&#x503C;&#x662F;&#x955C;&#x50CF;&#x5173;&#x7CFB;&#xFF0C;&#x5373;&#xFF0C;&#x5728;&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;mstatus.MPIE&#x57DF;&#x7684;&#x503C;&#x4E0E;mcause.MPIE&#x57DF;&#x7684;&#x503C;&#x603B;&#x662F;&#x5B8C;&#x5168;&#x4E00;&#x6837;&#xFF0C;mstatus.MPP&#x57DF;&#x7684;&#x503C;&#x4E0E;mcause.MPP&#x57DF;&#x7684;&#x503C;&#x603B;&#x662F;&#x5B8C;&#x5168;&#x4E00;&#x6837;&#x3002;</p>
+<h3 id="7410-mstatus&#x7684;fs&#x57DF;"><strong>7.4.10. mstatus&#x7684;FS&#x57DF;</strong><div id="7-4-10"></div></h3>
+<p>mstatus&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x7684;FS&#x57DF;&#x7528;&#x4E8E;&#x7EF4;&#x62A4;&#x6216;&#x53CD;&#x6620;&#x6D6E;&#x70B9;&#x5355;&#x5143;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x6B64;&#x57DF;&#x53EA;&#x6709;&#x5728;&#x914D;&#x7F6E;&#x4E86;&#x6D6E;&#x70B9;&#x6307;&#x4EE4;&#xFF08;&#x201C;F&#x201D;&#x6216;&#x8005;&#x201C;D&#x201D;&#x6307;&#x4EE4;&#x5B50;&#x96C6;&#xFF09;&#x65F6;&#x624D;&#x4F1A;&#x5B58;&#x5728;&#x3002;</p>
+<p>FS&#x57DF;&#x7531;&#x4E24;&#x4F4D;&#x7EC4;&#x6210;&#xFF0C;&#x5176;&#x7F16;&#x7801;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
+<p><img src="7.4/7.4.10.assets/28.png" alt=""></p>
+<p>&#x200B;                                                               <strong><center>&#x56FE; 7-2 FS&#x57DF;&#x8868;&#x793A;&#x7684;&#x72B6;&#x6001;&#x7F16;&#x7801;</center></strong></p>
+<p>FS&#x57DF;&#x7684;&#x66F4;&#x65B0;&#x51C6;&#x5219;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>FS&#x4E0A;&#x7535;&#x540E;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;0&#xFF0C;&#x610F;&#x5473;&#x7740;&#x6D6E;&#x70B9;&#x5355;&#x5143;&#x7684;&#x72B6;&#x6001;&#x4E3A;Off&#x3002;&#x56E0;&#x6B64;&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x6D6E;&#x70B9;&#x5355;&#x5143;&#xFF0C;&#x8F6F;&#x4EF6;&#x9700;&#x8981;&#x4F7F;&#x7528;CSR&#x5199;&#x6307;&#x4EE4;&#x5C06;FS&#x7684;&#x503C;&#x6539;&#x5199;&#x4E3A;&#x975E;0&#x503C;&#x4EE5;&#x6253;&#x5F00;&#x6D6E;&#x70B9;&#x5355;&#x5143;&#xFF08;FPU&#xFF09;&#x7684;&#x529F;&#x80FD;&#x3002;</li>
+<li>&#x5982;&#x679C;FS&#x7684;&#x503C;&#x4E3A;1&#x6216;&#x8005;2&#xFF0C;&#x5F53;&#x6267;&#x884C;&#x4E86;&#x4EFB;&#x4F55;&#x7684;&#x6D6E;&#x70B9;&#x6307;&#x4EE4;&#x4E4B;&#x540E;&#xFF0C;FS&#x7684;&#x503C;&#x4F1A;&#x81EA;&#x52A8;&#x5207;&#x6362;&#x4E3A;3&#xFF0C;&#x8868;&#x793A;&#x6D6E;&#x70B9;&#x5355;&#x5143;&#x7684;&#x72B6;&#x6001;&#x4E3A;Dirty&#xFF08;&#x72B6;&#x6001;&#x53D1;&#x751F;&#x4E86;&#x6539;&#x53D8;&#xFF09;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x5904;&#x7406;&#x5668;&#x4E0D;&#x60F3;&#x4F7F;&#x7528;&#x6D6E;&#x70B9;&#x8FD0;&#x7B97;&#x5355;&#x5143;&#xFF08;&#x8B6C;&#x5982;&#x5C06;&#x6D6E;&#x70B9;&#x5355;&#x5143;&#x5173;&#x7535;&#x4EE5;&#x8282;&#x7701;&#x529F;&#x8017;&#xFF09;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;CSR&#x5199;&#x6307;&#x4EE4;&#x5C06;mstatus&#x5BC4;&#x5B58;&#x5668;&#x7684;FS&#x57DF;&#x8BBE;&#x7F6E;&#x6210;0&#xFF0C;&#x5C06;&#x6D6E;&#x70B9;&#x5355;&#x5143;&#x7684;&#x529F;&#x80FD;&#x4E88;&#x4EE5;&#x5173;&#x95ED;&#x3002;&#x5F53;&#x6D6E;&#x70B9;&#x5355;&#x5143;&#x7684;&#x529F;&#x80FD;&#x5173;&#x95ED;&#x4E4B;&#x540E;&#xFF0C;&#x4EFB;&#x4F55;&#x8BBF;&#x95EE;&#x6D6E;&#x70B9;CSR&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x64CD;&#x4F5C;&#x6216;&#x8005;&#x4EFB;&#x4F55;&#x6267;&#x884C;&#x6D6E;&#x70B9;&#x6307;&#x4EE4;&#x7684;&#x884C;&#x4E3A;&#x90FD;&#x5C06;&#x4F1A;&#x4EA7;&#x751F;&#x975E;&#x6CD5;&#x6307;&#x4EE4;&#xFF08;Illegal Instruction&#xFF09;&#x5F02;&#x5E38;&#x3002;</li>
+</ul>
+<p>&#x9664;&#x4E86;&#x7528;&#x4E8E;&#x4E0A;&#x8FF0;&#x529F;&#x80FD;&#xFF0C;FS&#x57DF;&#x7684;&#x503C;&#x8FD8;&#x7528;&#x4E8E;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5728;&#x8FDB;&#x884C;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x65F6;&#x7684;&#x6307;&#x5F15;&#x4FE1;&#x606F;&#xFF0C;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x7528;&#x6237;&#x8BF7;&#x53C2;&#x89C1;RISC-V&#x201C;&#x7279;&#x6743;&#x67B6;&#x6784;&#x6587;&#x6863;&#x7248;&#x672C;1.10&#x201D;&#x539F;&#x6587;&#x3002;</p>
+<h3 id="7411-mstatus&#x7684;xs&#x57DF;"><strong>7.4.11. mstatus&#x7684;XS&#x57DF;</strong><div id="7-4-11"></div></h3>
+<p>mstatus&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x7684;XS&#x57DF;&#x4E0E;FS&#x57DF;&#x7684;&#x4F5C;&#x7528;&#x7C7B;&#x4F3C;&#xFF0C;&#x4F46;&#x662F;&#x5176;&#x7528;&#x4E8E;&#x7EF4;&#x62A4;&#x6216;&#x53CD;&#x6620;&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6269;&#x5C55;&#x6307;&#x4EE4;&#x5355;&#x5143;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x5728;&#x6807;&#x51C6;&#x7684;RISC-V&#x201C;&#x7279;&#x6743;&#x67B6;&#x6784;&#x6587;&#x6863;&#x7248;&#x672C;1.10&#x201D;&#x4E2D;&#x5B9A;&#x4E49;XS&#x57DF;&#x4E3A;&#x53EA;&#x8BFB;&#x57DF;&#xFF0C;&#x5176;&#x7528;&#x4E8E;&#x53CD;&#x6620;&#x6240;&#x6709;&#x81EA;&#x5B9A;&#x4E49;&#x6269;&#x5C55;&#x6307;&#x4EE4;&#x5355;&#x5143;&#x7684;&#x72B6;&#x6001;&#x603B;&#x548C;&#x3002;&#x4F46;&#x8BF7;&#x6CE8;&#x610F;&#xFF1A;&#x5728;Bumblebee&#x5185;&#x6838;&#x7684;&#x786C;&#x4EF6;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x5C06;XS&#x57DF;&#x8BBE;&#x8BA1;&#x6210;&#x53EF;&#x5199;&#x53EF;&#x8BFB;&#x57DF;&#xFF0C;&#x5176;&#x4F5C;&#x7528;&#x5B8C;&#x5168;&#x4E0E;FS&#x57DF;&#x7C7B;&#x4F3C;&#xFF0C;&#x8F6F;&#x4EF6;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6539;&#x5199;XS&#x57DF;&#x7684;&#x503C;&#x8FBE;&#x5230;&#x6253;&#x5F00;&#x6216;&#x8005;&#x5173;&#x95ED;&#x534F;&#x5904;&#x7406;&#x5668;&#x6269;&#x5C55;&#x6307;&#x4EE4;&#x5355;&#x5143;&#x7684;&#x76EE;&#x7684;&#x3002;</p>
+<p>&#x4E0E;FS&#x57DF;&#x7C7B;&#x4F3C;&#xFF0C;XS&#x9664;&#x4E86;&#x7528;&#x4E8E;&#x4E0A;&#x8FF0;&#x529F;&#x80FD;&#x4E4B;&#x5916;&#x8FD8;&#x7528;&#x4E8E;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5728;&#x8FDB;&#x884C;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x65F6;&#x7684;&#x6307;&#x5F15;&#x4FE1;&#x606F;&#xFF0C;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x7528;&#x6237;&#x8BF7;&#x53C2;&#x89C1;RISC-V&#x201C;&#x7279;&#x6743;&#x67B6;&#x6784;&#x6587;&#x6863;&#x7248;&#x672C;1.10&#x201D;&#x539F;&#x6587;&#x3002;</p>
+<h3 id="7412-mstatus&#x7684;sd&#x57DF;"><strong>7.4.12. mstatus&#x7684;SD&#x57DF;</strong><div id="7-4-12"></div></h3>
+<p>mstatus&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x7684;SD&#x57DF;&#x662F;&#x4E00;&#x4E2A;&#x53EA;&#x8BFB;&#x57DF;&#xFF0C;&#x5176;&#x53CD;&#x6620;&#x4E86;XS&#x57DF;&#x6216;&#x8005;FS&#x57DF;&#x5904;&#x4E8E;&#x810F;&#xFF08;Dirty&#xFF09;&#x72B6;&#x6001;&#x3002;&#x5176;&#x903B;&#x8F91;&#x5173;&#x7CFB;&#x8868;&#x8FBE;&#x5F0F;&#x4E3A;&#xFF1A;SD = &#xFF08;&#xFF08;FS==11&#xFF09; OR &#xFF08;XS==11&#xFF09;&#xFF09;&#x3002;</p>
+<p>&#x4E4B;&#x6240;&#x4EE5;&#x8BBE;&#x7F6E;&#x6B64;&#x53EA;&#x8BFB;&#x7684;SD&#x57DF;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x8F6F;&#x4EF6;&#x5FEB;&#x901F;&#x7684;&#x67E5;&#x8BE2;XS&#x57DF;&#x6216;&#x8005;FS&#x57DF;&#x662F;&#x5426;&#x5904;&#x4E8E;&#x810F;&#xFF08;Dirty&#xFF09;&#x72B6;&#x6001;&#xFF0C;&#x4ECE;&#x800C;&#x5728;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x65F6;&#x53EF;&#x4EE5;&#x5FEB;&#x901F;&#x5224;&#x65AD;&#x662F;&#x5426;&#x9700;&#x8981;&#x5BF9;&#x6D6E;&#x70B9;&#x5355;&#x5143;&#x6216;&#x8005;&#x6269;&#x5C55;&#x6307;&#x4EE4;&#x5355;&#x5143;&#x8FDB;&#x884C;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x4FDD;&#x5B58;&#x3002;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x7528;&#x6237;&#x8BF7;&#x53C2;&#x89C1;RISC-V&#x201C;&#x7279;&#x6743;&#x67B6;&#x6784;&#x6587;&#x6863;&#x7248;&#x672C;1.10&#x201D;&#x539F;&#x6587;&#x3002;</p>
+<h3 id="7413-mtvec"><strong>7.4.13. mtvec</strong><div id="7-4-13"></div></h3>
+<p>mtvec&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x4E2D;&#x65AD;&#x548C;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x7684;&#x5165;&#x53E3;&#x5730;&#x5740;&#x3002;</p>
+<ul>
+<li>&#x5F53;mtvec&#x914D;&#x7F6E;&#x4E2D;&#x65AD;&#x7684;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;&#x5730;&#x5740;&#x65F6;&#x8981;&#x70B9;&#x5982;&#x4E0B;&#xFF1A;<ul>
+<li>&#x5F02;&#x5E38;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x91C7;&#x7528;4byte&#x5BF9;&#x9F50;&#x7684;mtvec&#x5730;&#x5740;&#xFF08;&#x5C06;mtvec&#x7684;&#x4F4E;2bit&#x7528;0&#x4EE3;&#x66FF;&#xFF09;&#x4F5C;&#x4E3A;&#x5165;&#x53E3;&#x5730;&#x5740;&#x3002;</li>
+</ul>
+</li>
+<li>&#x5F53;mtvec&#x914D;&#x7F6E;&#x4E2D;&#x65AD;&#x7A0B;&#x5E8F;&#x7684;&#x5165;&#x53E3;&#x5730;&#x5740;&#x65F6;&#x8981;&#x70B9;&#x5982;&#x4E0B;&#xFF1A;<ul>
+<li>&#x5F53;mtvec.MODE != 6&#x2019;b000011 &#x65F6;&#xFF0C;&#x5904;&#x7406;&#x5668;&#x4F7F;&#x7528;&#x201C;&#x9ED8;&#x8BA4;&#x4E2D;&#x65AD;&#x6A21;&#x5F0F;&#x201D;&#x3002; </li>
+<li>&#x5F53;mtvec.MODE = 6&#x2019;b000011&#x65F6;&#xFF0C;&#x5904;&#x7406;&#x5668;&#x4F7F;&#x7528;&#x201C;ECLIC&#x4E2D;&#x65AD;&#x6A21;&#x5F0F;&#x201D;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x6B64;&#x6A21;&#x5F0F;&#x3002;<ul>
+<li>&#x4E2D;&#x65AD;&#x4E3A;&#x975E;&#x5411;&#x91CF;&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x65F6;&#x7684;&#x5165;&#x53E3;&#x5730;&#x5740;&#x548C;&#x8981;&#x70B9;&#x5982;&#x7B2C;5.13.2&#x8282;&#x4E2D;&#x6240;&#x8FF0;&#x3002; </li>
+<li>&#x4E2D;&#x65AD;&#x4E3A;&#x5411;&#x91CF;&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x65F6;&#x7684;&#x5165;&#x53E3;&#x5730;&#x5740;&#x548C;&#x8981;&#x70B9;&#x5982;&#x7B2C;5.13.1&#x8282;&#x4E2D;&#x6240;&#x8FF0;&#x3002; </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>mtvec&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x5730;&#x5740;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-3&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                  <strong><center>&#x8868; 7-3 mtvec&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ADDR</strong></td>
+<td>31:6</td>
+<td>mtvec&#x5730;&#x5740;</td>
+</tr>
+<tr>
+<td><strong>MODE</strong></td>
+<td>5:0</td>
+<td>n MODE&#x57DF;&#x4E3A;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x63A7;&#x5236;&#x57DF;&#xFF1A;l 000011: ECLIC&#x4E2D;&#x65AD;&#x6A21;&#x5F0F;&#xFF08;&#x63A8;&#x8350;&#x6A21;&#x5F0F;&#xFF09;l Others: &#x9ED8;&#x8BA4;&#x4E2D;&#x65AD;&#x6A21;&#x5F0F;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7414-mtvt"><strong>7.4.14. mtvt</strong><div id="7-4-14"></div></h3>
+<p>mtvt&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;ECLIC&#x4E2D;&#x65AD;&#x5411;&#x91CF;&#x8868;&#x7684;&#x57FA;&#x5730;&#x5740;&#xFF0C;&#x6B64;&#x57FA;&#x5730;&#x5740;&#x81F3;&#x5C11;&#x4E3A;64byte&#x5BF9;&#x9F50;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x63D0;&#x5347;&#x6027;&#x80FD;&#x51CF;&#x5C11;&#x786C;&#x4EF6;&#x95E8;&#x6570;&#xFF0C;&#x786C;&#x4EF6;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x5B9E;&#x73B0;&#x7684;&#x4E2D;&#x65AD;&#x7684;&#x4E2A;&#x6570;&#x6765;&#x51B3;&#x5B9A;mtvt&#x7684;&#x5BF9;&#x9F50;&#x65B9;&#x5F0F;&#xFF0C;&#x5177;&#x4F53;&#x5982;&#x8868; 7-4&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                                 <strong><center>&#x8868; 7-4 mtvt&#x5BF9;&#x9F50;&#x65B9;&#x5F0F;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th>&#x6700;&#x5927;&#x4E2D;&#x65AD;&#x4E2A;&#x6570;</th>
+<th>mtvt&#x5BF9;&#x9F50;&#x65B9;&#x5F0F;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 to 16</td>
+<td>64-byte</td>
+</tr>
+<tr>
+<td>17 to 32</td>
+<td>128-byte</td>
+</tr>
+<tr>
+<td>33 to 64</td>
+<td>256-byte</td>
+</tr>
+<tr>
+<td>65 to 128</td>
+<td>512-byte</td>
+</tr>
+<tr>
+<td>129 to 256</td>
+<td>1KB</td>
+</tr>
+<tr>
+<td>257 to 512</td>
+<td>2KB</td>
+</tr>
+<tr>
+<td>513 to 1024</td>
+<td>4KB</td>
+</tr>
+<tr>
+<td>1025 to 2048</td>
+<td>8KB</td>
+</tr>
+<tr>
+<td>2045 to 4096</td>
+<td>16KB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7415-mscratch"><strong>7.4.15. mscratch</strong><div id="7-4-15"></div></h3>
+<p>mscratch&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;Machine Mode&#x4E0B;&#x7684;&#x7A0B;&#x5E8F;&#x4E34;&#x65F6;&#x4FDD;&#x5B58;&#x67D0;&#x4E9B;&#x6570;&#x636E;&#x3002;mscratch&#x5BC4;&#x5B58;&#x5668;&#x53EF;&#x4EE5;&#x63D0;&#x4F9B;&#x4E00;&#x79CD;&#x4FDD;&#x5B58;&#x548C;&#x6062;&#x590D;&#x673A;&#x5236;&#xFF0C;&#x8B6C;&#x5982;&#xFF0C;&#x5728;&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x6216;&#x8005;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x6A21;&#x5F0F;&#x540E;&#xFF0C;&#x5C06;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x7528;&#x6237;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#x5BC4;&#x5B58;&#x5668;&#x4E34;&#x65F6;&#x5B58;&#x5165;mscratch&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x9000;&#x51FA;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x4E4B;&#x524D;&#xFF0C;&#x5C06;mscratch&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x7684;&#x503C;&#x8BFB;&#x51FA;&#x6062;&#x590D;&#x81F3;&#x7528;&#x6237;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#x5BC4;&#x5B58;&#x5668;&#x3002;</p>
+<h3 id="7416-mepc"><strong>7.4.16. mepc</strong><div id="7-4-16"></div></h3>
+<p>mepc&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x8FDB;&#x5165;&#x5F02;&#x5E38;&#x4E4B;&#x524D;&#x5904;&#x7406;&#x5668;&#x6B63;&#x5728;&#x6267;&#x884C;&#x6307;&#x4EE4;&#x7684;PC&#x503C;&#xFF0C;&#x4F5C;&#x4E3A;&#x5F02;&#x5E38;&#x7684;&#x8FD4;&#x56DE;&#x5730;&#x5740;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x7406;&#x89E3;&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x8BF7;&#x5148;&#x53C2;&#x89C1;&#x7B2C;0&#x7AE0;&#x7CFB;&#x7EDF;&#x5730;&#x4E86;&#x89E3;&#x5F02;&#x5E38;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<ul>
+<li>&#x5904;&#x7406;&#x5668;&#x8FDB;&#x5165;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;mepc&#x5BC4;&#x5B58;&#x5668;&#x88AB;&#x540C;&#x65F6;&#x66F4;&#x65B0;&#x4EE5;&#x53CD;&#x6620;&#x5F53;&#x524D;&#x9047;&#x5230;&#x5F02;&#x5E38;&#x7684;&#x6307;&#x4EE4;&#x7684;PC&#x503C;&#x3002;</li>
+<li>&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x867D;&#x7136;mepc&#x5BC4;&#x5B58;&#x5668;&#x4F1A;&#x5728;&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x65F6;&#x81EA;&#x52A8;&#x88AB;&#x786C;&#x4EF6;&#x66F4;&#x65B0;&#xFF0C;&#x4F46;&#x662F;mepc&#x5BC4;&#x5B58;&#x5668;&#x672C;&#x8EAB;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#xFF08;&#x5728;Machine Mode&#x4E0B;&#xFF09;&#x53EF;&#x8BFB;&#x53EF;&#x5199;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x56E0;&#x6B64;&#x8F6F;&#x4EF6;&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5199;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x4EE5;&#x4FEE;&#x6539;&#x5B83;&#x7684;&#x503C;&#x3002;</li>
+</ul>
+<p>mepc&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x5730;&#x5740;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-5&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                        <strong><center>&#x8868; 7-5 mepc&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EPC</strong></td>
+<td>31&#xFF1A;1</td>
+<td>&#x4FDD;&#x5B58;&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x5904;&#x7406;&#x5668;&#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x6307;&#x4EE4;&#x7684;PC&#x503C;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>0</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7417-mcause"><strong>7.4.17. mcause</strong><div id="7-4-17"></div></h3>
+<p>mcause&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x8FDB;&#x5165;NMI&#x3001;&#x5F02;&#x5E38;&#x548C;&#x4E2D;&#x65AD;&#x4E4B;&#x524D;&#x7684;&#x51FA;&#x9519;&#x539F;&#x56E0;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x5BF9;Trap&#x539F;&#x56E0;&#x8FDB;&#x884C;&#x8BCA;&#x65AD;&#x548C;&#x8C03;&#x8BD5;&#x3002;</p>
+<p>mcause&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x5730;&#x5740;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-6&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                    <strong><center>&#x8868; 7-6 mcause&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>INTERRUPT</strong></td>
+<td>31</td>
+<td>&#x8868;&#x793A;&#x5F53;&#x524D;Trap&#x79CD;&#x7C7B;&#xFF1A;                                                                                                0&#xFF1A;&#x5F02;&#x5E38;&#x6216;&#x8005;NMI                                                                                                      1&#xFF1A;&#x4E2D;&#x65AD;</td>
+</tr>
+<tr>
+<td><strong>MINHV</strong></td>
+<td>30</td>
+<td>&#x8868;&#x793A;&#x5904;&#x7406;&#x5668;&#x6B63;&#x5728;&#x8BFB;&#x53D6;&#x4E2D;&#x65AD;&#x5411;&#x91CF;&#x8868;</td>
+</tr>
+<tr>
+<td><strong>MPP</strong></td>
+<td>29:28</td>
+<td>&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x4E4B;&#x524D;&#x7684;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#xFF0C;&#x4E0E;mstatus.mpp&#x76F8;&#x540C;</td>
+</tr>
+<tr>
+<td><strong>MPIE</strong></td>
+<td>27</td>
+<td>&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x4E4B;&#x524D;&#x7684;&#x4E2D;&#x65AD;&#x4F7F;&#x80FD;&#xFF0C;&#x4E0E;mstatus.mpie&#x76F8;&#x540C;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>26:24</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>MPIL</strong></td>
+<td>23:16</td>
+<td>&#x524D;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x7EA7;&#x522B;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>15:12</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>EXCCODE</strong></td>
+<td>11:0</td>
+<td>&#x5F02;&#x5E38;/&#x4E2D;&#x65AD;&#x7F16;&#x7801;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<ul>
+<li>mstatus&#x5BC4;&#x5B58;&#x5668;&#x7684;MPIE&#x548C;MPP&#x57DF;&#x4E0E;mcause&#x7684;MPIE&#x548C;MPP&#x57DF;&#x4E3A;&#x955C;&#x50CF;&#x5173;&#x7CFB;&#x3002;</li>
+<li>NMI&#x7684;mcause.EXCCODE&#x53EF;&#x80FD;&#x4E3A;0x1&#x6216;&#x8005;0xfff&#xFF0C;&#x5B9E;&#x9645;&#x503C;&#x7531;mmisc_ctl&#x63A7;&#x5236;&#xFF0C;&#x8BE6;&#x60C5;&#x8BF7;&#x53C2;&#x8003;7.5.4&#x8282;&#x3002;</li>
+</ul>
+<h3 id="7418-mtval&#xFF08;mbadaddr&#xFF09;"><strong>7.4.18. mtval&#xFF08;mbadaddr&#xFF09;</strong><div id="7-4-18"></div></h3>
+<p>mtval&#x5BC4;&#x5B58;&#x5668;&#xFF08;&#x53C8;&#x540D;mbadaddr&#xFF0C;&#x6709;&#x4E9B;&#x7248;&#x672C;&#x7684;&#x5DE5;&#x5177;&#x94FE;&#x53EA;&#x8BC6;&#x522B;&#x6B64;&#x540D;&#x79F0;&#xFF09;&#xFF0C;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x8FDB;&#x5165;&#x5F02;&#x5E38;&#x4E4B;&#x524D;&#x7684;&#x51FA;&#x9519;&#x6307;&#x4EE4;&#x7684;&#x7F16;&#x7801;&#x503C;&#x6216;&#x8005;&#x5B58;&#x50A8;&#x5668;&#x8BBF;&#x95EE;&#x7684;&#x5730;&#x5740;&#x503C;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x5BF9;&#x5F02;&#x5E38;&#x539F;&#x56E0;&#x8FDB;&#x884C;&#x8BCA;&#x65AD;&#x548C;&#x8C03;&#x8BD5;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x7406;&#x89E3;&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x8BF7;&#x5148;&#x53C2;&#x89C1;&#x7B2C;0&#x7AE0;&#x7CFB;&#x7EDF;&#x5730;&#x4E86;&#x89E3;&#x5F02;&#x5E38;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#x3002;</p>
+<p>Bumblebee&#x5185;&#x6838;&#x8FDB;&#x5165;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;mtval&#x5BC4;&#x5B58;&#x5668;&#x88AB;&#x540C;&#x65F6;&#x66F4;&#x65B0;&#x4EE5;&#x53CD;&#x6620;&#x5F53;&#x524D;&#x9047;&#x5230;&#x5F02;&#x5E38;&#x7684;&#x4FE1;&#x606F;&#x3002;</p>
+<h3 id="7419-mip"><strong>7.4.19 mip</strong><div id="7-4-19"></div></h3>
+<p>ECLIC&#x4E2D;&#x65AD;&#x6A21;&#x5F0F;&#x4E0B;mip&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x63A7;&#x5236;&#x4F4D;&#x4E0D;&#x8D77;&#x4F5C;&#x7528;&#xFF0C;&#x8BFB;mip&#x8FD4;&#x56DE;&#x5168;0&#x3002;</p>
+<h3 id="7420-mnxti"><strong>7.4.20. mnxti</strong><div id="7-4-20"></div></h3>
+<p>mnxti &#xFF08;Next Interrupt Handler Address and Interrupt-Enable CSR&#xFF09;&#x53EF;&#x4EE5;&#x88AB;&#x8F6F;&#x4EF6;&#x8BBF;&#x95EE;&#x7528;&#x6765;&#x5904;&#x7406;&#x5904;&#x4E8E;&#x76F8;&#x540C;Privilege Mode&#x4E0B;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#xFF0C;&#x540C;&#x65F6;&#x4E0D;&#x4F1A;&#x9020;&#x6210;&#x51B2;&#x5237;&#x6D41;&#x6C34;&#x7EBF;&#x4EE5;&#x53CA;&#x4E0A;&#x4E0B;&#x6587;&#x4FDD;&#x5B58;&#x6062;&#x590D;&#x3002;</p>
+<p>mnxti&#x5BC4;&#x5B58;&#x5668;&#x53EF;&#x901A;&#x8FC7;CSRRSI/CSRRCI&#x6307;&#x4EE4;&#x6765;&#x8BBF;&#x95EE;&#xFF0C;&#x8BFB;&#x64CD;&#x4F5C;&#x8FD4;&#x56DE;&#x503C;&#x662F;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x7684;handler&#x5730;&#x5740;&#xFF0C;&#x800C;mnxti&#x7684;&#x5199;&#x56DE;&#x64CD;&#x4F5C;&#x4F1A;&#x66F4;&#x65B0;&#x4E2D;&#x65AD;&#x4F7F;&#x80FD;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<ol>
+<li>&#x5BF9;&#x4E8E;&#x4E0D;&#x540C;Privilege Mode&#x7684;&#x4E2D;&#x65AD;&#xFF0C;&#x786C;&#x4EF6;&#x4F1A;&#x4EE5;&#x4E2D;&#x65AD;&#x5D4C;&#x5957;&#x7684;&#x65B9;&#x5F0F;&#x5904;&#x7406;&#xFF0C;&#x56E0;&#x6B64;mnxti&#x53EA;&#x4F1A;&#x5904;&#x7406;&#x76F8;&#x540C;Privilege Mode&#x4E0B;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x3002;</li>
+<li><p>mnxti&#x5BC4;&#x5B58;&#x5668;&#x4E0E;&#x5E38;&#x89C4;&#x7684;CSR&#x6307;&#x4EE4;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5176;&#x8FD4;&#x56DE;&#x503C;&#x4E0E;&#x5E38;&#x89C4;&#x5BC4;&#x5B58;&#x5668;&#x7684;RMW&#xFF08;read-modify-write&#xFF09;&#x64CD;&#x4F5C;&#x7684;&#x503C;&#x4E0D;&#x540C;&#xFF1A;</p>
+</li>
+<li><p>mnxti&#x7684;CSR&#x8BFB;&#x64CD;&#x4F5C;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x6709;&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;</p>
+<ul>
+<li>&#x5F53;&#x51FA;&#x73B0;&#x4EE5;&#x4E0B;&#x60C5;&#x51B5;&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x4E3A;0&#x3002;<ul>
+<li>&#x6CA1;&#x6709;&#x53EF;&#x4EE5;&#x54CD;&#x5E94;&#x7684;&#x4E2D;&#x65AD;</li>
+<li>&#x5F53;&#x4E0B;&#x6700;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x7684;&#x4E2D;&#x65AD;&#x662F;&#x5411;&#x91CF;&#x4E2D;&#x65AD;</li>
+</ul>
+</li>
+<li>&#x5F53;&#x4E2D;&#x65AD;&#x4E3A;&#x975E;&#x5411;&#x91CF;&#x4E2D;&#x65AD;&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;&#x6B64;&#x4E2D;&#x65AD;&#x7684;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;&#x5730;&#x5740;&#x3002;</li>
+</ul>
+</li>
+<li>mnxti&#x7684;CSR&#x5199;&#x64CD;&#x4F5C;&#x4F1A;&#x66F4;&#x65B0;&#x4EE5;&#x4E0B;&#x5BC4;&#x5B58;&#x5668;&#x53CA;&#x5BC4;&#x5B58;&#x5668;&#x57DF;&#xFF1A;<ul>
+<li>mstatus&#x662F;&#x5F53;&#x524D;RMW&#xFF08;read-modify-write&#xFF09;&#x64CD;&#x4F5C;&#x7684;&#x76EE;&#x7684;&#x5BC4;&#x5B58;&#x5668;</li>
+<li>mcause.EXCCODE&#x57DF;&#x548C;&#x4F1A;&#x88AB;&#x5206;&#x522B;&#x66F4;&#x65B0;&#x4E3A;&#x5F53;&#x524D;&#x54CD;&#x5E94;&#x4E2D;&#x65AD;&#x7684;&#x4E2D;&#x65AD;id</li>
+<li>mintstatus.MIL&#x57DF;&#x88AB;&#x66F4;&#x65B0;&#x4E3A;&#x5F53;&#x524D;&#x54CD;&#x5E94;&#x4E2D;&#x65AD;&#x7684;&#x4E2D;&#x65AD;&#x7EA7;&#x522B;&#xFF08;Level&#xFF09;&#x3002;</li>
+</ul>
+</li>
+</ol>
+<h3 id="7421-mintstatus"><strong>7.4.21. mintstatus</strong><div id="7-4-21"></div></h3>
+<p>mintstatus&#x5BC4;&#x5B58;&#x5668;&#x4FDD;&#x5B58;&#x6BCF;&#x4E2A;Privilege Mode&#x4E0B;&#x7684;&#x6709;&#x6548;&#x4E2D;&#x65AD;&#x7684;&#x4E2D;&#x65AD;level&#x3002;</p>
+<p>&#x200B;                                                      <strong><center>&#x8868; 7-7 minstatus&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MIL</strong></td>
+<td>31:24</td>
+<td>Machine Mode&#x7684;&#x6709;&#x6548;&#x4E2D;&#x65AD;level</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>23&#xFF1A;8</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>UIL</strong></td>
+<td>7:0</td>
+<td>User Mode&#x7684;&#x6709;&#x6548;&#x4E2D;&#x65AD;level</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7422-mscratchcsw"><strong>7.4.22. mscratchcsw</strong><div id="7-4-22"></div></h3>
+<p>mscratchcsw&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x5728;&#x591A;&#x4E2A;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x95F4;&#x5207;&#x6362;&#x65F6;&#xFF0C;&#x4EA4;&#x6362;&#x76EE;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x4E0E;mscratch&#x7684;&#x503C;&#x6765;&#x52A0;&#x901F;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x5E26;&#x8BFB;&#x64CD;&#x4F5C;&#x7684;CSR&#x6307;&#x4EE4;&#x8BBF;&#x95EE;mscratchcsw&#xFF0C;&#x5728;&#x51FA;&#x73B0;&#x4E2D;&#x65AD;&#x524D;&#x540E;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x4E0D;&#x4E00;&#x81F4;&#x65F6;&#xFF0C;&#x6709;&#x4EE5;&#x4E0B;&#x4F2A;&#x6307;&#x4EE4;&#x6240;&#x793A;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<pre><code> csrrw rd&#xFF0C; mscratchcsw&#xFF0C; rs1
+
+  // Pseudocode operation.
+  if &#xFF08;mcause.mpp!=M-mode&#xFF09; then {
+      t = rs1; rd = mscratch; mscratch = t;
+  } else {
+      rd = rs1; // mscratch unchanged.
+  }
+
+  // Usual use: csrrw sp&#xFF0C; mscratchcsw&#xFF0C; sp
+</code></pre><p>&#x5904;&#x7406;&#x5668;&#x5728;&#x4F4E;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#xFF08;Privilege Mode&#xFF09;&#x65F6;&#x53D1;&#x751F;&#x4E2D;&#x65AD;&#xFF0C;&#x5904;&#x7406;&#x5668;&#x8FDB;&#x5165;&#x9AD8;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x5904;&#x7406;&#x4E2D;&#x65AD;&#xFF0C;&#x5728;&#x5904;&#x7406;&#x4E2D;&#x65AD;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5806;&#x6808;&#x6765;&#x4FDD;&#x5B58;&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x524D;&#x7684;&#x5904;&#x7406;&#x5668;&#x72B6;&#x6001;&#x3002;&#x6B64;&#x65F6;&#x5982;&#x679C;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;&#x4F4E;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x4E0B;&#x7684;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#xFF0C; &#x5219;&#x9AD8;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x4E0B;&#x5806;&#x6808;&#x7684;&#x6570;&#x636E;&#x4F1A;&#x5B58;&#x50A8;&#x5728;&#x4F4E;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7684;&#x533A;&#x95F4;&#xFF0C;&#x5BFC;&#x81F4;&#x51FA;&#x73B0;&#x9AD8;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x7684;&#x6570;&#x636E;&#x6CC4;&#x9732;&#x7ED9;&#x4F4E;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x8FD9;&#x4E00;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#x3002;&#x4E3A;&#x907F;&#x514D;&#x6B64;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#xFF0C;RISC-V&#x67B6;&#x6784;&#x89C4;&#x5B9A;&#x5F53;&#x5904;&#x7406;&#x5668;&#x5904;&#x4E8E;&#x4F4E;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x9AD8;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x7684;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#x4FDD;&#x5B58;&#x81F3;mscratch&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x8FD9;&#x6837;&#x5728;&#x8FDB;&#x5165;&#x9AD8;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x540E;&#xFF0C;&#x5904;&#x7406;&#x5668;&#x53EF;&#x4EE5;&#x7528;mscratch&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x6765;&#x6062;&#x590D;&#x9AD8;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x7684;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x5E38;&#x89C4;&#x6307;&#x4EE4;&#x6765;&#x6267;&#x884C;&#x4EE5;&#x4E0A;&#x7684;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x8017;&#x8D39;&#x8F83;&#x591A;&#x7684;cycle&#xFF0C; &#x4E3A;&#x6B64;RISC-V&#x67B6;&#x6784;&#x5B9A;&#x4E49;mscratchcsw&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x5728;&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x540E;&#x7ACB;&#x523B;&#x6267;&#x884C;mscratchcsw&#x5BC4;&#x5B58;&#x5668;&#x6307;&#x4EE4;&#xFF0C;&#x4EA4;&#x6362;mscratch&#x4E0E;SP&#x7684;&#x503C;&#xFF0C;&#x7528;&#x6765;&#x6062;&#x590D;&#x9AD8;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x7684;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#xFF0C;&#x540C;&#x65F6;&#x5907;&#x4EFD;&#x4F4E;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x7684;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#x81F3;mscratch&#x5BC4;&#x5B58;&#x5668;&#x3002;&#x5728;&#x6267;&#x884C;mret&#x6307;&#x4EE4;&#x9000;&#x51FA;&#x4E2D;&#x65AD;&#x524D;&#xFF0C;&#x4E5F;&#x52A0;&#x4E0A;&#x4E00;&#x6761;mscratchcsw&#x6307;&#x4EE4;&#xFF0C; &#x4EA4;&#x6362;mscratch&#x5BC4;&#x5B58;&#x5668;&#x548C;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#x7684;&#x503C;&#xFF0C;&#x5C06;&#x9AD8;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x7684;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#x518D;&#x6B21;&#x5907;&#x4EFD;&#x5230;mscratch&#xFF0C;&#x540C;&#x65F6;&#x6062;&#x590D;&#x4F4E;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x7684;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x4E24;&#x6761;&#x6307;&#x4EE4;&#x4FBF;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x4E0D;&#x540C;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x7684;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF08;SP&#xFF09;&#x5207;&#x6362;&#x95EE;&#x9898;&#xFF0C;&#x52A0;&#x901F;&#x4E86;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x865A;&#x62DF;&#x5316;&#x7684;&#x6F0F;&#x6D1E;&#xFF0C;&#x8F6F;&#x4EF6;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x8BFB;&#x53D6;&#x5904;&#x7406;&#x5668;&#x5F53;&#x524D;&#x7684;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#xFF08;Privilege Mode&#xFF09;&#x3002;&#x5982;&#x679C;&#x8F6F;&#x4EF6;&#x8BD5;&#x56FE;&#x5728;&#x66F4;&#x4F4E;&#x7684;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x4E0B;&#x8BBF;&#x95EE;&#x7ED9;&#x5B9A;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x4E0B;&#x7684;mscratchcsw&#x505A;&#x5BC4;&#x5B58;&#x5668;swap&#x64CD;&#x4F5C;&#x4F1A;&#x5BFC;&#x81F4;&#x5904;&#x7406;&#x5668;&#x8FDB;&#x5165;Trap&#xFF0C;&#x56E0;&#x6B64;mscratchcsw&#x4E0D;&#x4F1A;&#x5BFC;&#x81F4;&#x865A;&#x62DF;&#x5316;&#x6F0F;&#x6D1E;&#x3002;</p>
+<h3 id="7423-mscratchcswl"><strong>7.4.23. mscratchcswl</strong><div id="7-4-23"></div></h3>
+<p>mscratchcswl&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x5728;&#x591A;&#x4E2A;&#x4E2D;&#x65AD;level&#x95F4;&#x5207;&#x6362;&#x65F6;&#xFF0C;&#x4EA4;&#x6362;&#x76EE;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x4E0E;mscratch&#x7684;&#x503C;&#x6765;&#x52A0;&#x901F;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x5E26;&#x8BFB;&#x64CD;&#x4F5C;&#x7684;CSR&#x6307;&#x4EE4;&#x8BBF;&#x95EE;mscratchcsw&#xFF0C;&#x5F53;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x4E0D;&#x53D8;&#xFF0C;&#x5728;&#x51FA;&#x73B0;&#x4E2D;&#x65AD;&#x7A0B;&#x5E8F;&#x548C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x5207;&#x6362;&#x65F6;&#xFF0C;&#x6709;&#x4EE5;&#x4E0B;&#x4F2A;&#x6307;&#x4EE4;&#x6240;&#x793A;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<pre><code>csrrw rd&#xFF0C; mscratchcswl&#xFF0C; rs1
+
+
+  // Pseudocode operation.
+
+  if &#xFF08; &#xFF08;mcause.mpil==0&#xFF09; != &#xFF08;mintstatus.mil == 0&#xFF09; &#xFF09; then {
+
+&#x200B;      t = rs1; rd = mscratch; mscratch = t;
+
+  } else {
+
+&#x200B;      rd = rs1; // mscratch unchanged.
+
+  }
+
+
+  // Usual use: csrrw sp&#xFF0C; mscratchcswl&#xFF0C; sp
+</code></pre><p>&#x5728;&#x5355;&#x4E00;&#x7279;&#x6743;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x5C06;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x4EFB;&#x52A1;&#x4E0E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4EFB;&#x52A1;&#x7684;&#x5806;&#x6808;&#x7A7A;&#x95F4;&#x5206;&#x79BB;&#x53EF;&#x4EE5;&#x589E;&#x5F3A;&#x5065;&#x58EE;&#x6027;&#x3001;&#x51CF;&#x5C11;&#x7A7A;&#x95F4;&#x4F7F;&#x7528;&#x5E76;&#x6709;&#x52A9;&#x4E8E;&#x7CFB;&#x7EDF;&#x8C03;&#x8BD5;&#x3002;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x4EFB;&#x52A1;&#x5177;&#x6709;&#x975E;&#x96F6;&#x4E2D;&#x65AD;&#x7EA7;&#x522B;&#xFF0C;&#x800C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4EFB;&#x52A1;&#x5177;&#x6709;&#x96F6;&#x4E2D;&#x65AD;&#x7EA7;&#x522B;&#xFF0C;&#x6839;&#x636E;&#x8FD9;&#x4E00;&#x7279;&#x6027;RISC-V&#x67B6;&#x6784;&#x5B9A;&#x4E49;&#x4E86;mscratchcswl&#x5BC4;&#x5B58;&#x5668;&#x3002;&#x4E0E;mscratchcsw&#x7C7B;&#x4F3C;&#xFF0C;&#x5728;&#x4E2D;&#x65AD;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;&#x548C;&#x51FA;&#x53E3;&#x5206;&#x522B;&#x6DFB;&#x52A0;&#x4E00;&#x6761;mscratchcswl&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x4E0E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E4B;&#x95F4;&#x7684;&#x5FEB;&#x901F;&#x7684;&#x5806;&#x6808;&#x6307;&#x9488;&#x5207;&#x6362;&#xFF0C;&#x4FDD;&#x8BC1;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x548C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x5806;&#x6808;&#x7A7A;&#x95F4;&#x5206;&#x79BB;&#x3002;</p>
+<h3 id="7424-mcycle&#x548C;mcycleh"><strong>7.4.24. mcycle&#x548C;mcycleh</strong><div id="7-4-24"></div></h3>
+<p>RISC-V&#x67B6;&#x6784;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;64&#x4F4D;&#x5BBD;&#x7684;&#x65F6;&#x949F;&#x5468;&#x671F;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x6620;&#x5904;&#x7406;&#x5668;&#x6267;&#x884C;&#x4E86;&#x591A;&#x5C11;&#x4E2A;&#x65F6;&#x949F;&#x5468;&#x671F;&#x3002;&#x53EA;&#x8981;&#x5904;&#x7406;&#x5668;&#x5904;&#x4E8E;&#x6267;&#x884C;&#x72B6;&#x6001;&#x65F6;&#xFF0C;&#x6B64;&#x8BA1;&#x6570;&#x5668;&#x4FBF;&#x4F1A;&#x4E0D;&#x65AD;&#x81EA;&#x589E;&#x8BA1;&#x6570;&#x3002;</p>
+<p>mcycle&#x5BC4;&#x5B58;&#x5668;&#x53CD;&#x6620;&#x4E86;&#x8BE5;&#x8BA1;&#x6570;&#x5668;&#x4F4E;32&#x4F4D;&#x7684;&#x503C;&#xFF0C;mcycleh&#x5BC4;&#x5B58;&#x5668;&#x53CD;&#x6620;&#x4E86;&#x8BE5;&#x8BA1;&#x6570;&#x5668;&#x9AD8;32&#x4F4D;&#x7684;&#x503C;&#x3002;</p>
+<p>mcycle&#x548C;mcycleh&#x5BC4;&#x5B58;&#x5668;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x8861;&#x91CF;&#x5904;&#x7406;&#x5668;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x4E14;&#x5177;&#x5907;&#x53EF;&#x8BFB;&#x53EF;&#x5199;&#x5C5E;&#x6027;&#xFF0C;&#x56E0;&#x6B64;&#x8F6F;&#x4EF6;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;CSR&#x6307;&#x4EE4;&#x6539;&#x5199;mcycle&#x548C;mcycleh&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x7684;&#x503C;&#x3002;</p>
+<p>&#x7531;&#x4E8E;&#x8003;&#x8651;&#x5230;&#x6B64;&#x8BA1;&#x6570;&#x5668;&#x8BA1;&#x6570;&#x4F1A;&#x6D88;&#x8017;&#x67D0;&#x4E9B;&#x52A8;&#x6001;&#x529F;&#x8017;&#xFF0C;&#x56E0;&#x6B64;&#x5728;Bumblebee&#x5185;&#x6838;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x5728;&#x81EA;&#x5B9A;&#x4E49;CSR&#x5BC4;&#x5B58;&#x5668;mcountinhibit&#x4E2D;&#x989D;&#x5916;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x4F4D;&#x63A7;&#x5236;&#x57DF;&#xFF0C;&#x8F6F;&#x4EF6;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x6B64;&#x63A7;&#x5236;&#x57DF;&#x5C06;mcycle&#x548C;mcycleh&#x5BF9;&#x5E94;&#x7684;&#x8BA1;&#x6570;&#x5668;&#x505C;&#x6B62;&#x8BA1;&#x6570;&#xFF0C;&#x4ECE;&#x800C;&#x5728;&#x4E0D;&#x9700;&#x8981;&#x8861;&#x91CF;&#x6027;&#x80FD;&#x4E4B;&#x65F6;&#x505C;&#x6B62;&#x8BA1;&#x6570;&#x5668;&#x4EE5;&#x8FBE;&#x5230;&#x7701;&#x7535;&#x7684;&#x4F5C;&#x7528;&#x3002;&#x8BF7;&#x53C2;&#x89C1;7.5.1&#x8282;&#x4E86;&#x89E3;&#x66F4;&#x591A;mcountinhibit&#x5BC4;&#x5B58;&#x5668;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x5728;&#x8C03;&#x8BD5;&#x6A21;&#x5F0F;&#x4E0B;&#x65F6;&#xFF0C;&#x6B64;&#x8BA1;&#x6570;&#x5668;&#x5E76;&#x4E0D;&#x4F1A;&#x8BA1;&#x6570;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x6B63;&#x5E38;&#x529F;&#x80FD;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x8BA1;&#x6570;&#x5668;&#x624D;&#x4F1A;&#x8FDB;&#x884C;&#x8BA1;&#x6570;&#x3002;</p>
+<h3 id="7425-minstret&#x548C;minstreth"><strong>7.4.25. minstret&#x548C;minstreth</strong><div id="7-4-25"></div></h3>
+<p>RISC-V&#x67B6;&#x6784;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;64&#x4F4D;&#x5BBD;&#x7684;&#x6307;&#x4EE4;&#x5B8C;&#x6210;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x53CD;&#x6620;&#x5904;&#x7406;&#x5668;&#x6210;&#x529F;&#x6267;&#x884C;&#x4E86;&#x591A;&#x5C11;&#x6761;&#x6307;&#x4EE4;&#x3002;&#x53EA;&#x8981;&#x5904;&#x7406;&#x5668;&#x6BCF;&#x6210;&#x529F;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#xFF0C;&#x6B64;&#x8BA1;&#x6570;&#x5668;&#x4FBF;&#x4F1A;&#x81EA;&#x589E;&#x8BA1;&#x6570;&#x3002;</p>
+<p>minstret&#x5BC4;&#x5B58;&#x5668;&#x53CD;&#x6620;&#x4E86;&#x8BE5;&#x8BA1;&#x6570;&#x5668;&#x4F4E;32&#x4F4D;&#x7684;&#x503C;&#xFF0C;minstreth&#x5BC4;&#x5B58;&#x5668;&#x53CD;&#x6620;&#x4E86;&#x8BE5;&#x8BA1;&#x6570;&#x5668;&#x9AD8;32&#x4F4D;&#x7684;&#x503C;&#x3002;</p>
+<p>minstret&#x548C;minstreth&#x5BC4;&#x5B58;&#x5668;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x8861;&#x91CF;&#x5904;&#x7406;&#x5668;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x4E14;&#x5177;&#x5907;&#x53EF;&#x8BFB;&#x53EF;&#x5199;&#x5C5E;&#x6027;&#xFF0C;&#x56E0;&#x6B64;&#x8F6F;&#x4EF6;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;CSR&#x6307;&#x4EE4;&#x6539;&#x5199;minstret&#x548C;minstreth&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x7684;&#x503C;&#x3002;</p>
+<p>&#x7531;&#x4E8E;&#x8003;&#x8651;&#x5230;&#x6B64;&#x8BA1;&#x6570;&#x5668;&#x8BA1;&#x6570;&#x4F1A;&#x6D88;&#x8017;&#x67D0;&#x4E9B;&#x52A8;&#x6001;&#x529F;&#x8017;&#xFF0C;&#x56E0;&#x6B64;&#x5728;Bumblebee&#x5185;&#x6838;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x5728;&#x81EA;&#x5B9A;&#x4E49;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;mcountinhibit&#x4E2D;&#x989D;&#x5916;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x4F4D;&#x63A7;&#x5236;&#x57DF;&#xFF0C;&#x8F6F;&#x4EF6;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x6B64;&#x63A7;&#x5236;&#x57DF;&#x5C06;minstret&#x548C;minstreth&#x5BF9;&#x5E94;&#x7684;&#x8BA1;&#x6570;&#x5668;&#x505C;&#x6B62;&#x8BA1;&#x6570;&#xFF0C;&#x4ECE;&#x800C;&#x5728;&#x4E0D;&#x9700;&#x8981;&#x8861;&#x91CF;&#x6027;&#x80FD;&#x4E4B;&#x65F6;&#x505C;&#x6B62;&#x8BA1;&#x6570;&#x5668;&#x4EE5;&#x8FBE;&#x5230;&#x7701;&#x7535;&#x7684;&#x4F5C;&#x7528;&#x3002;&#x8BF7;&#x53C2;&#x89C1;7.5.1&#x8282;&#x4E86;&#x89E3;&#x66F4;&#x591A;mcountinhibit&#x5BC4;&#x5B58;&#x5668;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x5728;&#x8C03;&#x8BD5;&#x6A21;&#x5F0F;&#x4E0B;&#x65F6;&#xFF0C;&#x6B64;&#x8BA1;&#x6570;&#x5668;&#x5E76;&#x4E0D;&#x4F1A;&#x8BA1;&#x6570;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x6B63;&#x5E38;&#x529F;&#x80FD;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x8BA1;&#x6570;&#x5668;&#x624D;&#x4F1A;&#x8FDB;&#x884C;&#x8BA1;&#x6570;&#x3002;</p>
+<h3 id="7426-cycle&#x548C;cycleh"><strong>7.4.26. cycle&#x548C;cycleh</strong><div id="7-4-26"></div></h3>
+<p>cycle&#x548C;cycleh&#x5206;&#x522B;&#x662F;mcycle&#x548C;mcycleh&#x7684;&#x53EA;&#x8BFB;&#x526F;&#x672C;&#x3002;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#x7531;CSR&#x5BC4;&#x5B58;&#x5668;mcounteren&#x7684;CY&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;7.4.29&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</p>
+<h3 id="7427-instret&#x548C;instreth"><strong>7.4.27. instret&#x548C;instreth</strong><div id="7-4-27"></div></h3>
+<p>instret&#x548C;instreth&#x5206;&#x522B;&#x662F;minstret&#x548C;minstreth&#x7684;&#x53EA;&#x8BFB;&#x526F;&#x672C;&#x3002;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#x7531;CSR&#x5BC4;&#x5B58;&#x5668;mcounteren&#x7684;IR&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;7.4.29&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</p>
+<h3 id="7428-time&#x548C;timeh"><strong>7.4.28. time&#x548C;timeh</strong><div id="7-4-28"></div></h3>
+<p>time&#x548C;timeh&#x5206;&#x522B;&#x662F;mtime&#x548C;mtimeh&#x7684;&#x53EA;&#x8BFB;&#x526F;&#x672C;&#x3002;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#x7531;CSR&#x5BC4;&#x5B58;&#x5668;mcounteren&#x7684;TM&#x6BD4;&#x7279;&#x57DF;&#x6765;&#x63A7;&#x5236;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;7.4.29&#x8282;&#x4E86;&#x89E3;&#x5176;&#x8BE6;&#x60C5;&#x3002;</p>
+<h3 id="7429-mcounteren"><strong>7.4.29. mcounteren</strong><div id="7-4-29"></div></h3>
+<p>&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x53EA;&#x6709;&#x5728;&#x652F;&#x6301;User Mode&#x7684;&#x914D;&#x7F6E;&#x4E0B;&#x624D;&#x4F1A;&#x5B58;&#x5728;&#x3002;mcounteren&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-8&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                <strong><center>&#x8868; 7-8 mcounteren&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CY</strong></td>
+<td>0</td>
+<td>&#x6B64;&#x4F4D;&#x63A7;&#x5236;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x80FD;&#x591F;&#x8BBF;&#x95EE;cycle&#x548C;cycleh&#x5BC4;&#x5B58;&#x5668;&#xFF1A;n &#x5982;&#x679C;&#x6B64;&#x4F4D;&#x4E3A;1&#xFF0C;&#x5219;&#x5728;User Mode&#x4E0B;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x8BBF;&#x95EE;cycle&#x548C;cycleh&#x3002;n &#x5982;&#x679C;&#x6B64;&#x4E3A;&#x4E3A;0&#xFF0C;&#x5219;&#x5728;User Mode&#x4E0B;&#x8BBF;&#x95EE;cycle&#x548C;cycleh&#x4F1A;&#x89E6;&#x53D1;illegal instruction exception&#x3002;&#x6B64;&#x4F4D;&#x590D;&#x4F4D;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;0</td>
+</tr>
+<tr>
+<td><strong>TM</strong></td>
+<td>1</td>
+<td>&#x6B64;&#x4F4D;&#x63A7;&#x5236;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x80FD;&#x591F;&#x8BBF;&#x95EE;time&#x548C;timeh&#x5BC4;&#x5B58;&#x5668;&#xFF1A;n &#x5982;&#x679C;&#x6B64;&#x4F4D;&#x4E3A;1&#xFF0C;&#x5219;&#x5728;User Mode&#x4E0B;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x8BBF;&#x95EE;time&#x548C;timeh&#x3002;n &#x5982;&#x679C;&#x6B64;&#x4E3A;&#x4E3A;0&#xFF0C;&#x5219;&#x5728;User Mode&#x4E0B;&#x8BBF;&#x95EE;time&#x548C;timeh&#x4F1A;&#x89E6;&#x53D1;illegal instruction exception&#x3002;&#x6B64;&#x4F4D;&#x590D;&#x4F4D;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;0</td>
+</tr>
+<tr>
+<td><strong>IR</strong></td>
+<td>2</td>
+<td>&#x6B64;&#x4F4D;&#x63A7;&#x5236;&#x5728;User Mode&#x4E0B;&#x662F;&#x5426;&#x80FD;&#x591F;&#x8BBF;&#x95EE;instret&#x548C;instreth&#x5BC4;&#x5B58;&#x5668;&#xFF1A;n &#x5982;&#x679C;&#x6B64;&#x4F4D;&#x4E3A;1&#xFF0C;&#x5219;&#x5728;User Mode&#x4E0B;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x8BBF;&#x95EE;instret&#x548C;instreth&#x3002;n &#x5982;&#x679C;&#x6B64;&#x4E3A;&#x4E3A;0&#xFF0C;&#x5219;&#x5728;User Mode&#x4E0B;&#x8BBF;&#x95EE;instret&#x548C;instreth&#x4F1A;&#x89E6;&#x53D1;illegal instruction exception&#x3002;&#x6B64;&#x4F4D;&#x590D;&#x4F4D;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;0</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>3~31</td>
+<td>&#x5176;&#x4ED6;&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="75-bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;&#x7684;csr"><strong>7.5. Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;&#x7684;CSR</strong><div id="7-5"></div></h2>
+<p>&#x672C;&#x8282;&#x4ECB;&#x7ECD;Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;&#x7684;CSR&#x5BC4;&#x5B58;&#x5668;&#x3002;</p>
+<h3 id="751-mcountinhibit"><strong>7.5.1. mcountinhibit</strong><div id="7-5-1"></div></h3>
+<p>mcountinhibit&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x63A7;&#x5236;mcycle&#x548C;minstret&#x7684;&#x8BA1;&#x6570;&#xFF0C;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-9&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                   <strong><center>&#x8868; 7-9 mcountihibit&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>31:3</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>IR</strong></td>
+<td>2</td>
+<td>IR&#x4E3A;1&#x65F6;minstret&#x7684;&#x8BA1;&#x6570;&#x88AB;&#x5173;&#x95ED;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>1</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>CY</strong></td>
+<td>0</td>
+<td>CY&#x4E3A;1&#x65F6;mcycle&#x7684;&#x8BA1;&#x6570;&#x88AB;&#x5173;&#x95ED;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="752-mnvec"><strong>7.5.2. mnvec</strong><div id="7-5-2"></div></h3>
+<p>mnvec&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x914D;&#x7F6E;NMI&#x7684;&#x5165;&#x53E3;&#x5730;&#x5740;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x7406;&#x89E3;&#x6B64;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x8BF7;&#x5148;&#x53C2;&#x89C1;&#x7B2C;4&#x7AE0;&#x7CFB;&#x7EDF;&#x5730;&#x4E86;&#x89E3;NMI&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x5728;&#x5904;&#x7406;&#x5668;&#x7684;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E00;&#x65E6;&#x9047;&#x5230;NMI&#x53D1;&#x751F;&#xFF0C;&#x5219;&#x7EC8;&#x6B62;&#x5F53;&#x524D;&#x7684;&#x7A0B;&#x5E8F;&#x6D41;&#xFF0C;&#x5904;&#x7406;&#x5668;&#x88AB;&#x5F3A;&#x884C;&#x8DF3;&#x8F6C;&#x5230;&#x4E00;&#x4E2A;&#x65B0;&#x7684;PC&#x5730;&#x5740;&#xFF0C;Bumblebee&#x5185;&#x6838;&#x8FDB;&#x5165;NMI&#x540E;&#x8DF3;&#x5165;&#x7684;PC&#x5730;&#x5740;&#x5373;&#x7531;mnvec&#x5BC4;&#x5B58;&#x5668;&#x6307;&#x5B9A;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;mnvec&#x7684;&#x503C;&#x7531;mmisc_ctl&#x63A7;&#x5236;&#xFF0C;&#x66F4;&#x591A;&#x7EC6;&#x8282;&#x8BF7;&#x53C2;&#x8003;7.5.4&#x8282;&#x3002;</p>
+<h3 id="753-msubm"><strong>7.5.3. msubm</strong><div id="7-5-3"></div></h3>
+<p>Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;msubm&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x8FDB;&#x5165;Trap&#x524D;&#x540E;&#x7684;Trap&#x7C7B;&#x578B;&#x3002;</p>
+<p>msubm&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-10&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                      <strong><center>&#x8868; 7-10 msubm&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>31:10</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>PTYP</strong></td>
+<td>9:8</td>
+<td>&#x4FDD;&#x5B58;&#x8FDB;&#x5165;Trap&#x4E4B;&#x524D;&#x7684;Trap &#x7C7B;&#x578B;&#xFF1A;n 0&#xFF1A;&#x975E;Trap&#x72B6;&#x6001;n 1&#xFF1A;&#x4E2D;&#x65AD;n 2&#xFF1A;&#x5F02;&#x5E38;n 3&#xFF1A;NMI</td>
+</tr>
+<tr>
+<td><strong>TYP</strong></td>
+<td>7:6</td>
+<td>&#x6307;&#x793A;Core&#x5F53;&#x524D;&#x7684;Trap&#x7C7B;&#x578B;:n 0&#xFF1A;&#x975E;Trap&#x72B6;&#x6001;n 1&#xFF1A;&#x4E2D;&#x65AD;n 2&#xFF1A;&#x5F02;&#x5E38;n 3&#xFF1A;NMI</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>5:0</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="754-mmiscctl"><strong>7.5.4. mmisc_ctl</strong><div id="7-5-4"></div></h3>
+<p>Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;mmisc_ctl&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x63A7;&#x5236;mnvec&#x548C;NMI&#x7684;mcause&#x503C;&#x3002;</p>
+<p>mmisc_ctl&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-11&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                 <strong><center>&#x8868; 7-11 mmisc_ctl&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>31:10</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>NMI_**</strong>CAUSE_FFF**</td>
+<td>9</td>
+<td>&#x63A7;&#x5236;mnvec&#x53CA;NMI&#x7684;mcause.EXCCODE&#xFF1A;n 0&#xFF1A;mnvec&#x7684;&#x503C;&#x7B49;&#x4E8E;&#x5904;&#x7406;&#x5668;reset&#x540E;&#x7684;PC&#xFF0C; NMI&#x7684;mcause.EXCCODE&#x4E3A;0x1n 1&#xFF1A;mnvec&#x7684;&#x503C;&#x4E0E;mtvec&#x4E00;&#x81F4;&#xFF0C;NMI&#x7684;mcause.EXCCODE&#x4E3A;0xfff</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>8:0</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="755-msavestatus"><strong>7.5.5. msavestatus</strong><div id="7-5-5"></div></h3>
+<p>msavestatus&#x7528;&#x4E8E;&#x5B58;&#x50A8;mstatus&#x548C;msubm&#x7684;&#x503C;&#xFF0C;&#x4EE5;&#x4FDD;&#x8BC1;mstatus&#x548C;msubm&#x7684;&#x5404;&#x4E2A;&#x57DF;&#x7684;&#x72B6;&#x6001;&#x4E0D;&#x4F1A;&#x88AB;NMI&#x6216;&#x8005;&#x5F02;&#x5E38;&#x51B2;&#x5237;&#x6389;&#x3002;msavestatus&#x6709;&#x4E24;&#x7EA7;&#x5806;&#x6808;&#xFF0C;&#x6700;&#x591A;&#x53EF;&#x652F;&#x6301;3&#x7EA7;&#x5F02;&#x5E38;/NMI&#x72B6;&#x6001;&#x4FDD;&#x5B58;&#x3002;&#x66F4;&#x591A;&#x4E24;&#x7EA7;NMI/&#x5F02;&#x5E38;&#x72B6;&#x6001;&#x5806;&#x6808;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;4.6&#x8282;&#x3002;</p>
+<p>msavestatus&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x5982;&#x8868; 7-12&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                          <strong><center>&#x8868; 7-12 msavestatus&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>31:16</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>PTYP2</strong></td>
+<td>15:14</td>
+<td>&#x7B2C;&#x4E8C;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;Trap&#x7C7B;&#x578B;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>13:11</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>MPP2</strong></td>
+<td>10:9</td>
+<td>&#x7B2C;&#x4E8C;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;Privilege mode</td>
+</tr>
+<tr>
+<td><strong>MPIE2</strong></td>
+<td>8</td>
+<td>&#x7B2C;&#x4E8C;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;&#x4E2D;&#x65AD;&#x4F7F;&#x80FD;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td><strong>PTYP1</strong></td>
+<td>7:6</td>
+<td>&#x7B2C;&#x4E00;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;Trap&#x7C7B;&#x578B;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>5:3</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>MPP1</strong></td>
+<td>2:1</td>
+<td>&#x7B2C;&#x4E00;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;Privilege mode</td>
+</tr>
+<tr>
+<td><strong>MPIE1</strong></td>
+<td>0</td>
+<td>&#x7B2C;&#x4E00;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;&#x4E2D;&#x65AD;&#x4F7F;&#x80FD;&#x72B6;&#x6001;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="756-msaveepc1&#x548C;msaveepc2"><strong>7.5.6. msaveepc1&#x548C;msaveepc2</strong><div id="7-5-6"></div></h3>
+<p>msaveepc1&#x548C;msaveepc2&#x5206;&#x522B;&#x4F5C;&#x4E3A;&#x4E00;&#x7EA7;NMI/&#x5F02;&#x5E38;&#x72B6;&#x6001;&#x5806;&#x6808;&#x548C;&#x4E8C;&#x7EA7;NMI/&#x5F02;&#x5E38;&#x72B6;&#x6001;&#x5806;&#x6808;&#xFF0C;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x7B2C;&#x4E00;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;PC&#xFF0C;&#x4EE5;&#x53CA;&#x7B2C;&#x4E8C;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;PC&#x3002;</p>
+<ul>
+<li>msaveepc2 &lt;= msaveepc1 &lt;= mepc &lt;= interrupted PC &lt;= NMI/exception PC</li>
+</ul>
+<p>&#x5F53;&#x6267;&#x884C;mret&#x6307;&#x4EE4;&#xFF0C;&#x540C;&#x65F6;mcause.INTERRUPT&#x4E3A;0&#xFF08;&#x4F8B;&#x5982;NMI&#xFF0C;&#x6216;&#x8005;&#x5F02;&#x5E38;&#xFF09;&#xFF0C;msaveepc1&#x548C;msaveepc2&#x5206;&#x522B;&#x901A;&#x8FC7;&#x4E00;&#x7EA7;&#x548C;&#x4E24;&#x7EA7;NMI/&#x5F02;&#x5E38;&#x72B6;&#x6001;&#x5806;&#x6808;&#x6765;&#x6062;&#x590D;&#x5904;&#x7406;&#x5668;&#x7684;PC&#x3002;</p>
+<ul>
+<li>msaveepc2 =&gt; msaveepc1 =&gt; mepc =&gt; PC</li>
+</ul>
+<h3 id="757-msavecause1&#x548C;msavecause2"><strong>7.5.7. msavecause1&#x548C;msavecause2</strong><div id="7-5-7"></div></h3>
+<p>msavecause1&#x548C;msavecause2&#x5206;&#x522B;&#x4F5C;&#x4E3A;&#x4E00;&#x7EA7;NMI/&#x5F02;&#x5E38;&#x72B6;&#x6001;&#x5806;&#x6808;&#x548C;&#x4E8C;&#x7EA7;NMI/&#x5F02;&#x5E38;&#x72B6;&#x6001;&#x5806;&#x6808;&#xFF0C;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x7B2C;&#x4E00;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;mcause&#xFF0C;&#x4EE5;&#x53CA;&#x7B2C;&#x4E8C;&#x7EA7;&#x5D4C;&#x5957;NMI/&#x5F02;&#x5E38;&#x53D1;&#x751F;&#x524D;&#x7684;mcause&#x3002;</p>
+<ul>
+<li>msavecause2 &lt;= msavecause1 &lt;= mcause &lt;= NMI/exception cause</li>
+</ul>
+<p>&#x5F53;&#x6267;&#x884C;mret&#x6307;&#x4EE4;&#xFF0C;&#x540C;&#x65F6;mcause.INTERRUPT&#x4E3A;0&#xFF08;&#x4F8B;&#x5982;NMI&#xFF0C;&#x6216;&#x8005;&#x5F02;&#x5E38;&#xFF09;&#xFF0C;msavecause1&#x548C;msavecause2&#x5206;&#x522B;&#x901A;&#x8FC7;&#x4E00;&#x7EA7;&#x548C;&#x4E24;&#x7EA7;NMI/&#x5F02;&#x5E38;&#x72B6;&#x6001;&#x5806;&#x6808;&#x6765;&#x6062;&#x590D;mcause&#x72B6;&#x6001;&#x3002;</p>
+<ul>
+<li>msavecause2 =&gt; msavecause1 =&gt; mcause</li>
+</ul>
+<h3 id="758-pushmsubm"><strong>7.5.8. pushmsubm</strong><div id="7-5-8"></div></h3>
+<p>Bumblebee&#x5185;&#x6838;&#x5B9A;&#x4E49;&#x4E86;&#x901A;&#x8FC7;pushmsubm&#x5BC4;&#x5B58;&#x5668;csrrwi&#x64CD;&#x4F5C;&#x5B9E;&#x73B0;&#x7684; CSR&#x6307;&#x4EE4;&#xFF0C;&#x5B58;&#x50A8;msubm&#x7684;&#x503C;&#x5230;&#x5806;&#x6808;&#x6307;&#x9488;&#x4F5C;&#x4E3A;&#x57FA;&#x5730;&#x5740;&#x7684;memory&#x7A7A;&#x95F4;.</p>
+<p>&#x4EE5;&#x5982;&#x4E0B;&#x6307;&#x4EE4;&#x4E3A;&#x4F8B;&#x4ECB;&#x7ECD;&#x6B64;CSR&#x6307;&#x4EE4;&#xFF1A;</p>
+<pre><code>csrrwi x0&#xFF0C; PUSHMSUBM&#xFF0C; 1
+</code></pre><p>&#x8BE5;&#x6307;&#x4EE4;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x5C06;msubm&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x5B58;&#x5230;SP&#xFF08;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF09;+1*4&#x7684;&#x5730;&#x5740;&#x3002;</p>
+<h3 id="759-mtvt2"><strong>7.5.9. mtvt2</strong><div id="7-5-9"></div></h3>
+<p>mtvt2&#x7528;&#x4E8E;&#x6307;&#x5B9A;ECLIC&#x975E;&#x5411;&#x91CF;&#x6A21;&#x5F0F;&#x7684;&#x4E2D;&#x65AD;common-code&#x5165;&#x53E3;&#x5730;&#x5740;&#x3002;</p>
+<p>mtvt2&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-13&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                    <strong><center>&#x8868; 7-13 mtvt2&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CMMON-CODE-ENTRY</strong></td>
+<td>31:2</td>
+<td>&#x5728;mtvt2.MTVT2EN=1&#x65F6;&#xFF0C;&#x6B64;&#x57DF;&#x51B3;&#x5B9A;ECLIC&#x975E;&#x5411;&#x91CF;&#x6A21;&#x5F0F;&#x4E2D;&#x65AD;common-code&#x5165;&#x53E3;&#x5730;&#x5740;&#x3002;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>1</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+<tr>
+<td><strong>MTVT2EN</strong></td>
+<td>0</td>
+<td>mtvt2&#x4F7F;&#x80FD;&#x4F4D;&#xFF1A;                                                                                                              0&#xFF1A;ECLIC&#x975E;&#x5411;&#x91CF;&#x6A21;&#x5F0F;&#x4E2D;&#x65AD;common-code&#x5165;&#x53E3;&#x5730;&#x5740;&#x7531;mtvec&#x51B3;&#x5B9A;                                         1:  ECLIC&#x975E;&#x5411;&#x91CF;&#x6A21;&#x5F0F;&#x4E2D;&#x65AD;common-code&#x5165;&#x53E3;&#x5730;&#x5740;&#x7531;mtvt2.COMMON-CODE-ENTRY&#x51B3;&#x5B9A;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7510-jalmnxti"><strong>7.5.10. jalmnxti</strong><div id="7-5-10"></div></h3>
+<p>Bumblebee&#x5185;&#x6838;&#x5B9A;&#x4E49;&#x4E86;jalmnxti&#x5BC4;&#x5B58;&#x5668;&#x7528;&#x4E8E;&#x51CF;&#x5C11;&#x4E2D;&#x65AD;&#x5EF6;&#x8FDF;&#xFF0C;&#x52A0;&#x901F;&#x4E2D;&#x65AD;&#x54AC;&#x5C3E;&#x3002;</p>
+<p>jalmnxti&#x9664;&#x4E86;&#x5305;&#x542B;mnxti&#x7684;&#x5F00;&#x542F;&#x4E2D;&#x65AD;&#x4F7F;&#x80FD;&#xFF0C;&#x5904;&#x7406;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#xFF0C;&#x8FD4;&#x56DE;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x7684;&#x5165;&#x53E3;&#x5730;&#x5740;&#x7B49;&#x529F;&#x80FD;&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x8DF3;&#x8F6C;&#x81F3;&#x4E2D;&#x65AD;handler&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x7F29;&#x77ED;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7684;&#x6307;&#x4EE4;&#x4E2A;&#x6570;&#xFF0C;&#x8FBE;&#x5230;&#x51CF;&#x5C11;&#x4E2D;&#x65AD;&#x5EF6;&#x8FDF;&#xFF0C;&#x52A0;&#x901F;&#x4E2D;&#x65AD;&#x54AC;&#x5C3E;&#x7684;&#x76EE;&#x7684;&#x3002;&#x6709;&#x5173;jalmnxti&#x7684;&#x66F4;&#x591A;&#x7EC6;&#x8282;&#x8BF7;&#x53C2;&#x89C1;5.13.1.3&#x8282;&#x3002;</p>
+<h3 id="7511-pushmcause"><strong>7.5.11. pushmcause</strong><div id="7-5-11"></div></h3>
+<p>Bumblebee&#x5185;&#x6838;&#x5B9A;&#x4E49;&#x4E86;&#x901A;&#x8FC7;pushmcause&#x5BC4;&#x5B58;&#x5668;csrrwi&#x64CD;&#x4F5C;&#x5B9E;&#x73B0;&#x7684; CSR&#x6307;&#x4EE4;&#xFF0C;&#x5B58;&#x50A8;mcause&#x7684;&#x503C;&#x5230;&#x5806;&#x6808;&#x6307;&#x9488;&#x4F5C;&#x4E3A;&#x57FA;&#x5730;&#x5740;&#x7684;memory&#x7A7A;&#x95F4;.</p>
+<p>&#x4EE5;&#x5982;&#x4E0B;&#x6307;&#x4EE4;&#x4E3A;&#x4F8B;&#x4ECB;&#x7ECD;&#x6B64;CSR&#x6307;&#x4EE4;&#xFF1A;</p>
+<pre><code>csrrwi x0&#xFF0C; PUSHMCAUSE&#xFF0C; 1
+</code></pre><p>&#x8BE5;&#x6307;&#x4EE4;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x5C06;mcause&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x5B58;&#x5230;SP&#xFF08;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF09;+1*4&#x7684;&#x5730;&#x5740;&#x3002;</p>
+<h3 id="7512-pushmepc"><strong>7.5.12. pushmepc</strong><div id="7-5-12"></div></h3>
+<p>Bumblebee&#x5185;&#x6838;&#x5B9A;&#x4E49;&#x4E86;&#x901A;&#x8FC7;pushmepc&#x5BC4;&#x5B58;&#x5668;csrrwi&#x64CD;&#x4F5C;&#x5B9E;&#x73B0;&#x7684; CSR&#x6307;&#x4EE4;&#xFF0C;&#x5B58;&#x50A8;mepc&#x7684;&#x503C;&#x5230;&#x5806;&#x6808;&#x6307;&#x9488;&#x4F5C;&#x4E3A;&#x57FA;&#x5730;&#x5740;&#x7684;memory&#x7A7A;&#x95F4;.</p>
+<p>&#x4EE5;&#x5982;&#x4E0B;&#x6307;&#x4EE4;&#x4E3A;&#x4F8B;&#x4ECB;&#x7ECD;&#x6B64;CSR&#x6307;&#x4EE4;&#xFF1A;</p>
+<pre><code>csrrwi x0&#xFF0C; PUSHMPEC&#xFF0C; 1
+</code></pre><p>&#x8BE5;&#x6307;&#x4EE4;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x5C06;mepc&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x5B58;&#x5230;SP&#xFF08;&#x5806;&#x6808;&#x6307;&#x9488;&#xFF09;+1*4&#x7684;&#x5730;&#x5740;&#x3002;</p>
+<h3 id="7513-sleepvalue"><strong>7.5.13. sleepvalue</strong><div id="7-5-13"></div></h3>
+<p>Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;CSR&#x5BC4;&#x5B58;&#x5668;sleepvalue&#x7528;&#x4E8E;&#x63A7;&#x5236;&#x4E0D;&#x540C;&#x7684;&#x4F11;&#x7720;&#x6A21;&#x5F0F;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;8.1&#x8282;&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x8BE6;&#x60C5;&#x3002;sleepvalue&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-14&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                   <strong><center>&#x8868; 7-14 sleepvalue&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SLEEPVALUE</strong></td>
+<td>0</td>
+<td>&#x63A7;&#x5236;WFI&#x7684;&#x4F11;&#x7720;&#x6A21;&#x5F0F;                                                                                                            0&#xFF1A;&#x6D45;&#x5EA6;&#x4F11;&#x7720;&#x6A21;&#x5F0F;&#xFF08;&#x6267;&#x884C;WFI&#x540E;&#xFF0C;&#x5904;&#x7406;&#x5668;&#x5185;&#x6838;&#x4E3B;&#x5DE5;&#x4F5C;&#x65F6;&#x949F;core_clk&#x88AB;&#x5173;&#x95ED;&#xFF09;         1&#xFF1A;&#x6DF1;&#x5EA6;&#x4F11;&#x7720;&#x6A21;&#x5F0F;&#xFF08;&#x6267;&#x884C;WFI&#x540E;&#xFF0C;&#x5904;&#x7406;&#x5668;&#x5185;&#x6838;&#x4E3B;&#x5DE5;&#x4F5C;&#x65F6;&#x949F;core_clk&#x548C;&#x5904;&#x7406;&#x5668;&#x5185;&#x6838;&#x7684;&#x5E38;&#x5F00;&#x65F6;&#x949F;core_aon_clk&#x90FD;&#x88AB;&#x5173;&#x95ED;&#xFF09;&#x6B64;&#x4F4D;&#x590D;&#x4F4D;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;0</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>31:1</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7514-txevt"><strong>7.5.14. txevt</strong><div id="7-5-14"></div></h3>
+<p>Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;CSR&#x5BC4;&#x5B58;&#x5668;txevt&#xFF0C;&#x7528;&#x4E8E;&#x5BF9;&#x5916;&#x53D1;&#x9001;Event&#x3002;</p>
+<p>txevt&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-15&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                   <strong><center>&#x8868; 7-15 txevt&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TXEVT</strong></td>
+<td>0</td>
+<td>&#x63A7;&#x5236;&#x53D1;&#x9001;Event&#xFF1A;                                                                                                                       &#x5982;&#x679C;&#x5411;&#x6B64;&#x4F4D;&#x5199;1&#xFF0C;&#x5219;&#x4F1A;&#x89E6;&#x53D1;Bumblebee&#x5185;&#x6838;&#x7684;&#x8F93;&#x51FA;&#x4FE1;&#x53F7;tx_evt&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x5355;&#x5468;&#x671F;&#x8109;&#x51B2;&#x4FE1;&#x53F7;&#xFF0C;&#x4F5C;&#x4E3A;&#x5BF9;&#x5916;&#x7684;Event&#x4FE1;&#x53F7;&#x3002;                                                                                                   &#x8BE5;&#x6BD4;&#x7279;&#x4F4D;&#x4E3A;&#x81EA;&#x6E05;&#x6BD4;&#x7279;&#x4F4D;&#xFF0C;&#x5373;&#xFF0C;&#x5411;&#x6B64;&#x4F4D;&#x5199;&#x5165;1&#x4E4B;&#x540E;&#xFF0C;&#x4E0B;&#x4E00;&#x4E2A;&#x5468;&#x671F;&#x5176;&#x88AB;&#x81EA;&#x6E05;&#x4E3A;0&#x3002;                           &#x5411;&#x6B64;&#x4F4D;&#x5199;&#x5165;0&#x5219;&#x65E0;&#x4EFB;&#x4F55;&#x53CD;&#x5E94;&#x548C;&#x64CD;&#x4F5C;&#x3002;&#x6B64;&#x4F4D;&#x590D;&#x4F4D;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;0</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>31:1</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7515-wfe"><strong>7.5.15. wfe</strong><div id="7-5-15"></div></h3>
+<p>Bumblebee&#x5185;&#x6838;&#x81EA;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;CSR&#x5BC4;&#x5B58;&#x5668;wfe&#xFF0C;&#x7528;&#x4E8E;&#x63A7;&#x5236;WFI&#x6307;&#x4EE4;&#x7684;&#x5524;&#x9192;&#x6761;&#x4EF6;&#x662F;&#x4F7F;&#x7528;&#x4E2D;&#x65AD;&#x8FD8;&#x662F;&#x4F7F;&#x7528;Event&#x3002;&#x8BF7;&#x53C2;&#x89C1;&#x7B2C;8.2.3&#x8282;&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x8BE6;&#x60C5;&#x3002;</p>
+<p>wfe&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x5404;&#x63A7;&#x5236;&#x4F4D;&#x57DF;&#x5982;&#x8868; 7-16&#x6240;&#x793A;&#x3002;</p>
+<p>&#x200B;                                                        <strong><center>&#x8868; 7-16 wfe&#x5BC4;&#x5B58;&#x5668;&#x5404;&#x63A7;&#x5236;&#x4F4D;</center></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>&#x57DF;</strong></th>
+<th><strong>&#x4F4D;</strong></th>
+<th><strong>&#x63CF;&#x8FF0;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>WFE</strong></td>
+<td>0</td>
+<td>&#x63A7;&#x5236;WFI&#x6307;&#x4EE4;&#x7684;&#x5524;&#x9192;&#x6761;&#x4EF6;&#x662F;&#x4F7F;&#x7528;&#x4E2D;&#x65AD;&#x8FD8;&#x662F;&#x4F7F;&#x7528;Event&#x3002;                                                          0: &#x5904;&#x7406;&#x5668;&#x5185;&#x6838;&#x8FDB;&#x5165;&#x4F11;&#x7720;&#x6A21;&#x5F0F;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x88AB;&#x4E2D;&#x65AD;&#x548C;NMI&#x5524;&#x9192;&#x3002;                                                  1&#xFF1A;&#x5904;&#x7406;&#x5668;&#x5185;&#x6838;&#x8FDB;&#x5165;&#x4F11;&#x7720;&#x6A21;&#x5F0F;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x88AB;Event&#x548C;NMI&#x5524;&#x9192;&#x3002;&#x6B64;&#x4F4D;&#x590D;&#x4F4D;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;0&#x3002;</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>31:1</td>
+<td>&#x672A;&#x4F7F;&#x7528;&#x7684;&#x57DF;&#x4E3A;&#x5E38;&#x6570;0</td>
+</tr>
+</tbody>
+</table>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; nuclei.com 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x65F6;&#x95F4;&#xFF1A;
+2019-08-21 17:25:56
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter6/6.html#6-2-13" class="navigation navigation-prev " aria-label="Previous page: 6.2.13.    ECLIC中断的响应、嵌套、咬尾机制">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="7.html#7-1" class="navigation navigation-next " aria-label="Next page: 7.1.    Bumblebee内核CSR寄存器概述">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.    Bumblebee内核CSR寄存器介绍","level":"1.8","depth":1,"next":{"title":"7.1.    Bumblebee内核CSR寄存器概述","level":"1.8.1","depth":2,"anchor":"#7-1","path":"chapter7/7.md","ref":"chapter7/7.md#7-1","articles":[]},"previous":{"title":"6.2.13.    ECLIC中断的响应、嵌套、咬尾机制","level":"1.7.2.13","depth":3,"anchor":"#6-2-13","path":"chapter6/6.md","ref":"chapter6/6.md#6-2-13","articles":[]},"dir":"ltr"},"config":{"plugins":["disqus","advanced-emoji","expandable-chapters-small","splitter","back-to-top-button","chapter-fold","sharing-plus","tbfed-pagefooter"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy nuclei.com 2019","modify_label":"该文件上传时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"gitbook tutorial","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":"*","description":"nuclei book"},"file":{"path":"chapter7/7.md","mtime":"2019-08-21T09:25:56.155Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-27T03:30:06.551Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
