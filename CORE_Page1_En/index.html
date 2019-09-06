@@ -2691,7 +2691,7 @@
 <ul>
 <li><p>The privilege mode of the core is Machine Mode after a reset by default.</p>
 </li>
-<li><p>Machine Mode has the accessibility to all CSRs&#x3002;</p>
+<li><p>Machine Mode has the accessibility to all CSRs.</p>
 </li>
 </ul>
 <h3 id="222-user-mode"><strong>2.2.2. User Mode</strong><div id="2-2-2"></div></h3>
@@ -2791,14 +2791,22 @@
 <h3 id="227-interrupts-exceptions-and-nmis-preemption"><strong>2.2.7. Interrupts, Exceptions and NMIs Preemption</strong><div id="2-2-7"></div></h3>
 <p>   An interrupt can preempt another interrupt, and an exception can preempt another exception, but NMI cannot preempt another NMI:</p>
 <ul>
-<li>If the core is in NMI handling mode, and it encounters another NMI, then the new NMI will be masked. Therefore, NMI cannot preempt another NMI. Please see Section 4.6 for more details.&#x3002;</li>
-<li>If the core is in exception handling mode, and it encounters another exception, then an exception preemption will happen. Please see Section 3.5 for more details.</li>
-<li>If the core is in interrupt handling mode, and it encounters another interrupt, then an interrupt preemption will happen. Please see Section 5.11 for more details.</li>
-<li>Preemption also happens among interrupts, exceptions and NMIs as the followings:</li>
-<li>If the core is in interrupt handling mode, and it encounters an exception, then the core will enter exception handling mode.</li>
-<li>If the core is in NMI handling mode, and it encounters an exception, then the core will enter exception handling mode.</li>
-<li>If the core is in interrupt handling mode, and it encounters an NMI, then the core will enter NMI handling mode.</li>
-<li>If the core is in exception handling mode, and it encounters an NMI, then the core will enter NMI handling mode.</li>
+<li><p>If the core is in NMI handling mode, and it encounters another NMI, then the new NMI will be masked. Therefore, NMI cannot preempt another NMI. Please see Section 4.6 for more details.&#x3002;</p>
+</li>
+<li><p>If the core is in exception handling mode, and it encounters another exception, then an exception preemption will happen. Please see Section 3.5 for more details.</p>
+</li>
+<li><p>If the core is in interrupt handling mode, and it encounters another interrupt, then an interrupt preemption will happen. Please see Section 5.11 for more details.</p>
+</li>
+<li><p>Preemption also happens among interrupts, exceptions and NMIs as the followings:</p>
+</li>
+<li><p>If the core is in interrupt handling mode, and it encounters an exception, then the core will enter exception handling mode.</p>
+</li>
+<li><p>If the core is in NMI handling mode, and it encounters an exception, then the core will enter exception handling mode.</p>
+</li>
+<li><p>If the core is in interrupt handling mode, and it encounters an NMI, then the core will enter NMI handling mode.</p>
+</li>
+<li><p>If the core is in exception handling mode, and it encounters an NMI, then the core will enter NMI handling mode.</p>
+</li>
 <li><p>Note: The global interrupt-enable bit MIE is clear by hardwire when the core is in exception/NMI handling mode, so the core will not take any interrupt.</p>
 <p> The Bumblebee Core implements a &#x201C;Two Levels of NMI/Exception State Save Stacks&#x201D; to ensure that the core can restore the context of the previous state before taking a preemption between exceptions and NMIs. Please see Section 4.6 for more details.</p>
 </li>
@@ -2810,8 +2818,10 @@
 <h2 id="31-introduction-of-exception"><strong>3.1. Introduction of Exception</strong><div id="3-1"></div></h2>
 <p>   Exception mechanism, is that the processor core suddenly encounters an abnormal event when executing the program instruction stream, and aborts execution of the current program, and turns to handle the exception instead. The key points are as follows:</p>
 <ul>
-<li>The &#x201C;abnormal event&#x201D; which the core encounters is called an exception. An exception is caused by an internal event in the core or an event during the execution of the program, such as a hardwire failure, a program failure, or the execution of a special system service instruction. In short, it is a core-internal issue.</li>
-<li>When the exception is taken, the core will enter the exception handler program.</li>
+<li><p>The &#x201C;abnormal event&#x201D; which the core encounters is called an exception. An exception is caused by an internal event in the core or an event during the execution of the program, such as a hardwire failure, a program failure, or the execution of a special system service instruction. In short, it is a core-internal issue.</p>
+</li>
+<li><p>When the exception is taken, the core will enter the exception handler program.</p>
+</li>
 </ul>
 <h2 id="32-exception-masking"><strong>3.2. Exception Masking</strong><div id="3-2"></div></h2>
 <p>   In the RISC-V architecture, exception is not maskable, which means if the core encounters an exception, it must stop current execution and turns to handle the exception.</p>
@@ -2911,25 +2921,33 @@
 </tr>
 </tbody>
 </table>
-<h3 id="343-update-the-csr-mepc"><strong>3.4.3. Update the CSR mepc</strong><div id="3-4-3"></div></h3>
+<h3 id=""> </h3>
+<h3 id="343-update-the-csr-mepc">3.4.3. Update the CSR mepc**<div id="3-4-3"></div></h3>
 <p>   The return address when the Bumblebee Core exit the exception handler is stored in the CSR mepc. When the core takes an exception, the hardware will update the CSR mepc automatically, and the value in this CSR will be the return address when exit the exception handler. After handling the exception, the PC value is restored from this CSR to return to the execution point that was previously stopped.</p>
 <p>Note:</p>
 <ul>
-<li>When an exception is taken into M-mode, mepc is written with the PC address of the instruction that encountered the exception.</li>
-<li>Although the CSR mepc can be updated automatically encountering an exception, it is a both readable and writeable register, so the software can modify it explicitly.</li>
+<li><p>When an exception is taken into M-mode, mepc is written with the PC address of the instruction that encountered the exception.</p>
+</li>
+<li><p>Although the CSR mepc can be updated automatically encountering an exception, it is a both readable and writeable register, so the software can modify it explicitly</p>
+</li>
 </ul>
 <h3 id="344-update-the-csr-mtval"><strong>3.4.4. Update the CSR mtval</strong><div id="3-4-4"></div></h3>
 <p>   When the Bumblebee Core takes an exception, the hardware will update the CSR mtval (Machine Trap Value Register) automatically to indicate the memory access address or instruction encoding that caused the current exception:</p>
 <ul>
-<li>When a hardware breakpoint is triggered, or an instruction-fetch, load, or store address-misaligned, access, or page-fault exception occurs, mtval is written with the faulting effective address.</li>
-<li>On an illegal instruction trap, mtval is written with the first 32 bits of the encoding of the faulting instruction.</li>
+<li><p>When a hardware breakpoint is triggered, or an instruction-fetch, load, or store address-misaligned, access, or page-fault exception occurs, mtval is written with the faulting effective address.</p>
+</li>
+<li><p>On an illegal instruction trap, mtval is written with the first 32 bits of the encoding of the faulting instruction.</p>
+</li>
 </ul>
 <h3 id="345-update-the-csr-mstatus"><strong>3.4.5. Update the CSR mstatus</strong><div id="3-4-5"></div></h3>
 <p>   The format of the CSR mstatus is shown in Table 7-2. When the Bumblebee Core takes one exception, the hardware will update some fields of the CSR mstatus (Machine Status Register) automatically:</p>
 <ul>
-<li>The value of mstatus.MPIE will be updated as the previous value of mstatus.MIE before taking the exception, as described in Section 8.2. The value of mstatus.MPIE is used to restore the previous value of mstatus.MIE after handling the exception.</li>
-<li>The value of mstatus.MIE will be updated to 0 (which means the global interrupt is disabled and all the interrupts are masked)</li>
-<li>The value of mstatus.MPP will be updated to the Privilege Mode before taking the exception, as described in Section 8.2. The value of mstatus.MPP is used to restore the previous Privilege Mode after handling the exception.</li>
+<li><p>The value of mstatus.MPIE will be updated as the previous value of mstatus.MIE before taking the exception, as described in Section 8.2. The value of mstatus.MPIE is used to restore the previous value of mstatus.MIE after handling the exception.</p>
+</li>
+<li><p>The value of mstatus.MIE will be updated to 0 (which means the global interrupt is disabled and all the interrupts are masked)</p>
+</li>
+<li><p>The value of mstatus.MPP will be updated to the Privilege Mode before taking the exception, as described in Section 8.2. The value of mstatus.MPP is used to restore the previous Privilege Mode after handling the exception.</p>
+</li>
 </ul>
 <h3 id="346update-the-privilege-mode"><strong>3.4.6.Update the Privilege Mode</strong><div id="3-4-6"></div></h3>
 <p>   Exceptions are handled in Machine Mode. Once an exception is taken, the privilege mode of the core will be updated to Machine Mode.</p>
@@ -3013,13 +3031,16 @@
 <p>   The return address when the Bumblebee Core exit the NMI handler is stored in the CSR mepc. When the core takes an NMI, the hardware will update the CSR mepc automatically, and the value in this CSR will be the return address when exit the NMI handler. After handling the NMI, the PC value is restored from this CSR to return to the execution point that was previously stopped.</p>
 <p>   Note&#xFF1A;</p>
 <ul>
-<li>When an NMI is taken, the CSR mepc is updated to the PC of the next instruction of the one encountered the NMI (Because the instruction encounters the NMI has been executed correctly). Then after exiting the NMI, the program will continue to execute from the next instruction of the instruction that encounters the NMI.</li>
-<li>Although the CSR mepc can be updated automatically encountering an NMI, it is a both readable and writeable register, so the software can modify it explicitly.</li>
+<li><p>When an NMI is taken, the CSR mepc is updated to the PC of the next instruction of the one encountered the NMI (Because the instruction encounters the NMI has been executed correctly). Then after exiting the NMI, the program will continue to execute from the next instruction of the instruction that encounters the NMI.</p>
+</li>
+<li><p>Although the CSR mepc can be updated automatically encountering an NMI, it is a both readable and writeable register, so the software can modify it explicitly.</p>
+</li>
 </ul>
 <h3 id="433-update-the-csr-mcause"><strong>4.3.3. Update the CSR mcause</strong><div id="4-3-3"></div></h3>
 <p>   The format of the CSR mcause is shown in Table 7-6. The Bumblebee Core will save the ID of the trap into the CSR mcause by the hardware automatically when take a trap. The value of mcause indicates the reason of trap. Interrupts, exceptions and NMIs all have their own specified Trap ID. The Trap ID of NMI has two potential values:</p>
 <ul>
-<li>When mmisc_ctl[9]=1&#xFF0C;the Trap ID of NMI is 0xfff.</li>
+<li><p>When mmisc_ctl[9]=1&#xFF0C;the Trap ID of NMI is 0xfff.</p>
+</li>
 <li><p>When mmisc_ctl[9]=0&#xFF0C;the Trap ID of NMI is 0x1.</p>
 <p> The software can recognize the Trap reason querying the Trap ID, and build the corresponding trap handler program for different types of traps.</p>
 </li>
@@ -3027,9 +3048,12 @@
 <h3 id="434-update-the-csr-mstatus"><strong>4.3.4. Update the CSR mstatus</strong><div id="4-3-4"></div></h3>
 <p>   The format of the CSR mstatus is shown in Table 7-2. When the Bumblebee Core takes one NMI, the hardware will update some fields of the CSR mstatus (Machine Status Register) automatically:</p>
 <ul>
-<li>The value of mstatus.MPIE will be updated as the previous value of mstatus.MIE before taking the NMI, as described in Section 8.2. The value of mstatus.MPIE is used to restore the previous value of mstatus.MIE after handling the NMI.</li>
-<li>The value of mstatus.MIE will be updated to 0 (which means the global interrupt is disabled and all the interrupts are masked)</li>
-<li>The value of mstatus.MPP will be updated to the Privilege Mode before taking the NMI, as described in Section 8.2. The value of mstatus.MPP is used to restore the previous Privilege Mode after handling the NMI.</li>
+<li><p>The value of mstatus.MPIE will be updated as the previous value of mstatus.MIE before taking the NMI, as described in Section 8.2. The value of mstatus.MPIE is used to restore the previous value of mstatus.MIE after handling the NMI.</p>
+</li>
+<li><p>The value of mstatus.MIE will be updated to 0 (which means the global interrupt is disabled and all the interrupts are masked)</p>
+</li>
+<li><p>The value of mstatus.MPP will be updated to the Privilege Mode before taking the NMI, as described in Section 8.2. The value of mstatus.MPP is used to restore the previous Privilege Mode after handling the NMI.</p>
+</li>
 </ul>
 <h3 id="435-update-the-privilege-mode"><strong>4.3.5. Update the Privilege Mode</strong><div id="4-3-5"></div></h3>
 <p>   NMI is handed in Machine Mode, so the privilege mode will be switched to Machine Mode when the core takes an NMI.</p>
@@ -3093,12 +3117,14 @@
 <h3 id="461-enter-nmiexception-preemption"><strong>4.6.1. Enter NMI/Exception Preemption</strong><div id="4-6-1"></div></h3>
 <p>   When take an NMI or exception, hardware behaviors of the Bumblebee Core are described in the Figure4-4&#x3002;</p>
 <ul>
-<li>Stop executing the current program, and jump to a new PC to execute.<ul>
+<li><p>Stop executing the current program, and jump to a new PC to execute.</p>
+<ul>
 <li>If it is an exception trap, then the jump target PC is the address defined in mtvec.</li>
 <li>If it is an NMI trap, then the jump target PC is the address defined in mnvec.</li>
 </ul>
 </li>
-<li>Updates the following relevant CSRs&#x2019; specified fields:<ul>
+<li><p>Updates the following relevant CSRs&#x2019; specified fields:</p>
+<ul>
 <li>mepc: record the PC encountered the handling NMI/Exception, and can be used to restore the PC after exiting the handling NMI/Exception.</li>
 <li>msaveepc1: the first level NMI/Exception State Save Stack, records the PC encountered the first level preempted NMI/Exception which is preempted by the handling NMI/Exception. This CSR is used to restore the value of mepc when the core returns from the handling NMI/Exception.</li>
 <li>msaveepc2: the second level NMI/Exception State Save Stack, records the PC encountered the second level preempted NMI/Exception which is preempted by the first level preempted NMI/Exception. This CSR is used to restore the value of msaveepc1 when the core returns from the handling NMI/Exception.</li>
@@ -3126,7 +3152,8 @@
 </li>
 </ul>
 </li>
-<li>NMI/Exception is handling in Machine Mode, so the Privilege Mode will be switched to the Machine Mode when the core take one NMI/Exception.</li>
+<li><p>NMI/Exception is handling in Machine Mode, so the Privilege Mode will be switched to the Machine Mode when the core take one NMI/Exception.</p>
+</li>
 </ul>
 <h3 id="462exit-nmiexception-preemption"><strong>4.6.2.Exit NMI/Exception Preemption</strong><div id="4-6-2"></div></h3>
 <p>   After handling the NMI/Exception, the core needs to exit from the NMI/Exception handler eventually, and return to execute the main program or handle the next level preempted NMI/Exception. Before exit the current NMI/Exception handler, the relevant CSRs and core status need to be restored by executing the mret instruction. The hardware behavior of the processor after executing mret instruction are shown in Figure 4 -4, which can be described in short as the follows:</p>
@@ -3181,7 +3208,8 @@
 <h3 id="532-internal-interrupt"><strong>5.3.2. Internal Interrupt</strong><div id="5-3-2"></div></h3>
 <p>   The Bumblebee Core has several core-internal private interrupts as the followings:</p>
 <ul>
-<li>Software Interrupt</li>
+<li><p>Software Interrupt</p>
+</li>
 <li><p>Timer Interrupt</p>
 <p> Note&#xFF1A;The internal interrupts of the Bumblebee Core are also managed by the ECLIC.</p>
 </li>
@@ -3189,15 +3217,19 @@
 <h4 id="5321-software-interrupt"><strong>5.3.2.1 Software Interrupt</strong><div id="5-3-2-1"></div></h4>
 <p>   The key points of the software interrupt are the followings&#xFF1A;</p>
 <ul>
-<li>The Bumblebee Core implements a TIMER unit, and an msip register is defined in the TIMER unit, through which software interrupts can be generated. Please see Section 6.1.6 for details.</li>
-<li>Note: Software interrupts are also managed by the ECLIC.</li>
+<li><p>The Bumblebee Core implements a TIMER unit, and an msip register is defined in the TIMER unit, through which software interrupts can be generated. Please see Section 6.1.6 for details.</p>
+</li>
+<li><p>Note: Software interrupts are also managed by the ECLIC.</p>
+</li>
 </ul>
 <h4 id="5322-timer-interrupt"><strong>5.3.2.2 Timer Interrupt</strong><div id="5-3-2-2"></div></h4>
 <p>   The key points of the software interrupt are the following:</p>
 <ul>
-<li>The Bumblebee Core implements a TIMER unit, and a counter is defined in the TIMER unit, through which time interrupts can be generated. Please see Section 6.1.5 for details.
-generated. Please see Section 6.1.6 for details.</li>
-<li>Note: Timer interrupts are also managed by the ECLIC.</li>
+<li><p>The Bumblebee Core implements a TIMER unit, and a counter is defined in the TIMER unit, through which time interrupts can be generated. Please see Section 6.1.5 for details.
+generated. Please see Section 6.1.6 for details.</p>
+</li>
+<li><p>Note: Timer interrupts are also managed by the ECLIC.</p>
+</li>
 </ul>
 <h4 id="5323-memory-access-error-interrupt"><strong>5.3.2.3 Memory Access Error Interrupt</strong><div id="5-3-2-3"></div></h4>
 <p>The key points of the interrupt conversed by &#x201C;Memory Access Error Exception&#x201D; are as follows:</p>
@@ -3240,15 +3272,19 @@ generated. Please see Section 6.1.6 for details.</li>
 <h3 id="563-update-the-machine-sub-mode"><strong>5.6.3. Update the Machine Sub-Mode</strong><div id="5-6-3"></div></h3>
 <p> The Machine Sub-Mode of the Bumblebee Core is indicated in the msubm.TYP filed in real time. When the core takes an interrupt, the Machine Sub-Mode will be updated to interrupt handling mode, so:</p>
 <ul>
-<li>The value of msubm.PTYP will be updated to the value of msub.TYP before taking the interrupt as shown in Figure 5 -4. The value of msubm.PTYP will be used to restore the value of msubm.PTYP after exiting the interrupt handler.</li>
-<li>The filed msubm.TYP is updated to interrupt handling mode, as described in Figure 5-4, to reflect the current Machine Sub-Mode is &#x201C;interrupt handling mode&#x201D;.</li>
+<li><p>The value of msubm.PTYP will be updated to the value of msub.TYP before taking the interrupt as shown in Figure 5 -4. The value of msubm.PTYP will be used to restore the value of msubm.PTYP after exiting the interrupt handler.</p>
+</li>
+<li><p>The filed msubm.TYP is updated to interrupt handling mode, as described in Figure 5-4, to reflect the current Machine Sub-Mode is &#x201C;interrupt handling mode&#x201D;.</p>
+</li>
 </ul>
 <h3 id="564-update-the-csr-mepc"><strong>5.6.4. Update the CSR mepc</strong><div id="5-6-4"></div></h3>
 <p> The Machine Sub-Mode of the Bumblebee Core is indicated in the msubm.TYP filed in real time. When the core takes an interrupt, the Machine Sub-Mode will be updated to interrupt handling mode, so:</p>
 <p>Note&#xFF1A;</p>
 <ul>
-<li>When an interrupt is taken, the CSR mepc is updated to the PC of the instruction that encounters the interrupt. Then after exiting the interrupt, the program will continue to execute from the instruction that encounters the interrupt.</li>
-<li>Although the CSR mepc can be updated automatically encountering an interrupt, it is a both readable and writeable register, so the software can modify it explicitly.</li>
+<li><p>When an interrupt is taken, the CSR mepc is updated to the PC of the instruction that encounters the interrupt. Then after exiting the interrupt, the program will continue to execute from the instruction that encounters the interrupt.</p>
+</li>
+<li><p>Although the CSR mepc can be updated automatically encountering an interrupt, it is a both readable and writeable register, so the software can modify it explicitly.</p>
+</li>
 </ul>
 <h3 id="565-update-the-csrs-mcause-and-mstatus"><strong>5.6.5. Update the CSRs mcause and mstatus</strong><div id="5-6-5"></div></h3>
 <p> The format of the CSR mcause is shown in Table 7-6. The Bumblebee Core will update the CSR mcause by the hardware automatically when take a trap, as shown in Figure 5-4, as follows:</p>
@@ -3376,10 +3412,14 @@ generated. Please see Section 6.1.6 for details.</li>
 <p>&#x200B;                                                <strong><center>Figure 5-9 Example for non-vectored interrupt  </center></strong></p>
 <p> Since the core need to execute a common handler before jump to the specified interrupt service routine of the corresponding non-vector interrupt. Therefore, the cycle overhead from the interrupt is initiated to the first instruction in the interrupt service routine is executed are caused by the followings:</p>
 <ul>
-<li>The overhead caused by jumping to the interrupt handler which is about 4 cycles ideally.</li>
-<li>The overhead caused by saving CSRs mepc, mcause, msubm into the stack.</li>
-<li>The overhead caused by saving the context. If the architecture is RV32E, then it only takes 8 cycles to save 8 general purpose registers; if it is RV32I architecture, then there are 16 general purpose registers required to be saved.</li>
-<li>The overhead caused by jumping to the Interrupt Service Routine which is about 5 cycles ideally.</li>
+<li><p>The overhead caused by jumping to the interrupt handler which is about 4 cycles ideally.</p>
+</li>
+<li><p>The overhead caused by saving CSRs mepc, mcause, msubm into the stack.</p>
+</li>
+<li><p>The overhead caused by saving the context. If the architecture is RV32E, then it only takes 8 cycles to save 8 general purpose registers; if it is RV32I architecture, then there are 16 general purpose registers required to be saved.</p>
+</li>
+<li><p>The overhead caused by jumping to the Interrupt Service Routine which is about 5 cycles ideally.</p>
+</li>
 </ul>
 <h4 id="51312-preemption-of-non-vectored-interrupt"><strong>5.13.1.2 Preemption of Non-Vectored Interrupt</strong><div id="5-13-1-2"></div></h4>
 <p> As mentioned above, non-vectored interrupt processing mode can always support interrupt preemption as the example shown in Figure 5-10: assuming that the three interrupts 30, 31, 32 come sequentially, and the level of interrupt 32 is greater than the level of interrupt 31 which is greater than the level of interrupt 30. Since then, the subsequent interrupts will preempt interrupts that were previously processed to form interrupt preemptions</p>
@@ -3964,15 +4004,50 @@ The address space of ECLIC registers is the range from 0x0000 to 0xFFFF. The val
 </tr>
 </tbody>
 </table>
-<h4 id="6256-clicintattrli"><strong>6.2.5.6 clicintattrl[i]</strong><div id="6-2-5-6"></div></h4>
-<p>   The clicintattr[i] register is used to indicate the attribute of the interrupt source. The software can configure the attribute of the interrupt source by writing this register. Table 6-11 describes the bit assignments of this register.
-   <strong><center>Table 6-11 clicintip[i] bits assignments</center></strong>
-| Field     | Bits | Accessibility         | Default Vaule | Description                                          |
-| -------- | ------ | ------------ | ------ | ------------------------------- |
-| Reserved | 7:6    | RO | N/A    | Reserved, ties to 2&#x2019;b11        |
-| Reserved | 5:3    | RO | N/A    | Reserved, ties to o        |
-| trig | 2:1    |RW | o    | Used to configure the level or edge triggered attribute of the interrupt source. Please see Section 6.2.8 for more details.        |
-| shv       | 0      | RW    | 0      | Used to configure whether the interrupt is vectored or non-vectored. Please see Section 6.2.10 for more details. |</p>
+<h4 id="6256-clicintattrli">6.2.5.6 clicintattrl[i]**<div id="6-2-5-6"></div></h4>
+<p>   The clicintattr[i] register is used to indicate the attribute of the interrupt source. The software can configure the attribute of the interrupt source by writing this register. Table 6-11 describes the bit assignments of this register.</p>
+<p>   <strong><center>Table 6-11 clicintip[i] bits assignments</center></strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Bits</th>
+<th>Accessibility</th>
+<th>Default Vaule</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reserved</td>
+<td>7:6</td>
+<td>RO</td>
+<td>N/A</td>
+<td>Reserved, ties to 2&#x2019;b11</td>
+</tr>
+<tr>
+<td>Reserved</td>
+<td>5:3</td>
+<td>RO</td>
+<td>N/A</td>
+<td>Reserved, ties to o</td>
+</tr>
+<tr>
+<td>trig</td>
+<td>2:1</td>
+<td>RW</td>
+<td>o</td>
+<td>Used to configure the level or edge triggered attribute of the interrupt source. Please see Section 6.2.8 for more details.</td>
+</tr>
+<tr>
+<td>shv</td>
+<td>0</td>
+<td>RW</td>
+<td>0</td>
+<td>Used to configure whether the interrupt is vectored or non-vectored. Please see Section 6.2.10 for more details.</td>
+</tr>
+</tbody>
+</table>
 <h4 id="6257-clicintctli"><strong>6.2.5.7 clicintctl[i]</strong><div id="6-2-5-7"></div></h4>
 <p>   The clicintctl[i] register is the control register of the interrupt source. The software can configure the level and priority by writing this register. The level and priority field are dynamically allocated based on the value of cliccfg.nlbits. Please see Section 6.2.9 for more details. </p>
 <h3 id="626-eclic-interrupt-enable-bit-ie&#xFF09;"><strong>6.2.6. ECLIC Interrupt Enable Bit (IE&#xFF09;</strong><div id="6-2-6"></div></h3>
@@ -4017,7 +4092,7 @@ If the interrupt source is configured as falling edge-triggered, the IP bit is w
 </ul>
 </li>
 <li>The effective bits of clicintctl[i] register has two dynamic fields, which are used to specify the level and the priority of the interrupt source. The width of the level filed is defined by field nlbits in cliccfg. For example, if the value of cliccfg.nlbits is 4, it means that the upper 4-bit of the effective bits in clicintctl[i] is the level field while the other lower effective bits form the priority field, as shown in the example in Figure 6-3.<ul>
-<li>Note: the field cliccfg.nlbits is both readable and writeable, which means the software can program it.&#x3002;</li>
+<li>Note: the field cliccfg.nlbits is both readable and writeable, which means the software can program it.</li>
 </ul>
 </li>
 </ul>
@@ -4545,7 +4620,7 @@ If the interrupt source is configured as falling edge-triggered, the IP bit is w
 <p>Like FS field, XS field can be checked by a context switch routine to quickly determine whether a state save or restore is required. See The RISC-V Instruction Set Manual v1.10 for more information if interested.</p>
 <h3 id="7412-the-sd-field-in-mstatus"><strong>7.4.12. The SD field in mstatus</strong><div id="7-4-12"></div></h3>
 <p> The SD bit is a read-only bit that summarizes whether either the FS field or XS field signals the presence of some dirty state that will require saving extended user context to memory. The logic expression between FS, XS and SD is: SD = ((FS == 11)) or (DS == 11).</p>
-<p> The SD bit is read-only and is set to quickly find either the FS or XS bits encode a Dirty state. And SD field can be checked by a context switch routine to quickly determine whether a state save or restore is required in FPU or additional extensions unit</p>
+<p> The SD bit is read-only and is set to quickly find either the FS or XS bits encode a Dirty state. And SD field can be checked by a context switch routine to quickly determine whether a state save or restore is required in FPU or additional extensions unit.</p>
 <h3 id="7413-mtvec"><strong>7.4.13. mtvec</strong><div id="7-4-13"></div></h3>
 <p>The mtvec register holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).</p>
 <ul>
@@ -5258,7 +5333,7 @@ If the interrupt source is configured as falling edge-triggered, the IP bit is w
 <li>Third step&#xFF1A;restore the value of wfe.WFE to 0.</li>
 </ul>
 <footer class="page-footer"><span class="copyright">Copyright &#xA9; nuclei.com 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x65F6;&#x95F4;&#xFF1A;
-2019-09-06 11:04:16
+2019-09-06 11:17:47
 </span></footer>
                                 
                                 </section>
@@ -5298,7 +5373,7 @@ If the interrupt source is configured as falling edge-triggered, the IP bit is w
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.    Introduction of the Instruction Set and CSRs of the Bumblebee Core","level":"1.1","depth":1,"next":{"title":"1.1.    Introduction of the RISC-V Instruction Set Architecture","level":"1.1.1","depth":2,"anchor":"#1-1","path":"README.md","ref":"README.md#1-1","articles":[]},"dir":"ltr"},"config":{"plugins":["disqus","advanced-emoji","expandable-chapters-small","splitter","back-to-top-button","chapter-fold","sharing-plus","tbfed-pagefooter"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy nuclei.com 2019","modify_label":"该文件上传时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"gitbook tutorial","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":"*","description":"nuclei book"},"file":{"path":"README.md","mtime":"2019-09-06T03:04:16.505Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-06T03:04:44.802Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.    Introduction of the Instruction Set and CSRs of the Bumblebee Core","level":"1.1","depth":1,"next":{"title":"1.1.    Introduction of the RISC-V Instruction Set Architecture","level":"1.1.1","depth":2,"anchor":"#1-1","path":"README.md","ref":"README.md#1-1","articles":[]},"dir":"ltr"},"config":{"plugins":["disqus","advanced-emoji","expandable-chapters-small","splitter","back-to-top-button","chapter-fold","sharing-plus","tbfed-pagefooter"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy nuclei.com 2019","modify_label":"该文件上传时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"gitbook tutorial","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":"*","description":"nuclei book"},"file":{"path":"README.md","mtime":"2019-09-06T03:17:47.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-06T03:18:51.597Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
