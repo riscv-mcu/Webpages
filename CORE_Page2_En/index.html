@@ -516,7 +516,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <p>For more comprehensive information, please visit <a href="http://www.riscv-mcu.com" target="_blank">www.riscv-mcu.com</a></p>
-<p>The pdf document is maintained in <a href="https://github.com/nucleisys/Bumblebee_Core_Doc" target="_blank">https://github.com/nucleisys/Bumblebee_Core_Doc</a></p>
+<p>The PDF document is maintained in <a href="https://github.com/nucleisys/Bumblebee_Core_Doc" target="_blank">https://github.com/nucleisys/Bumblebee_Core_Doc</a></p>
 <h1 id="1-introduction-of-the-bumblebee-processor-core">1. <strong>Introduction of the Bumblebee Processor Core</strong><div id="1"></div></h1>
 <p>   The Bumblebee Processor Core, or Bumblebee core for short&#xFF0C;is a commercial RISC-V processor core customized by Nuclei System Technology and Gigadevice for general-purpose MCU products for IoT or other ultra-low-power applications. It is dedicated to MCU products of model GD32VF103.</p>
 <p>Note&#xFF1A;The Bumblebee core used for this MCU is jointly developed by Nuclei System Technology and Andes Technology. Nuclei System Technology provides authorization services and technical support.</p>
@@ -589,18 +589,25 @@
 <ul>
 <li>The Core is the top-level of the whole processor</li>
 <li>The uCore is located under the Core hierarchy and is the main part of the processor core.</li>
-<li>In addition to the uCore, the following components are included in the Core&#x201D;<ul>
-<li>DEBUG&#xFF1A;handle the JTAG interface and related debugging features.</li>
-<li>ECLIC&#xFF1A;the Enhanced Core Level Interrupt Controller</li>
-<li>TIMER&#xFF1A;the timer unit.</li>
-<li>LM Ctrl&#xFF1A;the control unit of external ILM and DLM interface.</li>
-<li>BIU&#xFF1A;the control unit of external PPI interface and MEM interface.</li>
-<li>Misc Ctrl&#xFF1A;the control unit of other components.</li>
+<li><p>In addition to the uCore, the following components are included in the Core</p>
+<ul>
+<li><p>DEBUG&#xFF1A;handle the JTAG interface and related debugging features.</p>
+</li>
+<li><p>ECLIC&#xFF1A;the Enhanced Core Level Interrupt Controller</p>
+</li>
+<li><p>TIMER&#xFF1A;the timer unit.</p>
+</li>
+<li><p>LM Ctrl&#xFF1A;the control unit of external ILM and DLM interface.</p>
+</li>
+<li><p>BIU&#xFF1A;the control unit of external PPI interface and MEM interface.</p>
+</li>
+<li><p>Misc Ctrl&#xFF1A;the control unit of other components.</p>
+</li>
 </ul>
 </li>
 </ul>
 <p><img src="1.assets/&#x56FE;&#x7247;1-1.png" alt="img"> 
-&#x200B;                                <strong> <center>Figure 1-1 Top-level of the Bumblebee Core</center></strong></p>
+&#x200B;                 <strong><center>Figure 1-1 Top-level of the Bumblebee Core</center></strong></p>
 <h1 id="2-introduction-to-the-function-of-the-bumblebee-core">2. <strong>Introduction to the Function of the Bumblebee Core</strong><div id="2"></div></h1>
 <h2 id="21-introduction-to-the-bumblebee-core-clock-domain"><strong>2.1.</strong> <strong>Introduction to the Bumblebee Core Clock Domain</strong><div id="2-1"></div></h2>
 <p> The clock domains of the Bumblebee core are shown in Figure 2-1. The entire processor is divided into two asynchronous clock domains:</p>
@@ -749,10 +756,10 @@
 </li>
 <li><p>Other function interface</p>
 <p>   most interface signals of the Bumblebee Core are the internal details of the MCU, we do not discuss about them too much herein.This document only describes an input signal mtime_toggle_a, because this signal is critical for MCU embedded software development.</p>
-<p>   <strong><center>Table 3-1 mtime_toggle_a Interface Signals</center></strong></p>
 </li>
 </ul>
-<table>
+<pre><code> **&lt;center&gt;Table 3-1 mtime_toggle_a Interface Signals&lt;/center&gt;**
+</code></pre><table>
 <thead>
 <tr>
 <th>Signal</th>
@@ -774,7 +781,7 @@
 <p>&#x200B;    <strong><center>Figure3-1 Generation Diagram of the signal mtime_toggle_a</center></strong></p>
 <p>&#x200B;    Note: in the MCU GD32VF103, rtc_clk runs at the frequency which is a quarter of the frequency of core_clk_aon, which means the internal TIMER counter is triggered by the signal mtimt_toggle_a, running at a self-increment frequency which is a quarter of the frequency of core_clk_aon.</p>
 <footer class="page-footer"><span class="copyright">Copyright &#xA9; nuclei.com 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x65F6;&#x95F4;&#xFF1A;
-2019-09-06 11:48:49
+2019-09-06 12:15:43
 </span></footer>
                                 
                                 </section>
@@ -814,7 +821,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.Introduction of the Bumblebee Processor Core","level":"1.1","depth":1,"next":{"title":"1.1 Bumblebee Core Feature List","level":"1.1.1","depth":2,"anchor":"#1-1","path":"README.md","ref":"README.md#1-1","articles":[]},"dir":"ltr"},"config":{"plugins":["disqus","advanced-emoji","expandable-chapters-small","splitter","back-to-top-button","chapter-fold","sharing-plus","tbfed-pagefooter"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy nuclei.com 2019","modify_label":"该文件上传时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"gitbook tutorial","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":"*","description":"nuclei book"},"file":{"path":"README.md","mtime":"2019-09-06T03:48:49.594Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-06T03:49:18.247Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.Introduction of the Bumblebee Processor Core","level":"1.1","depth":1,"next":{"title":"1.1 Bumblebee Core Feature List","level":"1.1.1","depth":2,"anchor":"#1-1","path":"README.md","ref":"README.md#1-1","articles":[]},"dir":"ltr"},"config":{"plugins":["disqus","advanced-emoji","expandable-chapters-small","splitter","back-to-top-button","chapter-fold","sharing-plus","tbfed-pagefooter"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy nuclei.com 2019","modify_label":"该文件上传时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"gitbook tutorial","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":"*","description":"nuclei book"},"file":{"path":"README.md","mtime":"2019-09-06T04:15:43.435Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-06T04:16:06.524Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
