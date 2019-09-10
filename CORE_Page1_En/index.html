@@ -2665,11 +2665,11 @@
 <p> At present, Nuclei System Technology can authorize fully domestically controllable N200 series ultra-low power commercial processor core IPs, as well as other multiple series (300/600/900 series) 32-bit or 64-bit high-performance embedded processor core IPs, and provide customers with processor IP customization services.</p>
 <h2 id="11-introduction-of-the-risc-v-instruction-set-architecture"><strong>1.1. Introduction of the RISC-V Instruction Set Architecture</strong><div id="1-1"></div></h2>
 <p> The Bumblebee Core is designed based on the RISC-V Instruction Set Manual Volume I: User-Level ISA Version 2.2 (riscv-spec-v2.2.pdf). Users can register and access the full text(<a href="https://riscv.org/specifications/" target="_blank">https://riscv.org/specifications/</a>) for free on the RISC-V Foundation website.</p>
-<h2 id="12instruction-subset-supported-by-the-bumblebee-core"><strong>1.2.Instruction Subset Supported by the Bumblebee Core</strong><div id="1-2"></div></h2>
+<h2 id="12-instruction-subset-supported-by-the-bumblebee-core"><strong>1.2. Instruction Subset Supported by the Bumblebee Core</strong><div id="1-2"></div></h2>
 <p> RISC-V has been designed to support extensive customization and specialization. The base integer ISA can be extended with one or more optional instruction-set extensions. The instruction sets supported by the Bumblebee Core are the followings:</p>
 <p> RV32 Architecture: 32-bit address space, and 32-bit general purpose registers.</p>
 <p> -I: Supports 32 general purpose registers. </p>
-<p> -M: Supports the RISC-V standard multiplication and division instructions.</p>
+<p> -M: Supports the RISC-V standard multiplication and division instructions.0</p>
 <p> -C: Supports the RISC-V standard compressed instructions, which reduces code size by adding short 16-bit instruction encodings for common operations.</p>
 <p> -A: Supports the RISC-V standard atomic instructions.</p>
 <p>   According to the RISC-V standard naming convention, the combination of these above instruction extensions can be represented as RV32IMAC&#x3002;</p>
@@ -2703,9 +2703,8 @@
 <p>   Machine Mode of the Bumblebee Core has 4 sub-mode, named Machine Sub-Mode:&#xFF1A;</p>
 <ul>
 <li><p>Normal Mode&#xFF08;Machine Sub-Mode as 0x0&#xFF09;&#xFF1A;</p>
-<ul>
-<li>The core is in this sub-mode after a reset. The core will work in this sub-mode until it encounters an exception, NMI or interrupt&#x3002;</li>
-</ul>
+</li>
+<li><p>The core is in this sub-mode after a reset. The core will work in this sub-mode until it encounters an exception, NMI or interrupt&#x3002;</p>
 </li>
 <li><p>Exception Handling Mode&#xFF08;Machine Sub-Mode as 0x2&#xFF09;&#xFF1A;</p>
 <ul>
@@ -2791,22 +2790,14 @@
 <h3 id="227-interrupts-exceptions-and-nmis-preemption"><strong>2.2.7. Interrupts, Exceptions and NMIs Preemption</strong><div id="2-2-7"></div></h3>
 <p>   An interrupt can preempt another interrupt, and an exception can preempt another exception, but NMI cannot preempt another NMI:</p>
 <ul>
-<li><p>If the core is in NMI handling mode, and it encounters another NMI, then the new NMI will be masked. Therefore, NMI cannot preempt another NMI. Please see Section 4.6 for more details.&#x3002;</p>
-</li>
-<li><p>If the core is in exception handling mode, and it encounters another exception, then an exception preemption will happen. Please see Section 3.5 for more details.</p>
-</li>
-<li><p>If the core is in interrupt handling mode, and it encounters another interrupt, then an interrupt preemption will happen. Please see Section 5.11 for more details.</p>
-</li>
-<li><p>Preemption also happens among interrupts, exceptions and NMIs as the followings:</p>
-</li>
-<li><p>If the core is in interrupt handling mode, and it encounters an exception, then the core will enter exception handling mode.</p>
-</li>
-<li><p>If the core is in NMI handling mode, and it encounters an exception, then the core will enter exception handling mode.</p>
-</li>
-<li><p>If the core is in interrupt handling mode, and it encounters an NMI, then the core will enter NMI handling mode.</p>
-</li>
-<li><p>If the core is in exception handling mode, and it encounters an NMI, then the core will enter NMI handling mode.</p>
-</li>
+<li>If the core is in NMI handling mode, and it encounters another NMI, then the new NMI will be masked. Therefore, NMI cannot preempt another NMI. Please see Section 4.6 for more details.&#x3002;</li>
+<li>If the core is in exception handling mode, and it encounters another exception, then an exception preemption will happen. Please see Section 3.5 for more details.</li>
+<li>If the core is in interrupt handling mode, and it encounters another interrupt, then an interrupt preemption will happen. Please see Section 5.11 for more details.</li>
+<li>Preemption also happens among interrupts, exceptions and NMIs as the followings:</li>
+<li>If the core is in interrupt handling mode, and it encounters an exception, then the core will enter exception handling mode.</li>
+<li>If the core is in NMI handling mode, and it encounters an exception, then the core will enter exception handling mode.</li>
+<li>If the core is in interrupt handling mode, and it encounters an NMI, then the core will enter NMI handling mode.</li>
+<li>If the core is in exception handling mode, and it encounters an NMI, then the core will enter NMI handling mode.</li>
 <li><p>Note: The global interrupt-enable bit MIE is clear by hardwire when the core is in exception/NMI handling mode, so the core will not take any interrupt.</p>
 <p> The Bumblebee Core implements a &#x201C;Two Levels of NMI/Exception State Save Stacks&#x201D; to ensure that the core can restore the context of the previous state before taking a preemption between exceptions and NMIs. Please see Section 4.6 for more details.</p>
 </li>
@@ -2839,7 +2830,7 @@
 <li>Update Privilege Mode and Machine Sub-Mode&#x3002;</li>
 </ul>
 <p>The overall process of exception is shown in Figure 3-1.</p>
-<p><img src="chapter3/3.4/3.4.assets/1-1566288783599.png" alt=""></p>
+<p><img src="README.assets/1568083169212.png" alt="1568083169212"></p>
 <p>&#x200B;                                                                       <strong><center>Figure 3-1The overall process of exception</center></strong></p>
 <p>   These will be detailed in the following parts</p>
 <h3 id="341-execute-form-the-pc-defined-by-mtvec"><strong>3.4.1. Execute form the PC Defined by mtvec</strong><div id="3-4-1"></div></h3>
@@ -2922,7 +2913,7 @@
 </tbody>
 </table>
 <h3 id=""> </h3>
-<h3 id="343-update-the-csr-mepc">3.4.3. Update the CSR mepc**<div id="3-4-3"></div></h3>
+<h3 id="343-update-the-csr-mepc">3.4.3. Update the CSR mepc<div id="3-4-3"></div></h3>
 <p>   The return address when the Bumblebee Core exit the exception handler is stored in the CSR mepc. When the core takes an exception, the hardware will update the CSR mepc automatically, and the value in this CSR will be the return address when exit the exception handler. After handling the exception, the PC value is restored from this CSR to return to the execution point that was previously stopped.</p>
 <p>Note:</p>
 <ul>
@@ -2957,8 +2948,8 @@
 <li>The value of msubm.PTYP will be updated to the value of msub.TYP before taking the exception, as shown in Figure 3.2. The value of msubm.PTYP will be used to restore the value of msubm.PTYP after exiting the exception handler.</li>
 <li>The filed msubm.TYP is updated to exception handling mode, as shown in Figure 3.2, to reflect the current Machine Sub-Mode is &#x201C;exception handling mode&#x201D;.</li>
 </ul>
-<p><img src="chapter3/3.4/3.4.7.assets/2.png" alt=""></p>
-<p>&#x200B;                                            <strong><center>Figure 3-2 The CSR updating when enter/exit the exception</center></strong></p>
+<p><img src="README.assets/1568083190828.png" alt="1568083190828"></p>
+<p>&#x200B;                                   <strong><center>Figure 3-2 The CSR updating when enter/exit the exception</center></strong></p>
 <h2 id="35-exit-the-exception-handling-mode"><strong>3.5. Exit the Exception Handling Mode</strong><div id="3-5"></div></h2>
 <p>   After handling the exception, the core needs to exit from the exception handler eventually.</p>
 <p>   Since the exception is handling in Machine Mode, the software has to execute mret to exit the exception handler. The hardware behavior of the processor after executing mret instruction is as follows. Note that the following hardware behaviors are done simultaneously in one cycle:</p>
@@ -2967,7 +2958,7 @@
 <li>Update the CSR mstatus (Machine Status Register), as described in Figure 3-2, and update the Privilege Mode and the Machine Sub-Mode.</li>
 </ul>
 <p>The overall process of exiting an exception is shown in Figure 3-3</p>
-<p><img src="chapter3/3.5/3.5.assets/3.png" alt=""></p>
+<p><img src="README.assets/1568083213660.png" alt="1568083213660"></p>
 <p>&#x200B;                                                               <strong><center>Figure  3-3 The overall process of exiting an exception</center></strong></p>
 <p>   These will be detailed in the following parts.</p>
 <h3 id="351-executing-form-the-address-defined-by-mepc"><strong>3.5.1. Executing form the Address Defined by mepc</strong><div id="3-5-1"></div></h3>
@@ -2976,12 +2967,9 @@
 <h3 id="352-update-the-csr-mstatus"><strong>3.5.2. Update the CSR mstatus</strong><div id="3-5-2"></div></h3>
 <p>   The format of the CSR mstatus is shown in Table 7-2. After executing one mret instruction, the hardware will update some fields of the CSR mstatus:</p>
 <ul>
-<li><p>The value of mstatus.MIE is restored by the value of mstatus.MPIE.</p>
-</li>
-<li><p>The value of mstatus.MPIE is updated to 1.</p>
-</li>
-<li><p>The updated value of mstatus.MPP is divided into the following two cases:</p>
-<ul>
+<li>The value of mstatus.MIE is restored by the value of mstatus.MPIE.</li>
+<li>The value of mstatus.MPIE is updated to 1.</li>
+<li>The updated value of mstatus.MPP is divided into the following two cases:<ul>
 <li>When User Mode is configured, mstatus.MPP is updated to 0x0.</li>
 <li>When User Mode is not configured, mstatus.MPP is updated to 0x11.</li>
 </ul>
@@ -3018,7 +3006,7 @@
 <li>Update the Privilege Mode and Machine Sub-Mode of the core.</li>
 <li>The overall process of NMI is shown in Figure 4-1.</li>
 </ul>
-<p><img src="chapter4/4.3/4.3.assets/4.png" alt=""></p>
+<p><img src="README.assets/1568083227827.png" alt="1568083227827"></p>
 <p>&#x200B;                                                          <strong><center>Figure 4-1 The overall process of NMI</center></strong></p>
 <p>   These will be detailed in the following parts.</p>
 <h3 id="431-execute-from-the-pc-defined-by-mnvec"><strong>4.3.1. Execute from the PC Defined by mnvec</strong><div id="4-3-1"></div></h3>
@@ -3039,8 +3027,7 @@
 <h3 id="433-update-the-csr-mcause"><strong>4.3.3. Update the CSR mcause</strong><div id="4-3-3"></div></h3>
 <p>   The format of the CSR mcause is shown in Table 7-6. The Bumblebee Core will save the ID of the trap into the CSR mcause by the hardware automatically when take a trap. The value of mcause indicates the reason of trap. Interrupts, exceptions and NMIs all have their own specified Trap ID. The Trap ID of NMI has two potential values:</p>
 <ul>
-<li><p>When mmisc_ctl[9]=1&#xFF0C;the Trap ID of NMI is 0xfff.</p>
-</li>
+<li>When mmisc_ctl[9]=1&#xFF0C;the Trap ID of NMI is 0xfff.</li>
 <li><p>When mmisc_ctl[9]=0&#xFF0C;the Trap ID of NMI is 0x1.</p>
 <p> The software can recognize the Trap reason querying the Trap ID, and build the corresponding trap handler program for different types of traps.</p>
 </li>
@@ -3063,7 +3050,7 @@
 <li>The value of msubm.PTYP will be updated to the value of msub.TYP before taking the NMI, as shown in Figure 4-2. The value of msubm.PTYP will be used to restore the value of msubm.PTYP after exiting the NMI handler.</li>
 <li>The filed msubm.TYP is updated to NMI handling mode, as described in Figure 4-2, to reflect the current Machine Sub-Mode is &#x201C;NMI handling mode&#x201D;.</li>
 </ul>
-<p><img src="chapter4/4.3/4.3.6.assets/5.png" alt=""></p>
+<p><img src="README.assets/1568083248967.png" alt="1568083248967"></p>
 <p>&#x200B;                                                  <strong><center>Figure 4-2 The CSR updating when enter/exit the NMI</center></strong></p>
 <h2 id="44-exit-the-nmi-handling-mode"><strong>4.4. Exit the NMI Handling Mode</strong><div id="4-4"></div></h2>
 <p>   After handling the NMI, the core needs to exit from the NMI handler eventually, and return to execute the main program.</p>
@@ -3074,8 +3061,8 @@
 <li>Update the Privilege Mode and the Machine Sub-Mode.</li>
 </ul>
 <p>The overall process of exiting an NMI is shown in Figure 4-3.</p>
-<p><img src="chapter4/4.4/4.4.assets/6.png" alt=""></p>
-<p>&#x200B;                                                            <strong><center>Figure 4-3 The overall process of exiting an NMI</center></strong></p>
+<p><img src="README.assets/1568083262526.png" alt="1568083262526"></p>
+<p>   <strong><center>Figure 4-3 The overall process of exiting an NMI</center></strong></p>
 <p> These will be detailed in the following parts.</p>
 <h3 id="441-executing-from-the-address-defined-by-mepc"><strong>4.4.1. Executing from the Address Defined by mepc</strong><div id="4-4-1"></div></h3>
 <p>   When an NMI is taking, the mepc is updated to the PC value of the next instruction. Through this mechanism, executing the mret instruction, the core will return to the next instruction of the instruction encountered the NMI, and continue to execute the program.</p>
@@ -3160,7 +3147,7 @@
 <ul>
 <li>Stop the execution of the current program, and start from the PC address defined by the CSR mepc.</li>
 <li>Update some fields of the relevant CSRs as the follows:&#xFF1A;<ul>
-<li>mepc&#xFF08;Machine Exception Program Counter&#xFF09;:&#xF06C;update to the value saved in msaveepc1, which is the PC encountered the first level preempted NMI/Exception.</li>
+<li>mepc&#xFF08;Machine Exception Program Counter&#xFF09;:update to the value saved in msaveepc1, which is the PC encountered the first level preempted NMI/Exception.</li>
 <li>msaveepc1&#xFF1A;the first level NMI/Exception State Save Stack, update to the value of msaveepc2, which is the PC encountered the second level preempted NMI/Exception. mstatus&#xFF08;Machine Status Register&#xFF09;</li>
 <li>mstatus&#xFF08;Machine Status Register&#xFF09;<ul>
 <li>MPIE&#xFF1A;update to the value of MPIE1, which is the value of MIE when the core encountered the first level preempted NMI/Exception. </li>
@@ -3199,7 +3186,7 @@
 <p>   The Bumblebee Core has implemented with the Enhanced Core Local Interrupt Controller which can be used to manage multiple interrupt sources. All types of interrupts in the Bumblebee Core (except for debug interrupts) are managed by ECLIC. See Section 6.2 for details of ECLIC. See Section 5.3 for an introduction to all interrupt types supported by the Bumblebee Core.&#x3002;</p>
 <h2 id="53-interrupt-type"><strong>5.3. Interrupt Type</strong><div id="5-3"></div></h2>
 <p>   The types of interrupts supported by the Bumblebee Core are shown in Figure 5-1.</p>
-<p><img src="chapter5/5.3/5.3.assets/8.png" alt=""></p>
+<p><img src="README.assets/1568083324638.png" alt="1568083324638"></p>
 <p>&#x200B;                                                              <strong><center>Figure 5-1 Interupt Types</center></strong></p>
 <p>   These will be detailed in the following parts&#x3002;</p>
 <h3 id="531-external-interrupt"><strong>5.3.1. External Interrupt</strong><div id="5-3-1"></div></h3>
@@ -3208,8 +3195,7 @@
 <h3 id="532-internal-interrupt"><strong>5.3.2. Internal Interrupt</strong><div id="5-3-2"></div></h3>
 <p>   The Bumblebee Core has several core-internal private interrupts as the followings:</p>
 <ul>
-<li><p>Software Interrupt</p>
-</li>
+<li>Software Interrupt</li>
 <li><p>Timer Interrupt</p>
 <p> Note&#xFF1A;The internal interrupts of the Bumblebee Core are also managed by the ECLIC.</p>
 </li>
@@ -3243,8 +3229,8 @@ generated. Please see Section 6.1.6 for details.</p>
 <p> For different interrupt sources, ECLIC assigns its own interrupt enable register to each interrupt sources. Users can configure the corresponding ECLIC register to manage some specified interrupt sources. Please see Section 6.2.6 for details.</p>
 <h2 id="55-interrupt-levels-priorities-and-arbitration"><strong>5.5. Interrupt Levels, Priorities and Arbitration</strong><div id="5-5"></div></h2>
 <p> When multiple interrupts are initiated at the same time, an arbitration is required. For the Bumble Core, the ECLIC manages all interrupts. ECLIC assigns its own interrupt level and priority registers to each interrupt source. Users can configure the ECLIC registers to manage the level and priority of the specified interrupt sources. When multiple interrupts occur simultaneously, the ECLIC will select the one has the highest priority to be taken, as shown in Figure 5-2. Please see Section 6.2.9 for more details.</p>
-<p><img src="chapter5/5.5.assets/9.png" alt=""></p>
-<p>&#x200B;                                                                 <strong><center>Figure 5-2 Arbitration among Multiple Interrupts</center></strong></p>
+<p><img src="README.assets/1568083339219.png" alt="1568083339219"></p>
+<p><strong><center>Figure 5-2 Arbitration among Multiple Interrupts</center></strong></p>
 <h2 id="56-entering-interrupt-handling-mode"><strong>5.6. Entering Interrupt Handling Mode</strong><div id="5-6"></div></h2>
 <p> Taking an interrupt, hardware behaviors of the Bumblebee Core are described as below. Note that the following operations are done simultaneously in one cycle:</p>
 <ul>
@@ -3258,7 +3244,7 @@ generated. Please see Section 6.1.6 for details.</p>
 <li>Update the Privilege Mode and Machine Sub-Mode of the core.</li>
 <li>The overall process of interrupt is shown in Figure5-3</li>
 </ul>
-<p><img src="chapter5/5.6/5.6.assets/10.png" alt=""></p>
+<p><img src="README.assets/1568083358309.png" alt="1568083358309"></p>
 <p>&#x200B;                                                                   <strong><center>Figure 5-3 The Ovreall Process of Interrupt</center></strong></p>
 <p>These will be detailed in the following parts.</p>
 <h3 id="561-execute-from-a-new-pc"><strong>5.6.1. Execute from a new PC</strong><div id="5-6-1"></div></h3>
@@ -3313,18 +3299,21 @@ generated. Please see Section 6.1.6 for details.</p>
 <h2 id="57exit-the-interrupt-handling-mode"><strong>5.7.Exit the Interrupt Handling Mode</strong><div id="5-7"></div></h2>
 <p> After handling the interrupt, the core needs to exit from the interrupt handler eventually, and return to execute the main program. Since the interrupt is handling in Machine Mode, the software has to execute mret to exit the interrupt handler. The hardware behavior of the processor after executing mret instruction is as follows. Note that the following hardware behaviors are done simultaneously in one cycle:</p>
 <ul>
-<li>Stop the execution of the current program, and start from the PC address defined by the CSR mepc.</li>
-<li>Update the following CSRs as shown in Figure 5-4&#xFF1A;<ul>
+<li><p>Stop the execution of the current program, and start from the PC address defined by the CSR mepc.</p>
+</li>
+<li><p>Update the following CSRs as shown in Figure 5-4&#xFF1A;</p>
+<ul>
 <li>mstatus&#xFF08;Machine Status Register&#xFF09;</li>
 <li>mcause&#xFF08;Machine Cause Register&#xFF09;</li>
 <li>mintstatus&#xFF08;Machine Interrupt Status Register&#xFF09;</li>
 </ul>
 </li>
-<li>Update the Privilege Mode and the Machine Sub-Mode&#x3002;
-   The overall process of exiting an NMI is shown in Figure 5-5.
-<img src="chapter5/5.7/5.7.assets/12.png" alt=""></li>
+<li><p>Update the Privilege Mode and the Machine Sub-Mode&#x3002;
+   The overall process of exiting an NMI is shown in Figure 5-5.</p>
+</li>
 </ul>
-<p>&#x200B;                                                             <strong><center>Figure 5-5 The overall process of exiting an interrupt</center></strong></p>
+<pre><code> ![1568083378866](README.assets/1568083378866.png)
+</code></pre><p>&#x200B;                                                             <strong><center>Figure 5-5 The overall process of exiting an interrupt</center></strong></p>
 <p> These will be detailed in the following parts.</p>
 <h3 id="571-executing-from-the-address-defined-by-mepc"><strong>5.7.1. Executing from the Address Defined by mepc</strong><div id="5-7-1"></div></h3>
 <p>   When an interrupt is taking, the mepc is updated to the PC value of the instruction encountered the interrupt. Through this mechanism, executing the mret instruction, the core will return to the instruction encountered the interrupt, and continue to execute the program.</p>
@@ -3352,7 +3341,7 @@ generated. Please see Section 6.1.6 for details.</p>
 <p>   As shown in Figure 5 -6, the interrupt vector table is an contiguous address space in the memory, and each word of this address space is used to store the address of the interrupt service routine corresponding to each interrupt source of the ECLIC.</p>
 <p>   The base address of the interrupt vector table is defined by the CSR mtvt. Typically, the value of mtvt can be set to the beginning of the entire code segment.</p>
 <p> The role of the interrupt vector table is very important. When the core takes an interrupt, no matter a vectored or non-vectored interrupt, the hardware will eventually jump to the corresponding PC of the interrupt service routine by querying the interrupt vector table. Please see Section 5.13 for more details.&#x3002;</p>
-<p><img src="chapter5/5.8.assets/13.png" alt=""></p>
+<p><img src="README.assets/1568083413837.png" alt="1568083413837"></p>
 <p>&#x200B;                                                                 <strong><center>Figure 5-6 Interrupt Vector Table</center></strong></p>
 <h2 id="59-context-saving-and-restoring"><strong>5.9. Context Saving and Restoring</strong><div id="5-9"></div></h2>
 <p> Processors based on the RISC-V architecture do not support the hardware automatic context saving and restoring when take or exit an interrupt. So the software is required to write the instructions (in assembly language) for context saving and restoring. Depending on whether the interrupt is a vectored or non-vectored, the context requiring saving and restoring will vary. Please see Section 5.13 for more details.</p>
@@ -3374,14 +3363,14 @@ generated. Please see Section 6.1.6 for details.</p>
 <li>After that no other higher-level interrupts arrive, the button 2 interrupt will not be preempted, and the core can successfully complete the interrupt service routine of the button 2 interrupt, and then return to process the button 1 interrupt.</li>
 <li>Completing the interrupt service routine of button 1 interrupt, the core will return to execute the timer interrupt service routine to handle the timer interrupt.</li>
 </ul>
-<p><img src="chapter5/5.11.assets/14.png" alt=""></p>
+<p><img src="README.assets/1568083425992.png" alt="1568083425992"></p>
 <p>&#x200B;                                                                    <strong><center>Figure 5-7 Interrupt Preemption</center></strong></p>
 <p> Note&#xFF1A;Assuming that the new coming interrupt request has not higher level than the handling interrupt, then the core should not take the request immediately. The core must complete the current interrupt service routine before take the new one. Please see Section 6.2.9 for more details.</p>
 <p> In the Bumblebee Core, the supported method for interrupt preemption depending on whether the interrupt is a vectored interrupt or a non-vectored interrupt. Please see Section 5.13 for more details.</p>
 <h2 id="512-interrupt-tail-chaining"><strong>5.12. Interrupt Tail-Chaining</strong><div id="5-12"></div></h2>
 <p> While the core is processing one interrupt, a new interrupt request is initiated, but the level of the new request is not higher than the handling one, so the new interrupt request cannot preempt the handling one.</p>
 <p> After handling the current interrupt, it is necessary to restore the context theoretically. Then exit the interrupt service routine and return to the main program and take the new interrupt. To take the new interrupt, it is necessary to save the context again. Therefore, there is a back-to-back &#x201C;context saving&#x201D; and &#x201C;context restoring&#x201D;. The &#x201C;tail-chaining&#x201D; can save the cost of this back-to-back &#x201C;context saving&#x201D; and &#x201C;context-restoring&#x201D;, as shown in the Figure 5-8.</p>
-<p><img src="chapter5/5.12.assets/15.png" alt=""></p>
+<p><img src="README.assets/1568083436522.png" alt="1568083436522"></p>
 <p>&#x200B;                                                                 <strong><center>Figure 5-8  Interrupt tail-chaining</center></strong></p>
 <p> As for the Bumblebee Core, only non-vectored interrupts support the operation of tail-chaining. Please see Section 5.13 .1.1 for more details.</p>
 <h2 id="513-vectored-and-non-vectored-processing-mode-of-interrupts"><strong>5.13. Vectored and Non-Vectored Processing Mode of Interrupts</strong><div id="5-13"></div></h2>
@@ -3408,7 +3397,7 @@ generated. Please see Section 6.1.6 for details.</p>
 </ul>
 </li>
 </ul>
-<p><img src="chapter5/5.13/5.13.1/5.13.1.1.assets/16.png" alt=""></p>
+<p>  <img src="README.assets/1568083451737.png" alt="1568083451737"></p>
 <p>&#x200B;                                                <strong><center>Figure 5-9 Example for non-vectored interrupt  </center></strong></p>
 <p> Since the core need to execute a common handler before jump to the specified interrupt service routine of the corresponding non-vector interrupt. Therefore, the cycle overhead from the interrupt is initiated to the first instruction in the interrupt service routine is executed are caused by the followings:</p>
 <ul>
@@ -3423,18 +3412,18 @@ generated. Please see Section 6.1.6 for details.</p>
 </ul>
 <h4 id="51312-preemption-of-non-vectored-interrupt"><strong>5.13.1.2 Preemption of Non-Vectored Interrupt</strong><div id="5-13-1-2"></div></h4>
 <p> As mentioned above, non-vectored interrupt processing mode can always support interrupt preemption as the example shown in Figure 5-10: assuming that the three interrupts 30, 31, 32 come sequentially, and the level of interrupt 32 is greater than the level of interrupt 31 which is greater than the level of interrupt 30. Since then, the subsequent interrupts will preempt interrupts that were previously processed to form interrupt preemptions</p>
-<p><img src="chapter5/5.13/5.13.1/5.13.1.2.assets/17.png" alt=""></p>
-<p>&#x200B;                                         <strong><center>Figure 5-10Interrupt preemptions caused by three sequential non-vectored interrupts</center></strong></p>
+<p><img src="README.assets/1568083466285.png" alt="1568083466285"></p>
+<p> <strong><center>Figure 5-10Interrupt preemptions caused by three sequential non-vectored interrupts</center></strong></p>
 <h4 id="51313-non-vectored-interrupt-tail-chaining"><strong>5.13.1.3 Non-Vectored Interrupt Tail-Chaining</strong><div id="5-13-1-3"></div></h4>
 <p> For non-vectored interrupts, the tail-chaining can save cycles overhead significantly (saving one back-to-back context saving and restoring) since the core has to save and restore the context when entering and exiting the interrupt service routine.</p>
 <p> As mentioned above, in addition to jump to the interrupt service routine, the instruction &#x201C;csrrw ra, CSR_JALMNXTI, ra&#x201D; in the common base handler shared by all non-vectored interrupts also achieves the effect of JAL (Jump and Link) which means the hardware will update the value of the Link register to the PC of this instruction as the return address. Therefore, the core will execute the instruction &#x201C;csrrw ra, CSR_JALMNXTI, ra&#x201D; again when it exits the interrupt service handler and re-judge if there is a pending interrupt to perform the tail-chaining operation.</p>
 <p>As the example shown in Figure 5 -11: assuming the interrupts 30, 29, 28 come successively, and &#x201C;the level of interrupt 30 &#x201D; &gt;= &#x201C;the level of interrupt 29&#x201D; &gt;= &#x201C;the level of interrupt 28&#x201D;, then the subsequent interrupt will not preempt the interrupt that was taken before which means no preemption will happen, but all these subsequent interrupt will be marked as &#x201C;pending&#x201D;. When the interrupt 30 has been already handled, the core will handle the interrupt 29 directly without the intermediate &#x201C;context restoring&#x201D; and &#x201C;context saving&#x201D; procedures.</p>
-<p><img src="chapter5/5.13/5.13.1/5.13.1.3.assets/18.png" alt=""></p>
+<p><img src="README.assets/1568083478207.png" alt="1568083478207"></p>
 <p>&#x200B;                                                              <strong><center>Figure5-11 Interrupt tail-chaining</center></strong></p>
 <h3 id="5132-vectored-processing-mode"><strong>5.13.2. Vectored Processing Mode</strong><div id="5-13-2"></div></h3>
 <h4 id="51321-feature-and-latency-of-vectored-processing-mode"><strong>5.13.2.1 Feature and Latency of Vectored Processing Mode</strong><div id="5-13-2-1"></div></h4>
 <p> If the interrupt is vectored, once it is taken, the core will jump to the target address saved in the Vector Table Entry directly, which is the corresponding interrupt service routine of the interrupt, as shown in Feature 5-12.</p>
-<p><img src="chapter5/5.13/5.13.2/5.13.2.1.assets/19.png" alt=""></p>
+<p><img src="README.assets/1568083486430.png" alt="1568083486430"></p>
 <p>&#x200B;                                                             <strong><center>Figure 5-12 Example for vectored interrupt</center></strong></p>
 <p>Vectored Processing Mode has the following features&#xFF1A;</p>
 <ul>
@@ -3450,11 +3439,11 @@ generated. Please see Section 6.1.6 for details.</p>
 </ul>
 </li>
 </ul>
-<p><img src="chapter5/5.13/5.13.2/5.13.2.1.assets/20.png" alt=""></p>
-<p>&#x200B;                                                     <strong><center>Figure 5-13 Example for vectored interrupt supported preemption</center></strong></p>
+<p><img src="README.assets/1568083498785.png" alt="1568083498785"></p>
+<p><strong><center>Figure 5-13 Example for vectored interrupt supported preemption</center></strong></p>
 <h4 id="51322-preemption-of-vectored-interrupt"><strong>5.13.2.2 Preemption of Vectored Interrupt</strong><div id="5-13-2-2"></div></h4>
 <p>   As described above, with the special processing, the vectored processing mode can support interrupt preemption, as shown in Figure 5 -14: assuming that the three interrupts 30, 31, 32 come sequentially, and the level of interrupt 32 is greater than the level of interrupt 31 which is greater than the level of interrupt 30. Since then, the subsequent interrupts will preempt interrupts that were previously processed to form interrupt preemptions.</p>
-<p><img src="chapter5/5.13/5.13.2/5.13.2.2.assets/21.png" alt=""></p>
+<p><img src="README.assets/1568083510828.png" alt="1568083510828"></p>
 <p>&#x200B;                                            <strong><center>Figure 5-14 Interrupt preemptions caused by three sequential vectored interrupts</center></strong></p>
 <h4 id="51323-vectored-interrupt-tail-chaining"><strong>5.13.2.3 Vectored Interrupt Tail-Chaining</strong><div id="5-13-2-3"></div></h4>
 <p>   For the vectored interrupt, the core does not save the context before jumping to the interrupt service routine, so the meaning of &#x201C;interrupt tail- chaining&#x201D; is not significant. Therefore, the vector interrupt does not support the operation of &#x201C;interrupt tail-chaining&#x201D;.</p>
@@ -4113,9 +4102,9 @@ If the interrupt source is configured as falling edge-triggered, the IP bit is w
 </ul>
 </li>
 </ul>
-<p><img src="chapter6/6.assets/25.png" alt=""></p>
+<p><img src="README.assets/1568083544030.png" alt="1568083544030"></p>
 <p>&#x200B;                                          <strong><center>Figure 6-4 Example for the decode of level</center></strong></p>
-<p><img src="chapter6/6.assets/26.png" alt=""></p>
+<p><img src="README.assets/1568083551140.png" alt="1568083551140"></p>
 <p>&#x200B;                                           <strong><center>Figure 6-5 Examples of cliccfg settings </center></strong></p>
 <ul>
 <li>The key points of the interrupt priority are the follows:<ul>
@@ -5147,9 +5136,9 @@ If the interrupt source is configured as falling edge-triggered, the IP bit is w
 <table>
 <thead>
 <tr>
-<th><strong>Field</strong></th>
-<th><strong>Bit</strong></th>
-<th><strong>Description</strong></th>
+<th><strong>F*</strong>ield**</th>
+<th><strong>B*</strong>it**</th>
+<th><strong>D</strong>escription**</th>
 </tr>
 </thead>
 <tbody>
@@ -5333,7 +5322,7 @@ If the interrupt source is configured as falling edge-triggered, the IP bit is w
 <li>Third step&#xFF1A;restore the value of wfe.WFE to 0.</li>
 </ul>
 <footer class="page-footer"><span class="copyright">Copyright &#xA9; nuclei.com 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x65F6;&#x95F4;&#xFF1A;
-2019-09-06 11:17:47
+2019-09-10 10:46:05
 </span></footer>
                                 
                                 </section>
@@ -5373,7 +5362,7 @@ If the interrupt source is configured as falling edge-triggered, the IP bit is w
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.    Introduction of the Instruction Set and CSRs of the Bumblebee Core","level":"1.1","depth":1,"next":{"title":"1.1.    Introduction of the RISC-V Instruction Set Architecture","level":"1.1.1","depth":2,"anchor":"#1-1","path":"README.md","ref":"README.md#1-1","articles":[]},"dir":"ltr"},"config":{"plugins":["disqus","advanced-emoji","expandable-chapters-small","splitter","back-to-top-button","chapter-fold","sharing-plus","tbfed-pagefooter"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy nuclei.com 2019","modify_label":"该文件上传时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"gitbook tutorial","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":"*","description":"nuclei book"},"file":{"path":"README.md","mtime":"2019-09-06T03:17:47.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-06T03:18:51.597Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.    Introduction of the Instruction Set and CSRs of the Bumblebee Core","level":"1.1","depth":1,"next":{"title":"1.1.    Introduction of the RISC-V Instruction Set Architecture","level":"1.1.1","depth":2,"anchor":"#1-1","path":"README.md","ref":"README.md#1-1","articles":[]},"dir":"ltr"},"config":{"plugins":["disqus","advanced-emoji","expandable-chapters-small","splitter","back-to-top-button","chapter-fold","sharing-plus","tbfed-pagefooter","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy nuclei.com 2019","modify_label":"该文件上传时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"livereload":{},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"expandable-chapters-small":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"gitbook tutorial","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false}},"gitbook":"*","description":"nuclei book"},"file":{"path":"README.md","mtime":"2019-09-10T02:46:05.922Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-10T02:47:43.742Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -5408,6 +5397,10 @@ If the interrupt source is configured as falling edge-triggered, the IP bit is w
     
         
         <script src="gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         
